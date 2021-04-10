@@ -12,4 +12,7 @@ Jordan Anthony, Jarrett Ratelle [new member]
 Apr.09.2021, 5:00 - 7:00pm Friday on Zoom
 
 ### Decisions
-Decided on group name to be NinePlusTen, and initial brand to be 
+- Icebreaker: scribble.io
+- Decided on group name to be NinePlusTen
+- Came up with initial brand
+- Filmed intro video
