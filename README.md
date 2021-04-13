@@ -10,7 +10,7 @@ NinePlusTen
 - Mascot: Garfield
 
 ### Link to team.md
-[team.md](./admin/team.md)
+[team.md](./docs/admin/team.md)
 
 
 ### links to team members page: 
