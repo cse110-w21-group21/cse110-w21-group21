@@ -3,8 +3,11 @@
 ### Team name: 
 NinePlusTen
 ### Initial brand/theme: 
-Theme: minimalistic 
-Description: Users can create a simple bullet journal to keep track of life
+- Theme: minimalistic 
+- Color: white and black
+- Description: Users can create a simple bullet journal to keep track of life
+- Logo: <img alt="logo" src="https://imgur.com/VNDtQil.jpg">
+- Mascot: Garfield
 
 ### links to team members page: 
 Github organization: https://github.com/cse110-w21-group21
