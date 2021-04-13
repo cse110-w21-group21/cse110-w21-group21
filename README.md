@@ -9,6 +9,10 @@ NinePlusTen
 - Logo: <img alt="logo" src="https://imgur.com/VNDtQil.jpg">
 - Mascot: Garfield
 
+### Link to team.md
+[team.md](./admin/team.md)
+
+
 ### links to team members page: 
 Github organization: https://github.com/cse110-w21-group21
 
