@@ -13,12 +13,12 @@ Instructor: Powell
 
 Team member info:					Email:
 
-- Judy Liu							lel006@ucsd.edu@ucsd.edu
-- Lucas Bajoua						lbajoua@ucsd.edu@ucsd.edu
+- Judy Liu							lel006@ucsd.edu
+- Lucas Bajoua						lbajoua@ucsd.edu
 - Tyler Holston						tholston@ucsd.edu
-- Jarrett Ratelle					jratelle@uscd.edu@ucsd.edu
+- Jarrett Ratelle					jratelle@uscd.edu
 - Thomas Garry						tgarry@ucsd.edu
-- Alexander Berryhill-Williams		aberryhi@ucsd.edu@ucsd.edu
+- Alexander Berryhill-Williams		aberryhi@ucsd.edu
 - Jerry Guo							jeg024@ucsd.edu
 - Usman Kadir                       ukadir@ucsd.edu
 
