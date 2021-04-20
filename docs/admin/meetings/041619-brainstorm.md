@@ -4,7 +4,7 @@
 Judy Liu, Usman Kadir, Alexander Berryhill-Williams, Jerry Guo, Lucas Bajoua, Tyler Holston, Jarrett Ratelle
 
 ### Absent:
-Thomas Garry
+Thomas Garry (excused absent)
 
 ### When and where:
 Apr.19.2021, 4:20 - 5:00pm Monday on Zoom
