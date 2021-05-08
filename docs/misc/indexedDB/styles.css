@@ -1,0 +1,16 @@
+body {
+  display: flex;
+  flex-direction: column;
+}
+textarea {
+  padding: none;
+  resize: none;
+  flex-grow: 1;
+  height: 350px;
+}
+form {
+  flex-grow: 1;
+}
+div:focus-visible {
+  outline: 1px dashed;
+}
