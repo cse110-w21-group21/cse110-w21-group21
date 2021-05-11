@@ -1,7 +1,7 @@
 # Group#21: NinePlusTen
 
 ### Present: 
-Alexander Berryhill-Williams, Tyler Holston, Thomas Garry, Lucas Bajoua, Jarrett Ratelle, Jerry Guo,
+Alexander Berryhill-Williams, Tyler Holston, Thomas Garry, Lucas Bajoua, Jarrett Ratelle, Jerry Guo
 
 ### Absent:
 Judy Liu
@@ -13,15 +13,19 @@ May.10.2021, 5:00 - 6:00pm Monday (after discussion) on Zoom
 - Discussion showing off exploratory programming
 
 ### Action items for this week
-- works on hifi design - Tyler
+- works on hifi design - Tyler (+ Lucas, maybe)
 - Creating notes that are reminders - Alex
 - Help Alex with integration - Thomas
+- Work on pipeline - Jarrett & Lucas
 - Continue working on design experiments
 - Later we will actually implement the design in html
 
 ### Notes
-- Creates the ADR template
+- Created the ADR template
 - Talked about the benefits of using indexedDB
+- Finished 3 ADRs: ElectronJS, Storage, Implementing Audio Recording
+- Discussed week's action items: want to crack down on experiments + backend
+- Want to set up a mid-week meeting to catchup
 
 ### Resources
 - [miro](https://miro.com/app/board/o9J_lJdxiAU=/), password: NinePlusTen
