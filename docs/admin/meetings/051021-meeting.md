@@ -17,6 +17,7 @@ May.10.2021, 5:00 - 6:00pm Monday (after discussion) on Zoom
 - Creating notes that are reminders - Alex
 - Help Alex with integration - Thomas
 - Work on pipeline - Jarrett & Lucas
+- Audio work - Jerry
 - Continue working on design experiments
 - Later we will actually implement the design in html
 
