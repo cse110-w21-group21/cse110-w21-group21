@@ -4,16 +4,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Install modules
-      run: yarn
-    - name: Run ESLint
-      run: eslint . --ext .js,.jsx,.ts,.tsx
+      - name: Checkout Code
+      - uses: actions/checkout@v2
+
+      - name: Run ESLint
+        run: eslint . --ext .js,.jsx,.ts,.tsx
       
-    - name: Docs
-        uses: andstor/jsdoc-action@v1
-        with:
-          source_dir: ./src
-          recurse: true
-          output_dir: ./out
+      - name: Docs
+          uses: andstor/jsdoc-action@v1
+          with:
+            source_dir: ./src
+            recurse: true
+            output_dir: ./out
 
