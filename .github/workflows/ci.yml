@@ -5,7 +5,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: npm install
       - uses: stefanoeb/eslint-action@1.0.2
         with:
           files: source/
+  jsdocs:
+    runs-on: ubuntu-latest
+    steps:
+
 
