@@ -1,6 +1,6 @@
 # Allow Sidebar to Retract
 
-* Status: [denied, unless more time later]
+* Status: [denied, unless more time later / it turns out to be easy]
 * Deciders: [team decision]
 * Date: [2021-05-12]
 
