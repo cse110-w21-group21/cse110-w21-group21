@@ -1,19 +1,11 @@
 name: CI
 on: push
 jobs:
-  build:
+  eslint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
-
-      - name: Run ESLint
-        run: eslint . --ext .js,.jsx,.ts,.tsx
-      
-      - name: Build
-          uses: andstor/jsdoc-action@v1
-          with:
-            source_dir: ./source
-            recurse: true
-            output_dir: ./out
+      - uses: actions/checkout@v2
+      - uses: stefanoeb/eslint-action@1.0.2
+        with:
+          files: source/
 
