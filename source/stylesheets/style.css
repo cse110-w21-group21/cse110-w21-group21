@@ -1,0 +1,21 @@
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #EBEBEB;
+    /* overflow-x: hidden; */
+    transition: 0.5s;
+    padding: 30px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #000000;
+    display: block;
+    transition: 0.5s;
+    font-size: 25px;
+
+}
