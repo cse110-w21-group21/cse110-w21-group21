@@ -9,8 +9,8 @@ jobs:
       - uses: stefanoeb/eslint-action@1.0.2
         with:
           files: source/
-  jsdocs:
-    runs-on: ubuntu-latest
-    steps:
+  # jsdocs:
+  #   runs-on: ubuntu-latest
+  #   steps:
 
 
