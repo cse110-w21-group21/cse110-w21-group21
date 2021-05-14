@@ -1,21 +1,58 @@
+:root {
+    --sb-width: 15rem;
+    --sb-collapsed-width: 4rem;
+}
+
+main {
+    margin-left: var(--sb-width);
+    transition: 0.1s;
+}
+
 .sidebar {
-    height: 100%;
-    width: 250px;
+    width: var(--sb-width);
+    background-color: #EBEBEB;
     position: fixed;
-    z-index: 1;
     top: 0;
     left: 0;
-    background-color: #EBEBEB;
-    /* overflow-x: hidden; */
-    transition: 0.5s;
-    padding: 30px;
+    height: 100%;
+    white-space: nowrap;
+    transition: 0.1s;
 }
 
 .sidebar a {
+    display: flex;
+    justify-content: space-between;
+    /*align-items: baseline;*/
     text-decoration: none;
-    color: #000000;
-    display: block;
-    transition: 0.5s;
-    font-size: 25px;
+    color: black;
+}
 
+.sidebar a:hover {
+    background-color: lightgrey;
+}
+
+.sidebar span {
+    padding: 1rem;
+}
+
+.sidebar i {
+    display: block;
+    width: 2rem;
+    color: black;
+    opacity: 60%;
+    padding: 1rem;
+}
+
+.menubutton i {
+    opacity: 100%;
+}
+
+.settingsbutton {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.sidebar .curr {
+    background-color: #F3F3F3;
 }

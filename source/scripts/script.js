@@ -1,11 +1,18 @@
-document.getElementById("mySideBar").addEventListener("onclick", openNav);
+// TODO: Save sidebarOpen using IndexedDB, load it on page load, toggleMenu accordingly
+let sidebarOpen = true;
 
-function openNav() {
-    document.getElementById("mySidebar").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
+document.getElementById("menubutton").onclick = toggleMenu;
+
+function toggleMenu() {
+  let sidebar = document.getElementById("sidebar");
+  let main = document.getElementsByTagName("main")[0];
+  if (sidebarOpen) {
+    sidebar.style.left = "calc(var(--sb-collapsed-width) - var(--sb-width))";
+    main.style.marginLeft = "var(--sb-collapsed-width)";
+    sidebarOpen = false;
+  } else {
+    sidebar.style.left = "0";
+    main.style.marginLeft = "var(--sb-width)";
+    sidebarOpen = true;
   }
-  
-function closeNav() {
-    document.getElementById("mySidebar").style.width = "0";
-    document.getElementById("main").style.marginLeft= "0";
 }

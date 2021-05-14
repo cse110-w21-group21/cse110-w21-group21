@@ -1,25 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NinePlusTen</title>
     <link rel="stylesheet" href="stylesheets/style.css">
-    <script src="scripts/script.js/"></script>
+    <script src="scripts/script.js" defer></script>
+    <!-- Icons sourced from https://fontawesome.com/ -->
+    <script src="https://kit.fontawesome.com/71f9f41756.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
 
+    <!--
+        This nav block defines the sidebar and should be included on every page.
+        Dependencies are style.css, script.js, and the fontawesome script.
+        Add <class="curr"> to the <a> element corresponding to the current page.
+    -->
     <nav>
-        <div id="mySidebar" class="sidebar">
-            <a href="./calendar.html">Calendar View</a>
-            <a href="./weeklyLog.html">Weekly Log</a>
-            <a href="./dailyLog.html">Daily</a>
-            <a href="./settings.html">Settings</a>
+        <div class="sidebar" id="sidebar">
+            <a href="javascript:void(0)" id="menubutton" class="menubutton">
+                <span></span>
+                <i class="fas fa-bars fa-fw fa-2x"></i>
+            </a>
+            <a href="./calendar.html" title="Calendar View">
+                <span>Calendar View</span>
+                <i class="far fa-calendar-alt fa-fw fa-lg"></i>
+            </a>
+            <a href="./weeklyLog.html" title="Weekly Log">
+                <span>Weekly Log</span>
+                <i class="fas fa-edit fa-fw fa-lg"></i>
+            </a>
+            <a href="./dailyLog.html" title="Daily Log">
+                <span>Daily Log</span>
+                <i class="fas fa-thumbtack fa-fw fa-lg"></i>
+            </a>
+            <a href="./settings.html" title="Settings" class="settingsbutton">
+                <span>Settings</span>
+                <i class="fas fa-tools fa-fw fa-lg"></i>
+            </a>
         </div>
-        <button class="openbtn">☰</button>
     </nav>
-    
-    
+
+    <main>
+        
+    </main>
+
 </body>
+
 </html>
