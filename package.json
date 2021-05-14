@@ -1,0 +1,34 @@
+{
+  "name": "cse110-w21-group21",
+  "version": "1.0.0",
+  "description": "### Team name:  NinePlusTen ### Initial brand/theme:  - Theme: minimalistic  - Color: white and black - Description: Users can create a simple bullet journal to keep track of life - Logo: <img alt=\"logo\" src=\"https://imgur.com/VNDtQil.jpg\"> - Mascot: Garfield",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "lint": "eslint '**/*.js'",
+    "prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
+    "prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cse110-w21-group21/cse110-w21-group21.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cse110-w21-group21/cse110-w21-group21/issues"
+  },
+  "devDependencies": {
+    "@prettier/plugin-xml": "^0.13.1",
+    "@sa11y/jest": "^0.3.0",
+    "eslint": "^7.22.0",
+    "eslint-config-prettier": "^8.1.0",
+    "prettier": "^2.2.1",
+    "prettier-plugin-apex": "^1.8.0"
+  },
+  "homepage": "https://github.com/cse110-w21-group21/cse110-w21-group21#readme"
+}

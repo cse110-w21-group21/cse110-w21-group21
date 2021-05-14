@@ -1,16 +1,27 @@
 name: CI
 on: push
 jobs:
-  eslint:
+  formatting-and-linting:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: npm install
-      - uses: stefanoeb/eslint-action@1.0.2
+      - name: "Checkout source code"
+        uses: actions/checkout@v2
+
+      - name: Restore node_modules cache
+        id: cache-npm
+        uses: actions/cache@v1
         with:
-          files: source/
-  # jsdocs:
-  #   runs-on: ubuntu-latest
-  #   steps:
+          path: node_modules
+          key: npm-${{hashFiles('**/package-lock.json')}}
+          restore-keys: npm-${{ env.cache-name }}-
+            npm-
 
+      - name: "Install npm dependencies"
+        if: steps.cache-npm.outputs.cache-hit != 'true'
+        run: npm install
 
+      - name: "Code formatting with Prettier"
+        run: npm run prettier:verify
+
+      - name: "ES Lint"
+        run: npm run lint
