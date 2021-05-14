@@ -23,5 +23,12 @@ jobs:
       - name: "Code formatting with Prettier"
         run: npm run prettier
 
+      - name: "JS Docs"
+        uses: andstor/jsdoc-action@v1
+        with:
+          source_dir: ./source
+          recurse: true
+          output_dir: ./out
+
       - name: "ES Lint"
         run: npm run lint
