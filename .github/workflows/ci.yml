@@ -21,7 +21,7 @@ jobs:
         run: npm install
 
       - name: "Code formatting with Prettier"
-        run: npm run prettier:verify
+        run: npm run prettier
 
       - name: "ES Lint"
         run: npm run lint
