@@ -59,9 +59,10 @@ window.onload = () => {
       (event.target.innerHTML === "" || event.target.innerHTML === "<br>")
     ) {
       event.preventDefault();
-      let textbox = event.target.parentNode.previousElementSibling.querySelector(
-        ".textbox"
-      );
+      let textbox =
+        event.target.parentNode.previousElementSibling.querySelector(
+          ".textbox"
+        );
       textbox.focus();
       setEndOfContenteditable(textbox);
       event.target.parentNode.remove();
