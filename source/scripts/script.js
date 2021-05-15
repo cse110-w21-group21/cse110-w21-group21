@@ -1,8 +1,6 @@
 // TODO: Save sidebarOpen using IndexedDB, load it on page load, toggleMenu accordingly
 let sidebarOpen = true;
 
-document.getElementById("menubutton").onclick = toggleMenu;
-
 function toggleMenu() {
   let sidebar = document.getElementById("sidebar");
   let main = document.getElementsByTagName("main")[0];
@@ -16,3 +14,5 @@ function toggleMenu() {
     sidebarOpen = true;
   }
 }
+
+document.getElementById("menubutton").onclick = toggleMenu;
