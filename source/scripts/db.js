@@ -55,11 +55,11 @@ function viewNote(event) {
   console.log(date);
   const request = pNotes.get(date);
 
-  request.onerror = function () {
+  request.onerror = function err(error) {
     // Handle errors!
     console.log(error);
   };
-  request.onsuccess = function () {
+  request.onsuccess = function success() {
     // Do something with the request.result!
     console.log(request.result);
     document.getElementById('noteList').innerHTML = request.result.text;
@@ -77,20 +77,20 @@ function updateNote(event) {
   const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
   const request = pNotes.get(date);
 
-  request.onerror = function () {
+  request.onerror = function err(error) {
     // Handle errors!
     console.log(error);
   };
-  request.onsuccess = function (event) {
+  request.onsuccess = function success(event) {
     // Do something with the request.result!
     const data = event.target.result;
     data.text = document.getElementById('noteList').innerHTML;
 
     const requestUpdate = pNotes.put(data);
-    requestUpdate.onerror = function (event) {
+    requestUpdate.onerror = function err(error) {
       console.log(error);
     };
-    requestUpdate.onsuccess = function (event) {
+    requestUpdate.onsuccess = function s() {
       console.log('updated');
     };
   };
