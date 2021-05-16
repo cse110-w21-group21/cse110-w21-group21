@@ -55,11 +55,11 @@ function viewNote(event) {
   console.log(date);
   const request = pNotes.get(date);
 
-  request.onerror = function (event) {
+  request.onerror = function () {
     // Handle errors!
     console.log(error);
   };
-  request.onsuccess = function (event) {
+  request.onsuccess = function () {
     // Do something with the request.result!
     console.log(request.result);
     document.getElementById('noteList').innerHTML = request.result.text;
@@ -77,7 +77,7 @@ function updateNote(event) {
   const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
   const request = pNotes.get(date);
 
-  request.onerror = function (event) {
+  request.onerror = function () {
     // Handle errors!
     console.log(error);
   };
