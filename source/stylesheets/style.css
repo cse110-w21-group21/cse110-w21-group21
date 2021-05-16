@@ -56,3 +56,34 @@ main {
 .sidebar .curr {
     background-color: #F3F3F3;
 }
+
+.textbox {
+    padding: 0.25em;
+    flex-basis: 100%;
+    margin: 0px;
+}
+  
+.bullet {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    list-style: none;
+    margin-bottom: 0.2em;
+}
+  
+.bullettime {
+    margin-right: 0.2em;
+    padding: 0.25em;
+    border: none;
+    font-size: 1em;
+}
+  
+.fas {
+    font-size: 0.5em;
+    margin-right: 0.5em;
+}
+  
+.fas:hover {
+    cursor: pointer;
+}
+  
