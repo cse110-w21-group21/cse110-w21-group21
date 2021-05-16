@@ -33,5 +33,13 @@ jobs:
       - name: "ESlint"
         run: npm run lint
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
+      - name: pull-request
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: "" # If blank, default: triggered branch
+          destination_branch: "main" # If blank, default: master
+          pr_title: "Pulling ${{ github.ref }} into master" # Title of pull request
+          pr_body: ":crown: *An automated PR*" # Full markdown support, requires pr_title to be set
+          pr_draft: true
+          pr_label: "auto-pr"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
