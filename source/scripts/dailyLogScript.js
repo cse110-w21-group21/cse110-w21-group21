@@ -15,8 +15,8 @@ class BulletNote extends HTMLElement {
   }
 
   /**
-       * @param {number} index
-       */
+   * @param {number} index
+   */
   set bullet(index) {
     this.querySelectorAll('.bicon')[0].className = bicons[index];
   }
@@ -60,7 +60,8 @@ function setEndOfContenteditable(contentEditableElement) {
     selection.removeAllRanges();
     // make the range you have just created the visible selection
     selection.addRange(range);
-  } else if (document.selection) { // IE 8 and lower
+  } else if (document.selection) {
+    // IE 8 and lower
     // Create a range (a range is a like the selection but invisible)
     range = document.body.createTextRange();
     // Select the entire contents of the element with the range
@@ -104,15 +105,23 @@ document.getElementById('notelist').addEventListener('keydown', (event) => {
     noteList.insertBefore(newNote, event.target.parentNode.nextSibling);
     newNote.getElementsByClassName('textbox')[0].focus();
   }
-  if (event.key === 'Backspace' && event.target.className === 'textbox' && (event.target.innerHTML === '' || event.target.innerHTML === '<br>')) {
+  if (
+    event.key === 'Backspace'
+    && event.target.className === 'textbox'
+    && (event.target.innerHTML === '' || event.target.innerHTML === '<br>')
+  ) {
     event.preventDefault();
     if (event.target.parentNode.previousElementSibling != null) {
-      const textbox = event.target.parentNode.previousElementSibling.querySelector('.textbox');
+      const textbox = event.target.parentNode.previousElementSibling.querySelector(
+        '.textbox',
+      );
       textbox.focus();
       setEndOfContenteditable(textbox);
     }
     event.target.parentNode.remove();
-    if (document.getElementById('notelist').innerHTML.indexOf('bullet') === -1) {
+    if (
+      document.getElementById('notelist').innerHTML.indexOf('bullet') === -1
+    ) {
       addNote();
     }
   }

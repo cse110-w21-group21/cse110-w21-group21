@@ -3,17 +3,17 @@ let sidebarOpen = true;
 
 // test comment
 function toggleMenu() {
-  let sidebar = document.getElementById("sidebar");
-  let main = document.getElementsByTagName("main")[0];
+  const sidebar = document.getElementById('sidebar');
+  const main = document.getElementsByTagName('main')[0];
   if (sidebarOpen) {
-    sidebar.style.left = "calc(var(--sb-collapsed-width) - var(--sb-width))";
-    main.style.marginLeft = "var(--sb-collapsed-width)";
+    sidebar.style.left = 'calc(var(--sb-collapsed-width) - var(--sb-width))';
+    main.style.marginLeft = 'var(--sb-collapsed-width)';
     sidebarOpen = false;
   } else {
-    sidebar.style.left = "0";
-    main.style.marginLeft = "var(--sb-width)";
+    sidebar.style.left = '0';
+    main.style.marginLeft = 'var(--sb-width)';
     sidebarOpen = true;
   }
 }
 
-document.getElementById("menubutton").onclick = toggleMenu;
+document.getElementById('menubutton').onclick = toggleMenu;
