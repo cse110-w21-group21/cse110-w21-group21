@@ -8,5 +8,10 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module",
   },
-  rules: {},
+  rules: {
+    "prefer-const": "off",
+    quotes: "warn",
+    "no-const-assign": "warn",
+    indent: "warn",
+  },
 };

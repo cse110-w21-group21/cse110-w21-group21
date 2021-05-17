@@ -1,7 +1,6 @@
 // TODO: Save sidebarOpen using IndexedDB, load it on page load, toggleMenu accordingly
 let sidebarOpen = true;
 
-// test comment
 function toggleMenu() {
   const sidebar = document.getElementById('sidebar');
   const main = document.getElementsByTagName('main')[0];

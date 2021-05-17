@@ -1,0 +1,11 @@
+#color-calendar {
+  position: relative;
+  visibility: visible;
+}
+
+#meme {
+  object-fit: fill;
+  padding-top: 50px;
+  width: 300px;
+  height: auto;
+}
