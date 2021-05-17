@@ -7,11 +7,14 @@ const bicons = ['fas fa-circle fa-fw bicon', 'fas fa-square fa-fw bicon'];
  */
 class BulletNote extends HTMLElement {
   connectedCallback() {
-    this.innerHTML = `
+    console.log(this.innerHTML.indexOf('textbox'));
+    if (this.innerHTML.indexOf('textbox') === -1) {
+      this.innerHTML = `
         <div class="${bicons[0]}"></div>
         <input type="time" class="bullettime">
         <p class="textbox" contenteditable=true></p>
         `;
+    }
   }
 
   /**
@@ -74,14 +77,19 @@ function setEndOfContenteditable(contentEditableElement) {
 }
 
 window.onload = () => {
+  createDB();
   addNote();
 };
+
+document.getElementById("btnAddNote").addEventListener("click", addNoteDB);
+document.getElementById("btnViewNote").addEventListener("click", viewNote);
+document.getElementById("btnUpdateNote").addEventListener("click", updateNote);
 
 /**
  * TODO: Click bullet point to change bullet icon
  */
 document.getElementById('notelist').addEventListener('click', (event) => {
-  if (event.target.classList.contains('fas')) {
+  if (event.target.classList.contains('bicon')) {
     // console.log("test");
   }
 });
@@ -119,9 +127,7 @@ document.getElementById('notelist').addEventListener('keydown', (event) => {
       setEndOfContenteditable(textbox);
     }
     event.target.parentNode.remove();
-    if (
-      document.getElementById('notelist').innerHTML.indexOf('bullet') === -1
-    ) {
+    if (document.getElementById('notelist').innerHTML.indexOf('bullet') === -1) {
       addNote();
     }
   }
