@@ -1,5 +1,11 @@
 #color-calendar {
   position: relative;
   visibility: visible;
-  left: 15rem;
+}
+
+#meme {
+  object-fit: fill;
+  padding-top: 50px;
+  width: 300px;
+  height: auto;
 }
