@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
   createCalendar(JSON.parse(existing));
 });
 
-/**eventCreation.addEventListener('submit', function () {
+eventCreation.addEventListener('submit', function () {
   let inputTitle = document.getElementById('title').value;
   let startDate = document.getElementById('start').value;
   let endDate = document.getElementById('end').value;
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   createCalendar(existing);
 });
-*/
+
 
 const menuToggle = document.querySelector('main');
 menuToggle.addEventListener('transitionend', () => {
