@@ -10,8 +10,8 @@ module.exports = {
   },
   rules: {
     "prefer-const": "off",
-    "quotes": "warn",
-    "no-const-assign": "warn"
-    "indent": "warn",
+    quotes: "warn",
+    "no-const-assign": "warn",
+    indent: "warn",
   },
 };
