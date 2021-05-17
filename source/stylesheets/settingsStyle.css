@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+}
+
+.settingsDiv {
+  padding-bottom: 40%;
+}
+
+.column {
+  float: left;
+  padding: 10px;
+}
+
+.left {
+  width: 20%;
+}
+
+.right {
+  width: 50%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
