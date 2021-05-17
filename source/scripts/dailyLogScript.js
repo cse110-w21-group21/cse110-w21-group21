@@ -1,5 +1,7 @@
+/* eslint-disable */
+
 let shift = false;
-const bicons = ['fas fa-circle fa-fw bicon', 'fas fa-square fa-fw bicon'];
+const bicons = ["fas fa-circle fa-fw bicon", "fas fa-square fa-fw bicon"];
 // const bnames = ['Note', 'Event'];
 
 /**
@@ -7,30 +9,32 @@ const bicons = ['fas fa-circle fa-fw bicon', 'fas fa-square fa-fw bicon'];
  */
 class BulletNote extends HTMLElement {
   connectedCallback() {
-    this.innerHTML = `
+    if (this.innerHTML.indexOf("textbox") === -1) {
+      this.innerHTML = `
         <div class="${bicons[0]}"></div>
         <input type="time" class="bullettime">
         <p class="textbox" contenteditable=true></p>
         `;
+    }
   }
 
   /**
    * @param {number} index
    */
   set bullet(index) {
-    this.querySelectorAll('.bicon')[0].className = bicons[index];
+    this.querySelectorAll(".bicon")[0].className = bicons[index];
   }
 }
-customElements.define('bullet-note', BulletNote);
+customElements.define("bullet-note", BulletNote);
 
 /**
  * Creates a new blank note
  * Should only be used to add the first note when there are no other notes
  */
 function addNote() {
-  const noteList = document.getElementById('notelist');
-  const newNote = document.createElement('bullet-note');
-  newNote.className = 'bullet';
+  const noteList = document.getElementById("notelist");
+  const newNote = document.createElement("bullet-note");
+  newNote.className = "bullet";
   newNote.dataset.starttime = false;
   noteList.appendChild(newNote);
   // newNote.getElementsByClassName("textbox")[0].focus();
@@ -74,14 +78,19 @@ function setEndOfContenteditable(contentEditableElement) {
 }
 
 window.onload = () => {
+  createDB();
   addNote();
 };
+
+document.getElementById("btnAddNote").addEventListener("click", addNoteDB);
+document.getElementById("btnViewNote").addEventListener("click", viewNote);
+document.getElementById("btnUpdateNote").addEventListener("click", updateNote);
 
 /**
  * TODO: Click bullet point to change bullet icon
  */
-document.getElementById('notelist').addEventListener('click', (event) => {
-  if (event.target.classList.contains('fas')) {
+document.getElementById("notelist").addEventListener("click", (event) => {
+  if (event.target.classList.contains("bicon")) {
     // console.log("test");
   }
 });
@@ -92,43 +101,44 @@ document.getElementById('notelist').addEventListener('click', (event) => {
  * Shift-Enter: Creates new line in current note, does not create new note
  * Backspace: If current note is empty, delete current note
  */
-document.getElementById('notelist').addEventListener('keydown', (event) => {
-  if (event.key === 'Shift') {
+document.getElementById("notelist").addEventListener("keydown", (event) => {
+  if (event.key === "Shift") {
     shift = true;
   }
-  if (event.key === 'Enter' && event.target.className === 'textbox' && !shift) {
+  if (event.key === "Enter" && event.target.className === "textbox" && !shift) {
     event.preventDefault();
-    const noteList = document.getElementById('notelist');
-    const newNote = document.createElement('bullet-note');
-    newNote.className = 'bullet';
+    const noteList = document.getElementById("notelist");
+    const newNote = document.createElement("bullet-note");
+    newNote.className = "bullet";
     newNote.dataset.starttime = false;
     noteList.insertBefore(newNote, event.target.parentNode.nextSibling);
-    newNote.getElementsByClassName('textbox')[0].focus();
+    newNote.getElementsByClassName("textbox")[0].focus();
   }
   if (
-    event.key === 'Backspace'
-    && event.target.className === 'textbox'
-    && (event.target.innerHTML === '' || event.target.innerHTML === '<br>')
+    event.key === "Backspace" &&
+    event.target.className === "textbox" &&
+    (event.target.innerHTML === "" || event.target.innerHTML === "<br>")
   ) {
     event.preventDefault();
     if (event.target.parentNode.previousElementSibling != null) {
-      const textbox = event.target.parentNode.previousElementSibling.querySelector(
-        '.textbox',
-      );
+      const textbox =
+        event.target.parentNode.previousElementSibling.querySelector(
+          ".textbox"
+        );
       textbox.focus();
       setEndOfContenteditable(textbox);
     }
     event.target.parentNode.remove();
     if (
-      document.getElementById('notelist').innerHTML.indexOf('bullet') === -1
+      document.getElementById("notelist").innerHTML.indexOf("bullet") === -1
     ) {
       addNote();
     }
   }
 });
 
-document.getElementById('notelist').addEventListener('keyup', (event) => {
-  if (event.key === 'Shift') {
+document.getElementById("notelist").addEventListener("keyup", (event) => {
+  if (event.key === "Shift") {
     shift = false;
   }
 });
@@ -136,75 +146,75 @@ document.getElementById('notelist').addEventListener('keyup', (event) => {
 /**
  * Bold text button
  */
-document.getElementById('btnbold').addEventListener('click', () => {
-  document.execCommand('bold');
+document.getElementById("btnbold").addEventListener("click", () => {
+  document.execCommand("bold");
 });
 
 /**
  * Used to prevent focus change when pressing bold text button
  */
-document.getElementById('btnbold').addEventListener('mousedown', (event) => {
+document.getElementById("btnbold").addEventListener("mousedown", (event) => {
   event.preventDefault();
 });
 
 /**
  * Italic text button
  */
-document.getElementById('btnitalic').addEventListener('click', () => {
-  document.execCommand('italic');
+document.getElementById("btnitalic").addEventListener("click", () => {
+  document.execCommand("italic");
 });
 
 /**
  * Used to prevent focus change when pressing italic text button
  */
-document.getElementById('btnitalic').addEventListener('mousedown', (event) => {
+document.getElementById("btnitalic").addEventListener("mousedown", (event) => {
   event.preventDefault();
 });
 
 /**
  * Underline text button
  */
-document.getElementById('btnunder').addEventListener('click', () => {
-  document.execCommand('underline');
+document.getElementById("btnunder").addEventListener("click", () => {
+  document.execCommand("underline");
 });
 
 /**
  * Used to prevent focus change when pressing underline text button
  */
-document.getElementById('btnunder').addEventListener('mousedown', (event) => {
+document.getElementById("btnunder").addEventListener("mousedown", (event) => {
   event.preventDefault();
 });
 
 /**
  * Strikethrough text button
  */
-document.getElementById('btnstrike').addEventListener('click', () => {
-  document.execCommand('strikeThrough');
+document.getElementById("btnstrike").addEventListener("click", () => {
+  document.execCommand("strikeThrough");
 });
 
 /**
  * Used to prevent focus change when pressing strikethrough text button
  */
-document.getElementById('btnstrike').addEventListener('mousedown', (event) => {
+document.getElementById("btnstrike").addEventListener("mousedown", (event) => {
   event.preventDefault();
 });
 
 /**
  * New Event button, adds a note with a time
  */
-document.getElementById('newevent').addEventListener('click', () => {
-  const noteList = document.getElementById('notelist');
-  const newNote = document.createElement('bullet-note');
-  newNote.className = 'bullet';
+document.getElementById("newevent").addEventListener("click", () => {
+  const noteList = document.getElementById("notelist");
+  const newNote = document.createElement("bullet-note");
+  newNote.className = "bullet";
   newNote.dataset.starttime = true;
   noteList.appendChild(newNote);
   newNote.bullet = 1;
-  newNote.getElementsByClassName('textbox')[0].focus();
+  newNote.getElementsByClassName("textbox")[0].focus();
 });
 
 /**
  * Used to prevent focus change when pressing New Event button
  */
-document.getElementById('newevent').addEventListener('mousedown', (event) => {
+document.getElementById("newevent").addEventListener("mousedown", (event) => {
   event.preventDefault();
 });
