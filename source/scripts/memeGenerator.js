@@ -1,7 +1,4 @@
-/* eslint-disable func-names */
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable no-plusplus */
-/* eslint-disable no-prototype-builtins */
+/*eslint-disable*/
 document.addEventListener("DOMContentLoaded", () => {
   let random = Math.floor((Math.random() * 1733) % 311);
 
@@ -13,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
       // data.forEach((meme) => {
       //     i++;
       // });
-      let keys = Object.keys(data);
       for (let i = 0; i < 311; i++) {
         if (i == random) {
           let randMeme = document.createElement("img");
