@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 let db;
 function createDB() {
   const request = indexedDB.open("noteDB", 1);

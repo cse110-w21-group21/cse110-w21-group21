@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 let shift = false;
 const bicons = ['fas fa-circle fa-fw bicon', 'fas fa-square fa-fw bicon'];
 // const bnames = ['Note', 'Event'];
@@ -7,7 +9,6 @@ const bicons = ['fas fa-circle fa-fw bicon', 'fas fa-square fa-fw bicon'];
  */
 class BulletNote extends HTMLElement {
   connectedCallback() {
-    console.log(this.innerHTML.indexOf('textbox'));
     if (this.innerHTML.indexOf('textbox') === -1) {
       this.innerHTML = `
         <div class="${bicons[0]}"></div>
