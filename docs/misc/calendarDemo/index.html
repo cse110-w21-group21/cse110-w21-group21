@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
   <head>
-    <meta charset='utf-8' />
-    <link href='/node_modules/fullcalendar/main.css' rel='stylesheet' />
+    <meta charset="utf-8" />
+    <link href="/node_modules/fullcalendar/main.css" rel="stylesheet" />
     <link href="./stylesheets/index.css" rel="stylesheet" />
-     
-    <script src='/node_modules/fullcalendar/main.js'></script>
-    
+
+    <script src="/node_modules/fullcalendar/main.js"></script>
+
     <script type="module" src="/scripts/script.js"></script>
   </head>
   <body>
@@ -22,16 +22,16 @@
       <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button>
       <form id="createEventForm">
         <label for="title">Title of Event</label>
-        <input id="title" name="title" type="text">
+        <input id="title" name="title" type="text" />
         <label for="start">Start Date</label>
-        <input id="start" name="start" type="date">
+        <input id="start" name="start" type="date" />
         <label for="end">End Date</label>
-        <input type="date" name="end" id="end">
+        <input type="date" name="end" id="end" />
         <label for="colorSelect">Color Selection</label>
-        <input type="color" id="colorSelect" name="colorSelect">
+        <input type="color" id="colorSelect" name="colorSelect" />
         <button type="submit">Create Event</button>
       </form>
-      <div class="calendar" id='calendar'></div>
+      <div class="calendar" id="calendar"></div>
     </div>
 
     <script>
@@ -39,11 +39,11 @@
         document.getElementById("mySidebar").style.width = "250px";
         document.getElementById("main").style.marginLeft = "250px";
       }
-      
+
       function closeNav() {
         document.getElementById("mySidebar").style.width = "0";
-        document.getElementById("main").style.marginLeft= "0";
+        document.getElementById("main").style.marginLeft = "0";
       }
-      </script>
+    </script>
   </body>
 </html>
