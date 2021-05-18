@@ -3,6 +3,10 @@
   --sb-collapsed-width: 4rem;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 main {
   margin-left: var(--sb-width);
   transition: 0.1s;
@@ -32,7 +36,7 @@ main {
 }
 
 .sidebar span {
-  padding: 1rem;
+  margin: 1rem;
 }
 
 .sidebar i {
@@ -40,7 +44,7 @@ main {
   width: 2rem;
   color: black;
   opacity: 60%;
-  padding: 1rem;
+  margin: 1rem;
 }
 
 .menubutton i {
