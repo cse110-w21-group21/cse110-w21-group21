@@ -7,9 +7,9 @@ function createCalendar(data) {
 
   calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
-    contentHeight: 'auto',
+    aspectRatio: 2,
     headerToolbar: {
-      left: 'prev,next today',
+      left: 'prev,next',
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
