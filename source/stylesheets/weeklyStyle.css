@@ -9,3 +9,21 @@
   width: 300px;
   height: auto;
 }
+
+#calendar {
+  width: 300px;
+  height: 490px;
+  padding-bottom: 10px;
+}
+
+.fc .fc-toolbar-title {
+  font-size: 1em;
+}
+
+.fc .fc-button {
+  padding: 0.1em;
+}
+
+.fc .fc-daygrid-day {
+  max-height: 20px;
+}
