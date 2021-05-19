@@ -1,3 +1,4 @@
+/*eslint-disable*/
 document.getElementById('one').addEventListener('click', () => {
     document.body.classList.remove("dark");
     document.body.classList.add("light");
