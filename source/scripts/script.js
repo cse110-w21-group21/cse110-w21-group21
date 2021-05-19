@@ -1,4 +1,3 @@
-/*eslint-disable*/
 // TODO: Save sidebarOpen using IndexedDB, load it on page load, toggleMenu accordingly
 let sidebarOpen = true;
 
