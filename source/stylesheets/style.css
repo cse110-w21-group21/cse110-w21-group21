@@ -60,3 +60,16 @@ main {
 .sidebar .curr {
   background-color: #f3f3f3;
 }
+
+body.light {
+  background-color: #ffffff;
+}
+
+body.dark {
+  background-color: #a5a5a5;
+}
+
+body.invertedText {
+  background-color: #121212;
+  color: #eee;
+}
