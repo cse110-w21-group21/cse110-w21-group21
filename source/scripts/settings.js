@@ -1,4 +1,4 @@
-document.getElementById('one').addEventListener('click', () => {
+document.getElementById('scheme-one').addEventListener('click', () => {
     document.body.classList.remove("blueHumans");
     document.body.classList.add("barcelona");
     document.body.classList.remove("hackers");
@@ -18,7 +18,7 @@ document.getElementById('one').addEventListener('click', () => {
     localStorage.setItem("theme", "barcelona");
 });
 
-document.getElementById('two').addEventListener('click', () => {
+document.getElementById('scheme-two').addEventListener('click', () => {
     document.body.classList.add("blueHumans");
     document.body.classList.remove("barcelona");
     document.body.classList.remove("hackers");
@@ -38,7 +38,7 @@ document.getElementById('two').addEventListener('click', () => {
     localStorage.setItem("theme", "blueHumans");
 });
 
-document.getElementById('three').addEventListener('click', () => {
+document.getElementById('scheme-three').addEventListener('click', () => {
     document.body.classList.remove("blueHumans");
     document.body.classList.remove("barcelona");
     document.body.classList.remove("hackers");
@@ -58,7 +58,7 @@ document.getElementById('three').addEventListener('click', () => {
     localStorage.setItem("theme", "beach");
 });
 
-document.getElementById('four').addEventListener('click', () => {
+document.getElementById('scheme-four').addEventListener('click', () => {
     document.body.classList.remove("blueHumans");
     document.body.classList.remove("barcelona");
     document.body.classList.remove("hackers");
@@ -78,7 +78,7 @@ document.getElementById('four').addEventListener('click', () => {
     localStorage.setItem("theme", "raptorize");
 });
 
-document.getElementById('five').addEventListener('click', () => {
+document.getElementById('scheme-five').addEventListener('click', () => {
     document.body.classList.remove("blueHumans");
     document.body.classList.remove("barcelona");
     document.body.classList.remove("hackers");
@@ -98,7 +98,7 @@ document.getElementById('five').addEventListener('click', () => {
     localStorage.setItem("theme", "cthuluRises");
 });
 
-document.getElementById('six').addEventListener('click', () => {
+document.getElementById('scheme-six').addEventListener('click', () => {
     document.body.classList.remove("blueHumans");
     document.body.classList.remove("barcelona");
     document.body.classList.remove("hackers");
@@ -118,7 +118,7 @@ document.getElementById('six').addEventListener('click', () => {
     localStorage.setItem("theme", "boringVolcano");
 });
 
-document.getElementById('seven').addEventListener('click', () => {
+document.getElementById('scheme-seven').addEventListener('click', () => {
     document.body.classList.remove("blueHumans");
     document.body.classList.remove("barcelona");
     document.body.classList.add("hackers");
@@ -138,7 +138,7 @@ document.getElementById('seven').addEventListener('click', () => {
     localStorage.setItem("theme", "hackers");
 });
 
-document.getElementById('eight').addEventListener('click', () => {
+document.getElementById('scheme-eight').addEventListener('click', () => {
     document.body.classList.remove("blueHumans");
     document.body.classList.remove("barcelona");
     document.body.classList.remove("hackers");

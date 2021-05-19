@@ -23,37 +23,37 @@ const currentTheme = localStorage.getItem("theme");
 if (currentTheme === "blueHumans") {
   document.body.classList.toggle("blueHumans");
   document.getElementById('sidebar').classList.toggle('blueHumans');
-  document.getElementById('two').checked = true;
+  document.getElementById('scheme-two').checked = true;
 } else if (currentTheme === "hackers") {
   document.body.classList.toggle("hackers");
   document.getElementById('sidebar').classList.toggle('hackers');
-  document.getElementById('seven').checked = true;
+  document.getElementById('scheme-seven').checked = true;
 } else if (currentTheme === "beach") {
   document.body.classList.toggle("beach");
   document.getElementById('sidebar').classList.toggle('beach');
-  document.getElementById('three').checked = true;
+  document.getElementById('scheme-three').checked = true;
 } else if (currentTheme === "raptorize") {
   document.body.classList.toggle("raptorize");
   document.getElementById('sidebar').classList.toggle('raptorize');
-  document.getElementById('four').checked = true;
+  document.getElementById('scheme-four').checked = true;
 } else if (currentTheme === "cthuluRises") {
   document.body.classList.toggle("cthuluRises");
   document.getElementById('sidebar').classList.toggle('cthuluRises');
-  document.getElementById('five').checked = true;
+  document.getElementById('scheme-five').checked = true;
 } else if (currentTheme === "boringVolcano") {
   document.body.classList.toggle("boringVolcano");
   document.getElementById('sidebar').classList.toggle('boringVolcano'); 
-  document.getElementById('six').checked = true;
+  document.getElementById('scheme-six').checked = true;
 } else if (currentTheme === "cityByNight") {
   document.body.classList.toggle("cityByNight");
   document.getElementById('sidebar').classList.toggle('cityByNight'); 
-  document.getElementById('eight').checked = true;
+  document.getElementById('scheme-eight').checked = true;
 } else if (currentTheme === "barcelona") {
   document.body.classList.toggle("barcelona");
   document.getElementById('sidebar').classList.toggle('barcelona');
-  document.getElementById('one').checked = true;
+  document.getElementById('scheme-one').checked = true;
 } else {
   document.body.classList.toggle("barcelona");
   document.getElementById('sidebar').classList.toggle('barcelona');
-  document.getElementById('one').checked = true;
+  document.getElementById('scheme-one').checked = true;
 } 
