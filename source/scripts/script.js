@@ -16,3 +16,12 @@ function toggleMenu() {
 }
 
 document.getElementById('menubutton').onclick = toggleMenu;
+
+const currentTheme = localStorage.getItem("theme");
+if (currentTheme === "dark") {
+    document.body.classList.toggle("dark");
+} else if (currentTheme === "light") {
+    document.body.classList.toggle("light");
+} else if (currentTheme === "invertedText") {
+    document.body.classList.toggle("invertedText"); 
+}
