@@ -61,15 +61,180 @@ main {
   background-color: #f3f3f3;
 }
 
-body.light {
-  background-color: #ffffff;
+/* BARCELONA */
+body.barcelona {
+  background-color: #FDFFF7;
+  color: #27282D;
 }
 
-body.dark {
-  background-color: #a5a5a5;
+.sidebar.barcelona {
+  background-color: #474D4B;
 }
 
-body.invertedText {
-  background-color: #121212;
-  color: #eee;
+.sidebar.barcelona a:hover {
+  background-color: #F54296;
+}
+
+.sidebar.barcelona .curr {
+  background-color: #27282D;
+}
+
+.sidebar.barcelona a {
+  color: #E0F635;
+}
+
+/* BLUE HUMANS */
+body.blueHumans {
+  background-color: #F8E4CC;
+  color: #294052;
+}
+
+.sidebar.blueHumans {
+  background-color: #447294;
+}
+
+.sidebar.blueHumans a:hover {
+  background-color: #8FBCDB;
+}
+
+.sidebar.blueHumans .curr {
+  background-color: #294052;
+}
+
+.sidebar.blueHumans a {
+  color: #F4D6BC;
+}
+
+/* BEACH */
+body.beach {
+  background-color: #EECCAA;
+  color: #886655;
+}
+
+.sidebar.beach {
+  background-color: #DD9977;
+}
+
+.sidebar.beach a:hover {
+  background-color: #CC99CC;
+
+}
+
+.sidebar.beach .curr {
+  background-color: #886655;
+}
+
+.sidebar.beach a {
+  color: #EEEEEE;
+}
+
+/* RAPTORIZE */
+body.raptorize {
+  background-color: #C1BF95;
+  color: #070A1E;
+}
+
+.sidebar.raptorize {
+  background-color: #58423F;
+  
+}
+
+.sidebar.raptorize a:hover {
+  background-color: #382230;
+}
+
+.sidebar.raptorize .curr {
+  background-color: #888069;
+}
+
+.sidebar.raptorize a {
+  color: #C1BF95;
+}
+
+/* CTHULU RISES */
+body.cthuluRises {
+  background-color: #aabbaa;
+  color: #553333;
+}
+
+.sidebar.cthuluRises {
+  background-color: #99aaaa;
+}
+
+.sidebar.cthuluRises a:hover {
+  background-color: #998866;
+}
+
+.sidebar.cthuluRises .curr {
+  background-color: #cccc99;
+}
+
+.sidebar.cthuluRises a {
+  color: #553333;
+}
+
+/* BORING VOLCANO */
+body.boringVolcano {
+  background-color: #bbcccc;
+  color: #223333;
+}
+
+.sidebar.boringVolcano {
+  background-color: #889999;
+}
+
+.sidebar.boringVolcano a:hover {
+  background-color: #dd9988;
+}
+
+.sidebar.boringVolcano .curr {
+  background-color: #ddeedd;
+}
+
+.sidebar.boringVolcano a {
+  color: #223333;
+}
+
+/* HACKERS */
+body.hackers {
+  background-color: #000000;
+  color: #05a300;
+}
+
+.sidebar.hackers {
+  background-color: #828282;
+}
+
+.sidebar.hackers a:hover {
+  background-color: #FF6600;
+}
+
+.sidebar.hackers .curr {
+  background-color: #F6F6EF;
+}
+
+.sidebar.hackers a {
+  color: #000000;
+}
+
+/* CITY BY NIGHT */
+body.cityByNight {
+  background-color: #ffdd99;
+  color: #332244;
+}
+
+.sidebar.cityByNight {
+  background-color: #5566aa;
+}
+
+.sidebar.cityByNight a:hover {
+  background-color: #aa7799;
+}
+
+.sidebar.cityByNight .curr {
+  background-color: #dd9999;
+}
+
+.sidebar.cityByNight a {
+  color: #332244;
 }
