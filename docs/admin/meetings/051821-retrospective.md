@@ -2,30 +2,24 @@
 
 ### Present:
 
-Alexander Berryhill-Williams, Thomas Garry, Judy Liu, Lucas Bajoua, Tyler Holston, Jerry Guo
+Alexander Berryhill-Williams, Thomas Garry, Judy Liu, Lucas Bajoua
 
 ### Absent:
 
-Jarrett Ratelle
+Tyler Holston, Jarrett Ratelle, Jerry Guo
 
 ### When and where:
 
-May.18.2021, 5:00 - 6:00pm Wednesday on Zoom
+May.18.2021, 9:00 - 10:00pm Tuesday on Zoom
 
 ### Agenda
 
-- Go over event handling technique/localstorage
-- Plan for next sprint
+Retrospective: Think, Group, Vote, Discuss
 
-### Sprint Goals
+### Notes
 
-- Kanban board setup
-
-- Finish setting up the website (Friday meeting)
-- 1. Weekly and daily log notes
-- 2. Marking notes as 'important'
-- 3. Events form more user friendly(calendar view/all pages)
-- 4. Delete event button
-- 5. Front end (changing the website to be more user friendly)
-- 6. Select the day for the daily log to display
-- Testing (Monday)
+- Think: Had five minutes to put down what made us mad, sad, and glad about the project.
+- Group: group together similar thoughts
+- Vote: Each member had five votes
+![Retrospective Votes](../../misc/051821-retrospective-1.png)
+![Retrospective Action Items](../../misc/051821-retrospective-2.png)
