@@ -157,3 +157,23 @@ document.getElementById('scheme-eight').addEventListener('click', () => {
     document.getElementById('sidebar').classList.add("cityByNight");
     localStorage.setItem("theme", "cityByNight");
 });
+
+if (currentTheme === "blueHumans") {
+  document.getElementById('scheme-two').checked = true;
+} else if (currentTheme === "hackers") {
+  document.getElementById('scheme-seven').checked = true;
+} else if (currentTheme === "beach") {
+  document.getElementById('scheme-three').checked = true;
+} else if (currentTheme === "raptorize") {
+  document.getElementById('scheme-four').checked = true;
+} else if (currentTheme === "cthuluRises") {
+  document.getElementById('scheme-five').checked = true;
+} else if (currentTheme === "boringVolcano") {
+  document.getElementById('scheme-six').checked = true;
+} else if (currentTheme === "cityByNight") {
+  document.getElementById('scheme-eight').checked = true;
+} else if (currentTheme === "barcelona") {
+  document.getElementById('scheme-one').checked = true;
+} else {
+  document.getElementById('scheme-one').checked = true;
+} 
