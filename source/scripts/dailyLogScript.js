@@ -1,8 +1,8 @@
 /* eslint-disable */
 
 let shift = false;
-const bicons = ['fas fa-circle fa-fw bicon', 'fas fa-square fa-fw bicon'];
-// const bnames = ['Note', 'Event'];
+const bicons = ['fas fa-circle fa-fw', 'fas fa-square fa-fw'];
+const bnames = ['Note', 'Task'];
 
 /**
  * Custom bullet-note element used for each editable bulleted item in the daily log
@@ -11,10 +11,22 @@ class BulletNote extends HTMLElement {
   connectedCallback() {
     if (this.innerHTML.indexOf('textbox') === -1) {
       this.innerHTML = `
-        <div class="${bicons[0]}"></div>
+        <div class="${bicons[0]} bicon"></div>
+        <ul class="bdropdown"></ul>
         <input type="time" class="bullettime">
         <p class="textbox" contenteditable=true></p>
         `;
+      let dropdown = this.querySelector('.bdropdown');
+      for(let i = 0; i < bicons.length; i++) {
+        let option = document.createElement('li');
+        option.classList.add("bdropdown-option");
+        // let optionIcon = document.createElement(`div[class="bdropdown-option-icon${bicons[i]}"]`);
+        let optionIcon = document.createElement("div");
+        optionIcon.className = bicons[i];
+        optionIcon.classList.add('bdropdown-option-icon');
+        option.appendChild(optionIcon);
+        dropdown.appendChild(option);
+      }
     }
   }
 
@@ -22,7 +34,7 @@ class BulletNote extends HTMLElement {
    * @param {number} index
    */
   set bullet(index) {
-    this.querySelectorAll('.bicon')[0].className = bicons[index];
+    this.querySelectorAll('.bicon')[0].className = bicons[index] + ' bicon';
   }
 }
 customElements.define('bullet-note', BulletNote);
@@ -36,6 +48,7 @@ function addNote() {
   const newNote = document.createElement('bullet-note');
   newNote.className = 'bullet';
   newNote.dataset.starttime = false;
+  newNote.dataset.important = false;
   noteList.appendChild(newNote);
   // newNote.getElementsByClassName("textbox")[0].focus();
 }
@@ -77,13 +90,22 @@ function setEndOfContenteditable(contentEditableElement) {
   }
 }
 
+function toggleNoteImportance(myElement) {
+  if(myElement.dataset.important === "true"){
+    myElement.dataset.important = false;
+  } else {
+    myElement.dataset.important = true;
+  }
+  console.log(myElement.dataset.important);
+}
+
 window.onload = () => {
   createDB();
   addNote();
 };
 
 document.getElementById("btnAddNote").addEventListener("click", addNoteDB);
-document.getElementById("btnViewNote").addEventListener("click", viewNote);
+document.getElementById("btnViewNote").addEventListener("click", (event) => {viewNote(event,false);});
 document.getElementById("btnUpdateNote").addEventListener("click", updateNote);
 
 /**
@@ -91,7 +113,8 @@ document.getElementById("btnUpdateNote").addEventListener("click", updateNote);
  */
 document.getElementById('notelist').addEventListener('click', (event) => {
   if (event.target.classList.contains('bicon')) {
-    // console.log("test");
+    toggleNoteImportance(event.target.parentNode);
+    console.log(event.target.parentNode)
   }
 });
 
@@ -111,6 +134,7 @@ document.getElementById('notelist').addEventListener('keydown', (event) => {
     const newNote = document.createElement('bullet-note');
     newNote.className = 'bullet';
     newNote.dataset.starttime = false;
+    newNote.dataset.important = false;
     noteList.insertBefore(newNote, event.target.parentNode.nextSibling);
     newNote.getElementsByClassName('textbox')[0].focus();
   }
@@ -199,6 +223,7 @@ document.getElementById('btnstrike').addEventListener('mousedown', (event) => {
 /**
  * New Event button, adds a note with a time
  */
+/*
 document.getElementById('newevent').addEventListener('click', () => {
   const noteList = document.getElementById('notelist');
   const newNote = document.createElement('bullet-note');
@@ -208,10 +233,4 @@ document.getElementById('newevent').addEventListener('click', () => {
   newNote.bullet = 1;
   newNote.getElementsByClassName('textbox')[0].focus();
 });
-
-/**
- * Used to prevent focus change when pressing New Event button
- */
-document.getElementById('newevent').addEventListener('mousedown', (event) => {
-  event.preventDefault();
-});
+*/

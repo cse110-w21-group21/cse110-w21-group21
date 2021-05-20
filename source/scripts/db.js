@@ -32,9 +32,8 @@ function createDB() {
 function addNoteDB(event) {
   // allRecords.innerHTML = "";
   const today = new Date();
-  const date = `${today.getFullYear()}-${
-    today.getMonth() + 1
-  }-${today.getDate()}`;
+  const date = `${today.getFullYear()}-${today.getMonth() + 1
+    }-${today.getDate()}`;
   const noteString = document.getElementById("notelist").innerHTML;
   const note = {
     time: Math.floor(Date.now() / 1000),
@@ -50,14 +49,13 @@ function addNoteDB(event) {
   event.preventDefault();
 } /* addNote */
 
-function viewNote(event) {
+function viewNote(event, fromWeekly) {
   const tx = db.transaction("personal_notes", "readonly");
   const pNotes = tx.objectStore("personal_notes");
 
   const today = new Date();
-  const date = `${today.getFullYear()}-${
-    today.getMonth() + 1
-  }-${today.getDate()}`;
+  const date = `${today.getFullYear()}-${today.getMonth() + 1
+    }-${today.getDate()}`;
   console.log(date);
   const request = pNotes.get(date);
 
@@ -69,6 +67,16 @@ function viewNote(event) {
     // Do something with the request.result!
     console.log(request.result);
     document.getElementById("notelist").innerHTML = request.result.text;
+    if (fromWeekly) {
+      let unimportantNotes = document.querySelectorAll('bullet-note[data-important="false"]');
+      for (let u of unimportantNotes) {
+        u.remove();
+      }
+      let noteTextboxes = document.querySelectorAll('.textbox');
+      for (let t of noteTextboxes) {
+        t.contentEditable = false;
+      }
+    }
   };
 
   event.preventDefault();
@@ -79,9 +87,8 @@ function updateNote(event) {
   const pNotes = tx.objectStore("personal_notes");
 
   const today = new Date();
-  const date = `${today.getFullYear()}-${
-    today.getMonth() + 1
-  }-${today.getDate()}`;
+  const date = `${today.getFullYear()}-${today.getMonth() + 1
+    }-${today.getDate()}`;
   const request = pNotes.get(date);
 
   request.onerror = function err(error) {

@@ -1,0 +1,50 @@
+.textbox {
+    padding: 0.25em;
+    flex-basis: 100%;
+    margin: 0px;
+    word-break: break-all;
+    outline: none;
+}
+
+.bullet {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    list-style: none;
+    margin-bottom: 0.2em;
+    position: relative;
+}
+
+.bullettime {
+    margin-right: 0.2em;
+    padding: 0.25em;
+    border: none;
+}
+
+.bullet[data-starttime="false"] .bullettime {
+    display: none;
+}
+
+.bicon {
+    font-size: 0.5em;
+    margin-right: 0.5em;
+}
+
+.bicon:hover {
+    cursor: pointer;
+}
+
+.bdropdown {
+    list-style: none;
+    padding: 0px;
+    background-color:gray;
+    position: absolute;
+    left:-2em;
+    display:none;
+}
+
+.bdropdown-option-icon {
+    font-size: 0.5em;
+    /*margin-right: 0.5em;*/
+    margin:1em;
+}
