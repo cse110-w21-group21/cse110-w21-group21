@@ -158,7 +158,6 @@ document.getElementById('scheme-eight').addEventListener('click', () => {
     localStorage.setItem("theme", "cityByNight");
 });
 
-const currentTheme = localStorage.getItem("theme");
 if (currentTheme === "blueHumans") {
   document.getElementById('scheme-two').checked = true;
 } else if (currentTheme === "hackers") {

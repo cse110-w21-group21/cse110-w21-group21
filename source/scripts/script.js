@@ -1,5 +1,5 @@
 //const { doc } = require("prettier");
-
+const currentTheme = localStorage.getItem("theme");
 // TODO: Save sidebarOpen using IndexedDB, load it on page load, toggleMenu accordingly
 let sidebarOpen = true;
 
@@ -19,7 +19,6 @@ function toggleMenu() {
 
 document.getElementById('menubutton').onclick = toggleMenu;
 
-const currentTheme = localStorage.getItem("theme");
 if (currentTheme === "blueHumans") {
   document.body.classList.toggle("blueHumans");
   document.getElementById('sidebar').classList.toggle('blueHumans');
