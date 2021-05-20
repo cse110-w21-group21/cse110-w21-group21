@@ -12,7 +12,7 @@ function createCalendar(data) {
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
 
-    dateClick: function (date) {
+    dateClick: function (date,) {
       if (this.view.type === 'dayGridMonth' || this.view.type === 'timeGridWeek') {
         this.gotoDate(date.dateStr);
         this.changeView('timeGridDay', date.dateStr);

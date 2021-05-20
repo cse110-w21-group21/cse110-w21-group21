@@ -1,4 +1,6 @@
 /* eslint-disable */
+const eventCreation = document.getElementById('createEventForm');
+
 eventCreation.addEventListener('submit', function () {
   let inputTitle = document.getElementById('title').value;
   let startDate = document.getElementById('start').value;
