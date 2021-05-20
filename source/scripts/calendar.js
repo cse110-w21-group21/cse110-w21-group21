@@ -1,5 +1,4 @@
-const eventCreation = document.getElementById('createEventForm');
-
+/* eslint-disable */
 var calendar;
 function createCalendar(data) {
   var calendarEl = document.getElementById('calendar');
@@ -13,8 +12,8 @@ function createCalendar(data) {
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
 
-    dateClick: function (date, jsEvent, view) {
-      if (this.view.type == 'dayGridMonth' || this.view.type == 'timeGridWeek') {
+    dateClick: function (date) {
+      if (this.view.type === 'dayGridMonth' || this.view.type === 'timeGridWeek') {
         this.gotoDate(date.dateStr);
         this.changeView('timeGridDay', date.dateStr);
       }
@@ -22,7 +21,7 @@ function createCalendar(data) {
 
     eventClick: function (info) {
       let date = info.event.start.toISOString().slice(0, 10);
-      if (this.view.type == 'dayGridMonth' || this.view.type == 'timeGridWeek') {
+      if (this.view.type === 'dayGridMonth' || this.view.type === 'timeGridWeek') {
         this.gotoDate(date);
         this.changeView('timeGridDay', date);
       } else {
@@ -30,8 +29,8 @@ function createCalendar(data) {
 
         existing = JSON.parse(existing);
 
-        for (let i = 0; i < existing.length; i++) {
-          if(existing[i].title == info.event.title) {
+        for (let i = 0; i < existing.length; i += 1) {
+          if(existing[i].title === info.event.title) {
             existing.splice(i,1);
           }
         }
