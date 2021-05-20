@@ -1,4 +1,3 @@
-/*eslint-disable*/
 const eventCreation = document.getElementById('createEventForm');
 
 var calendar;
