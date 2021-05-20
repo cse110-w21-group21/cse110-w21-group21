@@ -16,11 +16,473 @@
 }
 
 .right {
-    width: 50%;
+    width: 80%;
 }
 
 .row:after {
     content: "";
     display: table;
     clear: both;
+}
+
+.flex-container.Barcelona {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
+    height: 20px;
+    width: 100px;
+    border: 1px solid #000000;
+}
+
+.Barcelona .flex-item:nth-child(1) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background: #27282D;
+    color: #27282D;
+}
+
+.Barcelona .flex-item:nth-child(2) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #474D4B;
+    color: #474D4B;
+}
+
+.Barcelona .flex-item:nth-child(3) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #F54296;
+    color: #F54296;
+}
+
+.Barcelona .flex-item:nth-child(4) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #E0F635;
+    color: #E0F635;
+}
+
+.Barcelona .flex-item:nth-child(5) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #FDFFF7;
+    color: #FDFFF7;
+}
+
+.flex-container.BlueHumans {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
+    height: 20px;
+    width: 100px;
+    border: 1px solid #000000;
+}
+
+.BlueHumans .flex-item:nth-child(1) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background: #294052;
+    color: #294052;
+}
+
+.BlueHumans .flex-item:nth-child(2) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #447294;
+    color: #447294;
+}
+
+.BlueHumans .flex-item:nth-child(3) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #8FBCDB;
+    color: #8FBCDB;
+}
+
+.BlueHumans .flex-item:nth-child(4) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #F4D6BC;
+    color: #F4D6BC;
+}
+
+.BlueHumans .flex-item:nth-child(5) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #F8E4CC;
+    color: #F8E4CC;
+}
+
+.flex-container.BuriedAtTheBeach {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
+    height: 20px;
+    width: 100px;
+    border: 1px solid #000000;
+}
+
+.BuriedAtTheBeach .flex-item:nth-child(1) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background: #886655;
+    color: #886655;
+}
+
+.BuriedAtTheBeach .flex-item:nth-child(2) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #DD9977;
+    color: #DD9977;
+}
+
+.BuriedAtTheBeach .flex-item:nth-child(3) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #EECCAA;
+    color: #EECCAA;
+}
+
+.BuriedAtTheBeach .flex-item:nth-child(4) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #EEEEEE;
+    color: #EEEEEE;
+}
+
+.BuriedAtTheBeach .flex-item:nth-child(5) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #CC99CC;
+    color: #CC99CC;
+}
+
+.flex-container.Raptorize {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
+    height: 20px;
+    width: 100px;
+    border: 1px solid #000000;
+}
+
+.Raptorize .flex-item:nth-child(1) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background: #070A1E;
+    color: #070A1E;
+}
+
+.Raptorize .flex-item:nth-child(2) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #382230;
+    color: #382230;
+}
+
+.Raptorize .flex-item:nth-child(3) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #58423F;
+    color: #58423F;
+}
+
+.Raptorize .flex-item:nth-child(4) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #888069;
+    color: #888069;
+}
+
+.Raptorize .flex-item:nth-child(5) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #C1BF95;
+    color: #C1BF95;
+}
+
+.flex-container.CthuluRises {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
+    height: 20px;
+    width: 100px;
+    border: 1px solid #000000;
+}
+
+.CthuluRises .flex-item:nth-child(1) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background: #553333;
+    color: #553333;
+}
+
+.CthuluRises .flex-item:nth-child(2) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #99aaaa;
+    color: #99aaaa;
+}
+
+.CthuluRises .flex-item:nth-child(3) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #998866;
+    color: #998866;
+}
+
+.CthuluRises .flex-item:nth-child(4) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #cccc99;
+    color: #cccc99;
+}
+
+.CthuluRises .flex-item:nth-child(5) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #aabbaa;
+    color: #aabbaa;
+}
+
+.flex-container.BoringVolcano {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
+    height: 20px;
+    width: 100px;
+    border: 1px solid #000000;
+}
+
+.BoringVolcano .flex-item:nth-child(1) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background: #223333;
+    color: #223333;
+}
+
+.BoringVolcano .flex-item:nth-child(2) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #889999;
+    color: #889999;
+}
+
+.BoringVolcano .flex-item:nth-child(3) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #dd9988;
+    color: #dd9988;
+}
+
+.BoringVolcano .flex-item:nth-child(4) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #ddeedd;
+    color: #ddeedd;
+}
+
+.BoringVolcano .flex-item:nth-child(5) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #bbcccc;
+    color: #bbcccc;
+}
+
+.flex-container.Hackers {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
+    height: 20px;
+    width: 100px;
+    border: 1px solid #000000;
+}
+
+.Hackers .flex-item:nth-child(1) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background: #05a300;
+    color: #05a300;
+}
+
+.Hackers .flex-item:nth-child(2) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #F6F6EF;
+    color: #F6F6EF;
+}
+
+.Hackers .flex-item:nth-child(3) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #FF6600;
+    color: #FF6600;
+}
+
+.Hackers .flex-item:nth-child(4) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #828282;
+    color: #828282;
+}
+
+.Hackers .flex-item:nth-child(5) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #000000;
+    color: #000000;
+}
+
+.flex-container.CityByNight {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
+    height: 20px;
+    width: 100px;
+    border: 1px solid #000000;
+}
+
+.CityByNight .flex-item:nth-child(1) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background: #332244;
+    color: #332244;
+}
+
+.CityByNight .flex-item:nth-child(2) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #5566aa;
+    color: #5566aa;
+}
+
+.CityByNight .flex-item:nth-child(3) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #aa7799;
+    color: #aa7799;
+}
+
+.CityByNight .flex-item:nth-child(4) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #dd9999;
+    color: #dd9999;
+}
+
+.CityByNight .flex-item:nth-child(5) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 20px;
+    background-color: #ffdd99;
+    color: #ffdd99;
+}
+
+form {
+    width: 70%;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto;
 }

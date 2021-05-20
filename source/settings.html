@@ -1,119 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NinePlusTen</title>
 
-    <link rel="stylesheet" href="stylesheets/style.css" />
-    <link rel="stylesheet" href="stylesheets/settingsStyle.css" />
-    
-    <script src="scripts/script.js" defer></script>
-    <!-- <script src="scripts/dailyLogScript.js" defer></script> -->
-    <!-- Icons sourced from https://fontawesome.com/ -->
-    <script
-      src="https://kit.fontawesome.com/71f9f41756.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="scripts/settings.js" defer></script>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NinePlusTen</title>
 
-  <body>
-    <!--
+  <link rel="stylesheet" href="stylesheets/style.css" />
+  <link rel="stylesheet" href="stylesheets/settingsStyle.css" />
+
+  <script src="scripts/script.js" defer></script>
+  <!-- <script src="scripts/dailyLogScript.js" defer></script> -->
+  <!-- Icons sourced from https://fontawesome.com/ -->
+  <script src="https://kit.fontawesome.com/71f9f41756.js" crossorigin="anonymous"></script>
+  <script src="scripts/settings.js" defer></script>
+</head>
+
+<body>
+  <!--
         This nav block defines the sidebar and should be included on every page.
         Dependencies are style.css, script.js, and the fontawesome script.
         Add <class="curr"> to the <a> element corresponding to the current page.
     -->
-    <nav>
-      <div class="sidebar" id="sidebar">
-        <a href="javascript:void(0)" id="menubutton" class="menubutton">
-          <span></span>
-          <i class="fas fa-bars fa-fw fa-2x"></i>
-        </a>
-        <a href="./calendar.html" title="Calendar View">
-          <span>Calendar View</span>
-          <i class="far fa-calendar-alt fa-fw fa-lg"></i>
-        </a>
-        <a href="./weeklyLog.html" title="Weekly Log">
-          <span>Weekly Log</span>
-          <i class="fas fa-edit fa-fw fa-lg"></i>
-        </a>
-        <a href="./dailyLog.html" title="Daily Log" class="curr">
-          <span>Daily Log</span>
-          <i class="fas fa-thumbtack fa-fw fa-lg"></i>
-        </a>
-        <a href="./settings.html" title="Settings" class="settingsbutton">
-          <span>Settings</span>
-          <i class="fas fa-tools fa-fw fa-lg"></i>
-        </a>
-      </div>
-    </nav>
+  <nav>
+    <div class="sidebar" id="sidebar">
+      <a href="javascript:void(0)" id="menubutton" class="menubutton">
+        <span></span>
+        <i class="fas fa-bars fa-fw fa-2x"></i>
+      </a>
+      <a href="./calendar.html" title="Calendar View">
+        <span>Calendar View</span>
+        <i class="far fa-calendar-alt fa-fw fa-lg"></i>
+      </a>
+      <a href="./weeklyLog.html" title="Weekly Log">
+        <span>Weekly Log</span>
+        <i class="fas fa-edit fa-fw fa-lg"></i>
+      </a>
+      <a href="./dailyLog.html" title="Daily Log">
+        <span>Daily Log</span>
+        <i class="fas fa-thumbtack fa-fw fa-lg"></i>
+      </a>
+      <a href="./settings.html" title="Settings" class="settingsbutton curr">
+        <span>Settings</span>
+        <i class="fas fa-tools fa-fw fa-lg"></i>
+      </a>
+    </div>
+  </nav>
 
-    <main>
+  <main>
     <h1>Settings</h1>
 
     <div class="row">
-        <div class="column left">
+      <div class="column left">
 
-            <div class="settingsDiv"> 
-                <h3>Color Scheme</h3> 
-            </div>
-
-            <div class="settingsDiv"> 
-                <h3>Bullet Profiles</h3> 
-            </div>
-
-            <div class="settingsDiv"> 
-                <h3>User Information</h3> 
-            </div>
-
+        <div class="settingsDiv">
+          <h3>Color Scheme</h3>
         </div>
 
-        <div class="column right">
-            <div class="settingsDiv">
-                <form>
-                    <input type="radio" id="one" name="scheme" value="one">
-                    <label for="male">Light</label><br>
-                    <input type="radio" id="two" name="scheme" value="two">
-                    <label for="other">Grey</label><br>
-                    <input type="radio" id="three" name="scheme" value="three">
-                    <label for="other">Dark Mode</label>
-                    <input type="radio" id="four" name="scheme" value="four">
-                    <label for="other">Four</label>
-                    <input type="radio" id="five" name="scheme" value="five">
-                    <label for="other">five</label>
-                </form>
-            </div>
-
-            <div class="settingsDiv">
-                <form>
-                    <input type="radio" id="one" name="bullet" value="one">
-                    <label for="male">One</label><br>
-                    <input type="radio" id="two" name="bullet" value="two">
-                    <label for="female">Two</label><br>
-                    <input type="radio" id="three" name="bullet" value="three">
-                    <label for="other">Three</label>
-                    <input type="radio" id="four" name="bullet" value="four">
-                    <label for="other">Four</label>
-                    <input type="radio" id="five" name="bullet" value="five">
-                    <label for="other">five</label>
-                </form>
-            </div>
-
-            <div class="settingsDiv">
-                <form>
-
-                </form>
-            </div>
-
-
-
+        <div class="settingsDiv">
+          <h3>Bullet Profiles</h3>
         </div>
+
+        <div class="settingsDiv">
+          <h3>User Information</h3>
+        </div>
+
+      </div>
+
+      <div class="column right">
+        <div class="settingsDiv">
+          <form>
+            <input type="radio" id="scheme-one" name="scheme">
+            <label for="scheme-one">Barcelona
+              <div class="flex-container flex-container-style Barcelona">
+                <div class="flex-item"><span class="counter">1</span></div>
+                <div class="flex-item"><span class="counter">2</span></div>
+                <div class="flex-item"><span class="counter">3</span></div>
+                <div class="flex-item"><span class="counter">4</span></div>
+                <div class="flex-item"><span class="counter">5</span></div>
+              </div>
+            </label>
+            <input type="radio" id="scheme-two" name="scheme">
+            <label for="scheme-two">Blue Humans
+              <div class="flex-container flex-container-style BlueHumans">
+                <div class="flex-item"><span class="counter">1</span></div>
+                <div class="flex-item"><span class="counter">2</span></div>
+                <div class="flex-item"><span class="counter">3</span></div>
+                <div class="flex-item"><span class="counter">4</span></div>
+                <div class="flex-item"><span class="counter">5</span></div>
+              </div>
+            </label>
+            <input type="radio" id="scheme-three" name="scheme">
+            <label for="scheme-three">Beach
+              <div class="flex-container flex-container-style BuriedAtTheBeach">
+                <div class="flex-item"><span class="counter">1</span></div>
+                <div class="flex-item"><span class="counter">2</span></div>
+                <div class="flex-item"><span class="counter">3</span></div>
+                <div class="flex-item"><span class="counter">4</span></div>
+                <div class="flex-item"><span class="counter">5</span></div>
+              </div>
+            </label>
+            <input type="radio" id="scheme-four" name="scheme">
+            <label for="scheme-four">Raptorize
+              <div class="flex-container flex-container-style Raptorize">
+                <div class="flex-item"><span class="counter">1</span></div>
+                <div class="flex-item"><span class="counter">2</span></div>
+                <div class="flex-item"><span class="counter">3</span></div>
+                <div class="flex-item"><span class="counter">4</span></div>
+                <div class="flex-item"><span class="counter">5</span></div>
+              </div>
+            </label>
+            <input type="radio" id="scheme-five" name="scheme">
+            <label for="scheme-five">Cthulu Rises
+              <div class="flex-container flex-container-style CthuluRises">
+                <div class="flex-item"><span class="counter">1</span></div>
+                <div class="flex-item"><span class="counter">2</span></div>
+                <div class="flex-item"><span class="counter">3</span></div>
+                <div class="flex-item"><span class="counter">4</span></div>
+                <div class="flex-item"><span class="counter">5</span></div>
+              </div>
+            </label>
+            <input type="radio" name="scheme" id="scheme-six">
+            <label for="scheme-six">Boring Volcano
+              <div class="flex-container flex-container-style BoringVolcano">
+                <div class="flex-item"><span class="counter">1</span></div>
+                <div class="flex-item"><span class="counter">2</span></div>
+                <div class="flex-item"><span class="counter">3</span></div>
+                <div class="flex-item"><span class="counter">4</span></div>
+                <div class="flex-item"><span class="counter">5</span></div>
+              </div>
+            </label>
+            <input type="radio" name="scheme" id="scheme-seven">
+            <label for="scheme-seven">Hackers
+              <div class="flex-container flex-container-style Hackers">
+                <div class="flex-item"><span class="counter">1</span></div>
+                <div class="flex-item"><span class="counter">2</span></div>
+                <div class="flex-item"><span class="counter">3</span></div>
+                <div class="flex-item"><span class="counter">4</span></div>
+                <div class="flex-item"><span class="counter">5</span></div>
+              </div>
+            </label>
+            <input type="radio" name="scheme" id="scheme-eight">
+            <label for="scheme-eight">City By Night
+              <div class="flex-container flex-container-style CityByNight">
+                <div class="flex-item"><span class="counter">1</span></div>
+                <div class="flex-item"><span class="counter">2</span></div>
+                <div class="flex-item"><span class="counter">3</span></div>
+                <div class="flex-item"><span class="counter">4</span></div>
+                <div class="flex-item"><span class="counter">5</span></div>
+              </div>
+            </label>
+          </form>
+        </div>
+
+        <div class="settingsDiv">
+          <form>
+            <input type="radio" id="one" name="bullet" value="one">
+            <label for="male">One</label><br>
+            <input type="radio" id="two" name="bullet" value="two">
+            <label for="female">Two</label><br>
+            <input type="radio" id="three" name="bullet" value="three">
+            <label for="other">Three</label>
+            <input type="radio" id="four" name="bullet" value="four">
+            <label for="other">Four</label>
+            <input type="radio" id="five" name="bullet" value="five">
+            <label for="other">five</label>
+          </form>
+        </div>
+
+        <div class="settingsDiv">
+          <form>
+
+          </form>
+        </div>
+
+
+
+      </div>
 
 
     </div>
-    
-    </main>
-  </body>
+
+  </main>
+</body>
+
 </html>
