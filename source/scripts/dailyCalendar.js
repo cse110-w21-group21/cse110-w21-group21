@@ -9,8 +9,8 @@ function createCalendar(data) {
 
     headerToolbar: {
       left: "prev,next",
-      center: "",
-      right: "title",
+      center: "title",
+      right: "",
     },
 
     dateClick: function (date) {
@@ -51,7 +51,6 @@ function createCalendar(data) {
 
   calendar.render();
 }
-
 
 document.addEventListener("DOMContentLoaded", function () {
   let existing = localStorage.getItem("currentEvents");

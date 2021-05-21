@@ -87,7 +87,7 @@ function updateNote(event) {
     thisDay.getMonth() + 1
   }-${thisDay.getDate()}`;
   const request = pNotes.get(date);
-  
+
   request.onerror = function err(error) {
     // Handle errors!
     console.log(error);
@@ -108,7 +108,3 @@ function updateNote(event) {
 
   event.preventDefault();
 } /* updateNote */
-
-
-//calendar.currentData.toolbarConfig.headerToolbar.left[0].addEventListener(() => {viewNote()});
-//calendar.currentData.toolbarConfig.headerToolbar.left[1].addEventListener(() => {viewNote()});
