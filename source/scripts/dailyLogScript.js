@@ -1,8 +1,12 @@
-/* eslint-disable */
+/* eslint import/extensions: "off" */
+import {
+  createDB, addNoteDB, updateNote, viewNote,
+} from './db.js';
 
 let shift = false;
-const bicons = ['fas fa-circle fa-fw bicon', 'fas fa-square fa-fw bicon'];
-// const bnames = ['Note', 'Event'];
+const bicons = ['fas fa-circle fa-fw', 'fas fa-square fa-fw', 'fas fa-star fa-fw'];
+// const bnames = ['Note', 'Task'];
+const importantBicons = ['fas fa-star fa-fw'];
 
 /**
  * Custom bullet-note element used for each editable bulleted item in the daily log
@@ -11,10 +15,28 @@ class BulletNote extends HTMLElement {
   connectedCallback() {
     if (this.innerHTML.indexOf('textbox') === -1) {
       this.innerHTML = `
-        <div class="${bicons[0]}"></div>
+        <div class="${bicons[0]} bicon"></div>
+        <ul class="bdropdown"></ul>
         <input type="time" class="bullettime">
         <p class="textbox" contenteditable=true></p>
         `;
+      let dropdown = this.querySelector('.bdropdown');
+      dropdown.dataset.show = false;
+      for (let i = 0; i < bicons.length; i += 1) {
+        let option = document.createElement('li');
+        option.classList.add('bdropdown-option');
+        option.dataset.bindex = i;
+        let optionIcon = document.createElement('div');
+        optionIcon.className = bicons[i];
+        optionIcon.classList.add('bdropdown-option-icon');
+        option.appendChild(optionIcon);
+        dropdown.appendChild(option);
+        option.addEventListener('click', () => {
+          let myIndex = option.dataset.bindex;
+          this.querySelector('.bicon').className = `${bicons[myIndex]} bicon`;
+          this.dataset.important = importantBicons.includes(bicons[myIndex]);
+        });
+      }
     }
   }
 
@@ -22,7 +44,7 @@ class BulletNote extends HTMLElement {
    * @param {number} index
    */
   set bullet(index) {
-    this.querySelectorAll('.bicon')[0].className = bicons[index];
+    this.querySelectorAll('.bicon')[0].className = `${bicons[index]} bicon`;
   }
 }
 customElements.define('bullet-note', BulletNote);
@@ -36,6 +58,7 @@ function addNote() {
   const newNote = document.createElement('bullet-note');
   newNote.className = 'bullet';
   newNote.dataset.starttime = false;
+  newNote.dataset.important = false;
   noteList.appendChild(newNote);
   // newNote.getElementsByClassName("textbox")[0].focus();
 }
@@ -82,16 +105,21 @@ window.onload = () => {
   addNote();
 };
 
-document.getElementById("btnAddNote").addEventListener("click", addNoteDB);
-document.getElementById("btnViewNote").addEventListener("click", viewNote);
-document.getElementById("btnUpdateNote").addEventListener("click", updateNote);
+document.getElementById('btnAddNote').addEventListener('click', addNoteDB);
+document.getElementById('btnViewNote').addEventListener('click', (event) => { viewNote(event, false); });
+document.getElementById('btnUpdateNote').addEventListener('click', updateNote);
 
-/**
- * TODO: Click bullet point to change bullet icon
- */
-document.getElementById('notelist').addEventListener('click', (event) => {
+document.addEventListener('click', (event) => {
+  // close all dropdowns
+  let dropwdowns = document.querySelectorAll('.bdropdown');
+  dropwdowns.forEach((e) => {
+    e.dataset.show = false;
+  });
+  // open dropdown for bullet note
   if (event.target.classList.contains('bicon')) {
-    // console.log("test");
+    // toggleNoteImportance(event.target.parentNode);
+    let myDropdown = event.target.parentNode.querySelector('.bdropdown');
+    myDropdown.dataset.show = true;
   }
 });
 
@@ -111,6 +139,7 @@ document.getElementById('notelist').addEventListener('keydown', (event) => {
     const newNote = document.createElement('bullet-note');
     newNote.className = 'bullet';
     newNote.dataset.starttime = false;
+    newNote.dataset.important = false;
     noteList.insertBefore(newNote, event.target.parentNode.nextSibling);
     newNote.getElementsByClassName('textbox')[0].focus();
   }
@@ -199,6 +228,7 @@ document.getElementById('btnstrike').addEventListener('mousedown', (event) => {
 /**
  * New Event button, adds a note with a time
  */
+/*
 document.getElementById('newevent').addEventListener('click', () => {
   const noteList = document.getElementById('notelist');
   const newNote = document.createElement('bullet-note');
@@ -208,10 +238,4 @@ document.getElementById('newevent').addEventListener('click', () => {
   newNote.bullet = 1;
   newNote.getElementsByClassName('textbox')[0].focus();
 });
-
-/**
- * Used to prevent focus change when pressing New Event button
- */
-document.getElementById('newevent').addEventListener('mousedown', (event) => {
-  event.preventDefault();
-});
+*/
