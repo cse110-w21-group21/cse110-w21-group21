@@ -39,12 +39,20 @@
     padding: 0px;
     background-color:gray;
     position: absolute;
-    left:-2em;
-    display:none;
+    left: -2em;
+    display: none;
+}
+
+.bdropdown[data-show="true"] {
+    display: block;
 }
 
 .bdropdown-option-icon {
     font-size: 0.5em;
     /*margin-right: 0.5em;*/
     margin:1em;
+}
+
+.bdropdown-option:hover {
+    outline: solid 1px;
 }

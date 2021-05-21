@@ -4,8 +4,9 @@ import {
 } from './db.js';
 
 let shift = false;
-const bicons = ['fas fa-circle fa-fw', 'fas fa-square fa-fw'];
+const bicons = ['fas fa-circle fa-fw', 'fas fa-square fa-fw', 'fas fa-star fa-fw'];
 // const bnames = ['Note', 'Task'];
+const importantBicons = ['fas fa-star fa-fw'];
 
 /**
  * Custom bullet-note element used for each editable bulleted item in the daily log
@@ -20,14 +21,21 @@ class BulletNote extends HTMLElement {
         <p class="textbox" contenteditable=true></p>
         `;
       let dropdown = this.querySelector('.bdropdown');
+      dropdown.dataset.show = false;
       for (let i = 0; i < bicons.length; i += 1) {
         let option = document.createElement('li');
         option.classList.add('bdropdown-option');
+        option.dataset.bindex = i;
         let optionIcon = document.createElement('div');
         optionIcon.className = bicons[i];
         optionIcon.classList.add('bdropdown-option-icon');
         option.appendChild(optionIcon);
         dropdown.appendChild(option);
+        option.addEventListener('click', () => {
+          let myIndex = option.dataset.bindex;
+          this.querySelector('.bicon').className = `${bicons[myIndex]} bicon`;
+          this.dataset.important = importantBicons.includes(bicons[myIndex]);
+        });
       }
     }
   }
@@ -92,15 +100,6 @@ function setEndOfContenteditable(contentEditableElement) {
   }
 }
 
-function toggleNoteImportance(myElementParam) {
-  let myElement = myElementParam;
-  if (myElement.dataset.important === 'true') {
-    myElement.dataset.important = false;
-  } else {
-    myElement.dataset.important = true;
-  }
-}
-
 window.onload = () => {
   createDB();
   addNote();
@@ -110,12 +109,17 @@ document.getElementById('btnAddNote').addEventListener('click', addNoteDB);
 document.getElementById('btnViewNote').addEventListener('click', (event) => { viewNote(event, false); });
 document.getElementById('btnUpdateNote').addEventListener('click', updateNote);
 
-/**
- * TODO: Click bullet point to change bullet icon
- */
-document.getElementById('notelist').addEventListener('click', (event) => {
+document.addEventListener('click', (event) => {
+  // close all dropdowns
+  let dropwdowns = document.querySelectorAll('.bdropdown');
+  dropwdowns.forEach((e) => {
+    e.dataset.show = false;
+  });
+  // open dropdown for bullet note
   if (event.target.classList.contains('bicon')) {
-    toggleNoteImportance(event.target.parentNode);
+    // toggleNoteImportance(event.target.parentNode);
+    let myDropdown = event.target.parentNode.querySelector('.bdropdown');
+    myDropdown.dataset.show = true;
   }
 });
 

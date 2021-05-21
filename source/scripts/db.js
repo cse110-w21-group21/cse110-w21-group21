@@ -1,4 +1,8 @@
 let db;
+
+/**
+ * Creates a database and/or upgrades the database
+ */
 function createDB() {
   const request = indexedDB.open('noteDB', 1);
 
@@ -27,6 +31,12 @@ function createDB() {
   };
 } /* createDB  */
 
+/**
+ * Adds a note to the DB. Should be called when first creating a note
+ * for the current day.
+ *
+ * @param {event} - event default click event
+ */
 function addNoteDB(event) {
   // allRecords.innerHTML = "";
   const today = new Date();
@@ -47,6 +57,13 @@ function addNoteDB(event) {
   event.preventDefault();
 } /* addNote */
 
+/**
+ * Views a note for the current day, if it's from the weekly page
+ * load only important notes.
+ *
+ * @param {fromWeekly} - Boolean - If it's from the weekly page
+ * @param {event} - event default click event
+ */
 function viewNote(event, fromWeekly) {
   const tx = db.transaction('personal_notes', 'readonly');
   const pNotes = tx.objectStore('personal_notes');
@@ -79,6 +96,11 @@ function viewNote(event, fromWeekly) {
   event.preventDefault();
 } /* viewNote */
 
+/**
+ * Updates a note to the DB. Should be called after editing notes.
+ *
+ * @param {event} - event default click event
+ */
 function updateNote(event) {
   const tx = db.transaction('personal_notes', 'readwrite');
   const pNotes = tx.objectStore('personal_notes');
