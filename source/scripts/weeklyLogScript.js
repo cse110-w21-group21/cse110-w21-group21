@@ -1,9 +1,13 @@
-/* eslint-disable */
+/* eslint import/extensions: "off" */
+
+import {
+  createDB, viewNote,
+} from './db.js';
 
 window.onload = () => {
-    createDB();
+  createDB();
 };
 
-document.getElementById("btnViewNote").addEventListener("click", (event) => {
-    viewNote(event,true);
+document.getElementById('btnViewNote').addEventListener('click', (event) => {
+  viewNote(event, true);
 });

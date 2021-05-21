@@ -1,8 +1,11 @@
-/* eslint-disable */
+/* eslint import/extensions: "off" */
+import {
+  createDB, addNoteDB, updateNote, viewNote,
+} from './db.js';
 
 let shift = false;
 const bicons = ['fas fa-circle fa-fw', 'fas fa-square fa-fw'];
-const bnames = ['Note', 'Task'];
+// const bnames = ['Note', 'Task'];
 
 /**
  * Custom bullet-note element used for each editable bulleted item in the daily log
@@ -17,11 +20,10 @@ class BulletNote extends HTMLElement {
         <p class="textbox" contenteditable=true></p>
         `;
       let dropdown = this.querySelector('.bdropdown');
-      for(let i = 0; i < bicons.length; i++) {
+      for (let i = 0; i < bicons.length; i += 1) {
         let option = document.createElement('li');
-        option.classList.add("bdropdown-option");
-        // let optionIcon = document.createElement(`div[class="bdropdown-option-icon${bicons[i]}"]`);
-        let optionIcon = document.createElement("div");
+        option.classList.add('bdropdown-option');
+        let optionIcon = document.createElement('div');
         optionIcon.className = bicons[i];
         optionIcon.classList.add('bdropdown-option-icon');
         option.appendChild(optionIcon);
@@ -34,7 +36,7 @@ class BulletNote extends HTMLElement {
    * @param {number} index
    */
   set bullet(index) {
-    this.querySelectorAll('.bicon')[0].className = bicons[index] + ' bicon';
+    this.querySelectorAll('.bicon')[0].className = `${bicons[index]} bicon`;
   }
 }
 customElements.define('bullet-note', BulletNote);
@@ -90,13 +92,13 @@ function setEndOfContenteditable(contentEditableElement) {
   }
 }
 
-function toggleNoteImportance(myElement) {
-  if(myElement.dataset.important === "true"){
+function toggleNoteImportance(myElementParam) {
+  let myElement = myElementParam;
+  if (myElement.dataset.important === 'true') {
     myElement.dataset.important = false;
   } else {
     myElement.dataset.important = true;
   }
-  console.log(myElement.dataset.important);
 }
 
 window.onload = () => {
@@ -104,9 +106,9 @@ window.onload = () => {
   addNote();
 };
 
-document.getElementById("btnAddNote").addEventListener("click", addNoteDB);
-document.getElementById("btnViewNote").addEventListener("click", (event) => {viewNote(event,false);});
-document.getElementById("btnUpdateNote").addEventListener("click", updateNote);
+document.getElementById('btnAddNote').addEventListener('click', addNoteDB);
+document.getElementById('btnViewNote').addEventListener('click', (event) => { viewNote(event, false); });
+document.getElementById('btnUpdateNote').addEventListener('click', updateNote);
 
 /**
  * TODO: Click bullet point to change bullet icon
@@ -114,7 +116,6 @@ document.getElementById("btnUpdateNote").addEventListener("click", updateNote);
 document.getElementById('notelist').addEventListener('click', (event) => {
   if (event.target.classList.contains('bicon')) {
     toggleNoteImportance(event.target.parentNode);
-    console.log(event.target.parentNode)
   }
 });
 
