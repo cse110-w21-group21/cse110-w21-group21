@@ -2,13 +2,9 @@
 var calendar;
 function createCalendar(data) {
   var calendarEl = document.getElementById('calendar');
-
   calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'timeGridDay',
     aspectRatio: 2,
-    headerToolbar: {
-      center: 'title',
-    },
 
     eventClick: function (info) {
       let date = info.event.start.toISOString().slice(0, 10);
@@ -27,7 +23,8 @@ function createCalendar(data) {
     },
     events: data
   });
-
+  
+  calendar.gotoDate(localStorage.getItem('dateClicked'));
   calendar.render();
 }
 

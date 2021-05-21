@@ -8,9 +8,12 @@
   <title>NinePlusTen</title>
   <link rel="stylesheet" href="stylesheets/style.css" />
   <link rel="stylesheet" href="stylesheets/dailyLogStyle.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.js"></script>
   <script src="scripts/script.js" defer></script>
   <script src="scripts/db.js" defer></script>
   <script src="scripts/dailyLogScript.js" defer></script>
+  <script src="scripts/dailyLogCalender.js" defer></script>
   <!-- Icons sourced from https://fontawesome.com/ -->
   <script src="https://kit.fontawesome.com/71f9f41756.js" crossorigin="anonymous"></script>
 </head>
@@ -47,6 +50,7 @@
   </nav>
 
   <main>
+    <div id="calendar" class="calendar"></div>
     <div>
       <button type="button" id="btnbold">Bold</button>
       <button type="button" id="btnitalic">Italic</button>
