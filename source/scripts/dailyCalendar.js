@@ -6,10 +6,11 @@ function createCalendar(data) {
   calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: "timeGridDay",
     aspectRatio: 2,
+
     headerToolbar: {
       left: "prev,next",
-      center: "title",
-      right: "dayGridMonth,timeGridWeek,timeGridDay",
+      center: "",
+      right: "title",
     },
 
     dateClick: function (date) {
@@ -50,6 +51,7 @@ function createCalendar(data) {
 
   calendar.render();
 }
+
 
 document.addEventListener("DOMContentLoaded", function () {
   let existing = localStorage.getItem("currentEvents");

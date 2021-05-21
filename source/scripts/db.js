@@ -31,10 +31,11 @@ function createDB() {
 
 function addNoteDB(event) {
   // allRecords.innerHTML = "";
-  const today = new Date();
-  const date = `${today.getFullYear()}-${
-    today.getMonth() + 1
-  }-${today.getDate()}`;
+  const thisDay = new Date(calendar.currentData.viewTitle);
+  const date = `${thisDay.getFullYear()}-${
+    thisDay.getMonth() + 1
+  }-${thisDay.getDate()}`;
+
   const noteString = document.getElementById("notelist").innerHTML;
   const note = {
     time: Math.floor(Date.now() / 1000),
@@ -54,11 +55,14 @@ function viewNote(event) {
   const tx = db.transaction("personal_notes", "readonly");
   const pNotes = tx.objectStore("personal_notes");
 
-  const today = new Date();
-  const date = `${today.getFullYear()}-${
-    today.getMonth() + 1
-  }-${today.getDate()}`;
+  const thisDay = new Date(calendar.currentData.viewTitle);
+
+  const date = `${thisDay.getFullYear()}-${
+    thisDay.getMonth() + 1
+  }-${thisDay.getDate()}`;
+
   console.log(date);
+  console.log(pNotes.get(date));
   const request = pNotes.get(date);
 
   request.onerror = function err(error) {
@@ -78,12 +82,12 @@ function updateNote(event) {
   const tx = db.transaction("personal_notes", "readwrite");
   const pNotes = tx.objectStore("personal_notes");
 
-  const today = new Date();
-  const date = `${today.getFullYear()}-${
-    today.getMonth() + 1
-  }-${today.getDate()}`;
+  const thisDay = new Date(calendar.currentData.viewTitle);
+  const date = `${thisDay.getFullYear()}-${
+    thisDay.getMonth() + 1
+  }-${thisDay.getDate()}`;
   const request = pNotes.get(date);
-
+  
   request.onerror = function err(error) {
     // Handle errors!
     console.log(error);
@@ -104,3 +108,7 @@ function updateNote(event) {
 
   event.preventDefault();
 } /* updateNote */
+
+
+//calendar.currentData.toolbarConfig.headerToolbar.left[0].addEventListener(() => {viewNote()});
+//calendar.currentData.toolbarConfig.headerToolbar.left[1].addEventListener(() => {viewNote()});
