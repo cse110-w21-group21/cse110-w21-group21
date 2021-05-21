@@ -1,136 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NinePlusTen</title>
-    <link rel="stylesheet" href="stylesheets/style.css" />
-    <link rel="stylesheet" href="stylesheets/calendarView.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.css" />
-    <script src="scripts/script.js" defer></script>
-    <script src="scripts/calendar.js" defer></script>
-    <script src="scripts/calendarView.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.js"></script>
-    <!-- Icons sourced from https://fontawesome.com/ -->
-    <script
-      src="https://kit.fontawesome.com/71f9f41756.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
 
-  <body>
-    <!--
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NinePlusTen</title>
+  <link rel="stylesheet" href="stylesheets/style.css" />
+  <link rel="stylesheet" href="stylesheets/calendarView.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.css" />
+  <script src="scripts/script.js" defer></script>
+  <script src="scripts/calendar.js" defer></script>
+  <script src="scripts/calendarView.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.js"></script>
+  <!-- Icons sourced from https://fontawesome.com/ -->
+  <script src="https://kit.fontawesome.com/71f9f41756.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!--
         This nav block defines the sidebar and should be included on every page.
         Dependencies are style.css, script.js, and the fontawesome script.
         Add <class="curr"> to the <a> element corresponding to the current page.
     -->
-    <nav>
-      <div class="sidebar" id="sidebar">
-        <a href="javascript:void(0)" id="menubutton" class="menubutton">
-          <span></span>
-          <i class="fas fa-bars fa-fw fa-2x"></i>
-        </a>
-        <a href="./calendar.html" title="Calendar View" class="curr">
-          <span>Calendar View</span>
-          <i class="far fa-calendar-alt fa-fw fa-lg"></i>
-        </a>
-        <a href="./weeklyLog.html" title="Weekly Log">
-          <span>Weekly Log</span>
-          <i class="fas fa-edit fa-fw fa-lg"></i>
-        </a>
-        <a href="./dailyLog.html" title="Daily Log">
-          <span>Daily Log</span>
-          <i class="fas fa-thumbtack fa-fw fa-lg"></i>
-        </a>
-        <a href="./settings.html" title="Settings" class="settingsbutton">
-          <span>Settings</span>
-          <i class="fas fa-tools fa-fw fa-lg"></i>
-        </a>
-      </div>
-    </nav>
+  <nav>
+    <div class="sidebar" id="sidebar">
+      <a href="javascript:void(0)" id="menubutton" class="menubutton">
+        <span></span>
+        <i class="fas fa-bars fa-fw fa-2x"></i>
+      </a>
+      <a href="./calendar.html" title="Calendar View" class="curr">
+        <span>Calendar View</span>
+        <i class="far fa-calendar-alt fa-fw fa-lg"></i>
+      </a>
+      <a href="./weeklyLog.html" title="Weekly Log">
+        <span>Weekly Log</span>
+        <i class="fas fa-edit fa-fw fa-lg"></i>
+      </a>
+      <a href="./dailyLog.html" title="Daily Log">
+        <span>Daily Log</span>
+        <i class="fas fa-thumbtack fa-fw fa-lg"></i>
+      </a>
+      <a href="./settings.html" title="Settings" class="settingsbutton">
+        <span>Settings</span>
+        <i class="fas fa-tools fa-fw fa-lg"></i>
+      </a>
+    </div>
+  </nav>
 
-    <main>
-        <div class="calendar" id='calendar'></div>
-        <form id="createEventForm">
-            <label for="title">Title of Event</label>
-            <input id="title" name="title" type="text">
-            <label for="start">Start Date</label>
-            <input id="start" name="start" type="date">
-            <label for="end">End Date</label>
-            <input type="date" name="end" id="end">
-            <label for="colorSelect">Color Selection</label>
-            <input type="color" id="colorSelect" name="colorSelect">
-            <button type="submit">Create Event</button>
-        </form>
-        <svg xmlns="http://www.w3.org/2000/svg" width="1132" height="548" viewBox="0 0 1132 548">
-          <g id="Group_602" data-name="Group 602" transform="translate(-295 -870)">
-            <g id="Rectangle_256" data-name="Rectangle 256" transform="translate(295 870)" fill="#f8f8f9" stroke="#d9d9da" stroke-width="1">
-              <path d="M4,0H1132a0,0,0,0,1,0,0V75a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V4A4,4,0,0,1,4,0Z" stroke="none"/>
-              <path d="M4,.5H1131a.5.5,0,0,1,.5.5V74a.5.5,0,0,1-.5.5H1A.5.5,0,0,1,.5,74V4A3.5,3.5,0,0,1,4,.5Z" fill="none"/>
-            </g>
-            <text id="Create_Edit_an_Entry" data-name="Create/Edit an Entry" transform="translate(317 901)" font-size="18" font-family="Helvetica-Bold, Helvetica" font-weight="700"><tspan x="0" y="0">Create/Edit an Entry</tspan></text>
-            <text id="Fill_out_the_form_below_to_create_a_new_entry" data-name="Fill out the form below to create a new entry" transform="translate(317 923)" font-size="14" font-family="Helvetica"><tspan x="0" y="0">Fill out the form below to create a new entry</tspan></text>
-            <g id="Rectangle_257" data-name="Rectangle 257" transform="translate(295 944)" fill="#fff" stroke="#d9d9da" stroke-width="1">
-              <rect width="1132" height="474" stroke="none"/>
-              <rect x="0.5" y="0.5" width="1131" height="473" fill="none"/>
-            </g>
-            <g id="button.primary" transform="translate(318.5 1332.685)">
-              <rect id="Rectangle_451" data-name="Rectangle 451" width="92" height="38" rx="4" fill="#2185d0"/>
-              <text id="Submit" transform="translate(46 23)" fill="#fff" font-size="14" font-family="Helvetica-Bold, Helvetica" font-weight="700"><tspan x="-23.721" y="0">Submit</tspan></text>
-            </g>
-            <g id="form.input" transform="translate(311 957)">
-              <text id="Title" transform="translate(2 10)" fill="rgba(51,51,51,0.87)" font-size="13" font-family="Helvetica-Bold, Helvetica" font-weight="700"><tspan x="0" y="0">Title</tspan></text>
-              <g id="Rectangle_315" data-name="Rectangle 315" transform="translate(0 19)" fill="#fff" stroke="#dededf" stroke-width="1">
-                <rect width="393" height="38" rx="4" stroke="none"/>
-                <rect x="0.5" y="0.5" width="392" height="37" rx="3.5" fill="none"/>
-              </g>
-              <text id="Title-2" data-name="Title" transform="translate(17 43)" fill="#b5b5b5" font-size="14" font-family="Helvetica"><tspan x="0" y="0">Title</tspan></text>
-            </g>
-            <g id="form.input-2" data-name="form.input" transform="translate(719 957)">
-              <text id="Description" transform="translate(2 10)" fill="rgba(51,51,51,0.87)" font-size="13" font-family="Helvetica-Bold, Helvetica" font-weight="700"><tspan x="0" y="0">Description</tspan></text>
-              <g id="Rectangle_315-2" data-name="Rectangle 315" transform="translate(0 19)" fill="#fff" stroke="#dededf" stroke-width="1">
-                <rect width="393" height="38" rx="4" stroke="none"/>
-                <rect x="0.5" y="0.5" width="392" height="37" rx="3.5" fill="none"/>
-              </g>
-              <text id="Description-2" data-name="Description" transform="translate(17 43)" fill="#b5b5b5" font-size="14" font-family="Helvetica"><tspan x="0" y="0">Description</tspan></text>
-            </g>
-            <g id="form.input-3" data-name="form.input" transform="translate(311 1113)">
-              <text id="Details" transform="translate(2 10)" fill="rgba(51,51,51,0.87)" font-size="13" font-family="Helvetica-Bold, Helvetica" font-weight="700"><tspan x="0" y="0">Details</tspan></text>
-              <g id="Rectangle_315-3" data-name="Rectangle 315" transform="translate(0 19)" fill="#fff" stroke="#dededf" stroke-width="1">
-                <rect width="1090" height="139" rx="4" stroke="none"/>
-                <rect x="0.5" y="0.5" width="1089" height="138" rx="3.5" fill="none"/>
-              </g>
-              <text id="Event_Information" data-name="Event Information" transform="translate(17 43)" fill="#b5b5b5" font-size="14" font-family="Helvetica"><tspan x="0" y="0">Event Information</tspan></text>
-            </g>
-            <g id="form.checkbox.unchecked" transform="translate(319 1283)">
-              <text id="Set_Bullet_or_Tag_or_something" data-name="Set Bullet or Tag or something" transform="translate(27 14)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Helvetica"><tspan x="0" y="0">Set Bullet or Tag or something</tspan></text>
-              <g id="Group_510" data-name="Group 510" transform="translate(0 -0.093)">
-                <g id="Rectangle_133" data-name="Rectangle 133" transform="translate(0 0.093)" fill="#fff" stroke="#d4d4d5" stroke-width="1">
-                  <rect width="17" height="17" rx="4" stroke="none"/>
-                  <rect x="0.5" y="0.5" width="16" height="16" rx="3.5" fill="none"/>
-                </g>
-              </g>
-            </g>
-            <g id="form.input-4" data-name="form.input" transform="translate(311 1033)">
-              <text id="Date_Start" data-name="Date Start" transform="translate(2 10)" fill="rgba(51,51,51,0.87)" font-size="13" font-family="Helvetica-Bold, Helvetica" font-weight="700"><tspan x="0" y="0">Date Start</tspan></text>
-              <g id="Rectangle_315-4" data-name="Rectangle 315" transform="translate(0 19)" fill="#fff" stroke="#dededf" stroke-width="1">
-                <rect width="393" height="38" rx="4" stroke="none"/>
-                <rect x="0.5" y="0.5" width="392" height="37" rx="3.5" fill="none"/>
-              </g>
-              <text id="Select_Date" data-name="Select Date" transform="translate(17 43)" fill="#b5b5b5" font-size="14" font-family="Helvetica"><tspan x="0" y="0">Select Date</tspan></text>
-            </g>
-            <g id="form.input-5" data-name="form.input" transform="translate(714 1034)">
-              <text id="Date_End" data-name="Date End" transform="translate(2 10)" fill="rgba(51,51,51,0.87)" font-size="13" font-family="Helvetica-Bold, Helvetica" font-weight="700"><tspan x="0" y="0">Date End</tspan></text>
-              <g id="Rectangle_315-5" data-name="Rectangle 315" transform="translate(0 19)" fill="#fff" stroke="#dededf" stroke-width="1">
-                <rect width="393" height="38" rx="4" stroke="none"/>
-                <rect x="0.5" y="0.5" width="392" height="37" rx="3.5" fill="none"/>
-              </g>
-              <text id="Select_Date-2" data-name="Select Date" transform="translate(17 43)" fill="#b5b5b5" font-size="14" font-family="Helvetica"><tspan x="0" y="0">Select Date</tspan></text>
+  <main>
+    <div class="calendar" id='calendar'></div>
+    <form id="createEventForm">
+      <label for="title">Title of Event</label>
+      <input id="title" name="title" type="text">
+      <label for="start">Start Date</label>
+      <input id="start" name="start" type="date">
+      <label for="end">End Date</label>
+      <input type="date" name="end" id="end">
+      <label for="colorSelect">Color Selection</label>
+      <input type="color" id="colorSelect" name="colorSelect">
+      <button type="submit">Create Event</button>
+    </form>
+
+    <form id="newEventForm">
+      <span id="formHeader">Create/Edit an Entry</span>
+      <span id="formSubheader">Fill out the form below to create a new entry</span>
+      
+    </form>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1132" height="548" viewBox="0 0 1132 548">
+      <g id="Group_602" data-name="Group 602" transform="translate(-295 -870)">
+        <g id="Rectangle_256" data-name="Rectangle 256" transform="translate(295 870)" fill="#f8f8f9" stroke="#d9d9da"
+          stroke-width="1">
+          <path d="M4,0H1132a0,0,0,0,1,0,0V75a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V4A4,4,0,0,1,4,0Z" stroke="none" />
+          <path d="M4,.5H1131a.5.5,0,0,1,.5.5V74a.5.5,0,0,1-.5.5H1A.5.5,0,0,1,.5,74V4A3.5,3.5,0,0,1,4,.5Z"
+            fill="none" />
+        </g>
+        <text id="Create_Edit_an_Entry" data-name="Create/Edit an Entry" transform="translate(317 901)" font-size="18"
+          font-family="Helvetica-Bold, Helvetica" font-weight="700">
+          <tspan x="0" y="0">Create/Edit an Entry</tspan>
+        </text>
+        <text id="Fill_out_the_form_below_to_create_a_new_entry"
+          data-name="Fill out the form below to create a new entry" transform="translate(317 923)" font-size="14"
+          font-family="Helvetica">
+          <tspan x="0" y="0">Fill out the form below to create a new entry</tspan>
+        </text>
+        <g id="Rectangle_257" data-name="Rectangle 257" transform="translate(295 944)" fill="#fff" stroke="#d9d9da"
+          stroke-width="1">
+          <rect width="1132" height="474" stroke="none" />
+          <rect x="0.5" y="0.5" width="1131" height="473" fill="none" />
+        </g>
+        <g id="button.primary" transform="translate(318.5 1332.685)">
+          <rect id="Rectangle_451" data-name="Rectangle 451" width="92" height="38" rx="4" fill="#2185d0" />
+          <text id="Submit" transform="translate(46 23)" fill="#fff" font-size="14"
+            font-family="Helvetica-Bold, Helvetica" font-weight="700">
+            <tspan x="-23.721" y="0">Submit</tspan>
+          </text>
+        </g>
+        <g id="form.input" transform="translate(311 957)">
+          <text id="Title" transform="translate(2 10)" fill="rgba(51,51,51,0.87)" font-size="13"
+            font-family="Helvetica-Bold, Helvetica" font-weight="700">
+            <tspan x="0" y="0">Title</tspan>
+          </text>
+          <g id="Rectangle_315" data-name="Rectangle 315" transform="translate(0 19)" fill="#fff" stroke="#dededf"
+            stroke-width="1">
+            <rect width="393" height="38" rx="4" stroke="none" />
+            <rect x="0.5" y="0.5" width="392" height="37" rx="3.5" fill="none" />
+          </g>
+          <text id="Title-2" data-name="Title" transform="translate(17 43)" fill="#b5b5b5" font-size="14"
+            font-family="Helvetica">
+            <tspan x="0" y="0">Title</tspan>
+          </text>
+        </g>
+        <g id="form.input-2" data-name="form.input" transform="translate(719 957)">
+          <text id="Description" transform="translate(2 10)" fill="rgba(51,51,51,0.87)" font-size="13"
+            font-family="Helvetica-Bold, Helvetica" font-weight="700">
+            <tspan x="0" y="0">Description</tspan>
+          </text>
+          <g id="Rectangle_315-2" data-name="Rectangle 315" transform="translate(0 19)" fill="#fff" stroke="#dededf"
+            stroke-width="1">
+            <rect width="393" height="38" rx="4" stroke="none" />
+            <rect x="0.5" y="0.5" width="392" height="37" rx="3.5" fill="none" />
+          </g>
+          <text id="Description-2" data-name="Description" transform="translate(17 43)" fill="#b5b5b5" font-size="14"
+            font-family="Helvetica">
+            <tspan x="0" y="0">Description</tspan>
+          </text>
+        </g>
+        <g id="form.input-3" data-name="form.input" transform="translate(311 1113)">
+          <text id="Details" transform="translate(2 10)" fill="rgba(51,51,51,0.87)" font-size="13"
+            font-family="Helvetica-Bold, Helvetica" font-weight="700">
+            <tspan x="0" y="0">Details</tspan>
+          </text>
+          <g id="Rectangle_315-3" data-name="Rectangle 315" transform="translate(0 19)" fill="#fff" stroke="#dededf"
+            stroke-width="1">
+            <rect width="1090" height="139" rx="4" stroke="none" />
+            <rect x="0.5" y="0.5" width="1089" height="138" rx="3.5" fill="none" />
+          </g>
+          <text id="Event_Information" data-name="Event Information" transform="translate(17 43)" fill="#b5b5b5"
+            font-size="14" font-family="Helvetica">
+            <tspan x="0" y="0">Event Information</tspan>
+          </text>
+        </g>
+        <g id="form.checkbox.unchecked" transform="translate(319 1283)">
+          <text id="Set_Bullet_or_Tag_or_something" data-name="Set Bullet or Tag or something"
+            transform="translate(27 14)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Helvetica">
+            <tspan x="0" y="0">Set Bullet or Tag or something</tspan>
+          </text>
+          <g id="Group_510" data-name="Group 510" transform="translate(0 -0.093)">
+            <g id="Rectangle_133" data-name="Rectangle 133" transform="translate(0 0.093)" fill="#fff" stroke="#d4d4d5"
+              stroke-width="1">
+              <rect width="17" height="17" rx="4" stroke="none" />
+              <rect x="0.5" y="0.5" width="16" height="16" rx="3.5" fill="none" />
             </g>
           </g>
-        </svg>
-        
-    </main>
-  </body>
+        </g>
+        <g id="form.input-4" data-name="form.input" transform="translate(311 1033)">
+          <text id="Date_Start" data-name="Date Start" transform="translate(2 10)" fill="rgba(51,51,51,0.87)"
+            font-size="13" font-family="Helvetica-Bold, Helvetica" font-weight="700">
+            <tspan x="0" y="0">Date Start</tspan>
+          </text>
+          <g id="Rectangle_315-4" data-name="Rectangle 315" transform="translate(0 19)" fill="#fff" stroke="#dededf"
+            stroke-width="1">
+            <rect width="393" height="38" rx="4" stroke="none" />
+            <rect x="0.5" y="0.5" width="392" height="37" rx="3.5" fill="none" />
+          </g>
+          <text id="Select_Date" data-name="Select Date" transform="translate(17 43)" fill="#b5b5b5" font-size="14"
+            font-family="Helvetica">
+            <tspan x="0" y="0">Select Date</tspan>
+          </text>
+        </g>
+        <g id="form.input-5" data-name="form.input" transform="translate(714 1034)">
+          <text id="Date_End" data-name="Date End" transform="translate(2 10)" fill="rgba(51,51,51,0.87)" font-size="13"
+            font-family="Helvetica-Bold, Helvetica" font-weight="700">
+            <tspan x="0" y="0">Date End</tspan>
+          </text>
+          <g id="Rectangle_315-5" data-name="Rectangle 315" transform="translate(0 19)" fill="#fff" stroke="#dededf"
+            stroke-width="1">
+            <rect width="393" height="38" rx="4" stroke="none" />
+            <rect x="0.5" y="0.5" width="392" height="37" rx="3.5" fill="none" />
+          </g>
+          <text id="Select_Date-2" data-name="Select Date" transform="translate(17 43)" fill="#b5b5b5" font-size="14"
+            font-family="Helvetica">
+            <tspan x="0" y="0">Select Date</tspan>
+          </text>
+        </g>
+      </g>
+    </svg>
+
+  </main>
+</body>
+
 </html>
