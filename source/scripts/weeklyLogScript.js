@@ -6,10 +6,6 @@ function createCalendar(data) {
   calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'timeGridWeek',
     aspectRatio: 2,
-    headerToolbar: {
-      left: 'prev,next',
-      center: 'title',
-    },
 
     dateClick: function (date,) {
       localStorage.setItem('dateClicked', date.dateStr);

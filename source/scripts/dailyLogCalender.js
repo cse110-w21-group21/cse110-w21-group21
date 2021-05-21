@@ -6,6 +6,15 @@ function createCalendar(data) {
     initialView: 'timeGridDay',
     aspectRatio: 2,
 
+    customButtons: {
+      today: {
+        text: 'today',
+        click: function() {
+          localStorage.removeItem('dateClicked');
+          calendar.today();
+        }
+      }
+    },
     eventClick: function (info) {
       let date = info.event.start.toISOString().slice(0, 10);
         let existing = localStorage.getItem('currentEvents');
@@ -17,14 +26,19 @@ function createCalendar(data) {
           existing.splice(i,1);
         }
       }
+
       localStorage.setItem('currentEvents', JSON.stringify(existing));
 
       info.event.remove();
     },
+    
     events: data
+    
   });
-  
-  calendar.gotoDate(localStorage.getItem('dateClicked'));
+  var todaysDate = localStorage.getItem('dateClicked');
+  if(todaysDate !== null) {
+    calendar.gotoDate(todaysDate);
+  }
   calendar.render();
 }
 
