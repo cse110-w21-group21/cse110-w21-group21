@@ -4,7 +4,7 @@ function createCalendar(data) {
   var calendarEl = document.getElementById("calendar");
 
   calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: "dayGridMonth",
+    initialView: "timeGridDay",
     aspectRatio: 2,
     headerToolbar: {
       left: "prev,next",

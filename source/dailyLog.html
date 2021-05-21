@@ -1,64 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NinePlusTen</title>
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <link rel="stylesheet" href="stylesheets/dailyLogStyle.css" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NinePlusTen</title>
-  <link rel="stylesheet" href="stylesheets/style.css" />
-  <link rel="stylesheet" href="stylesheets/dailyLogStyle.css" />
-  <script src="scripts/script.js" defer></script>
-  <script src="scripts/db.js" defer></script>
-  <script src="scripts/dailyLogScript.js" defer></script>
-  <!-- Icons sourced from https://fontawesome.com/ -->
-  <script src="https://kit.fontawesome.com/71f9f41756.js" crossorigin="anonymous"></script>
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.js"></script>
+    <script src="scripts/dailyCalendar.js" defer></script>
 
-<body>
-  <!--
+    <script src="scripts/script.js" defer></script>
+    <script src="scripts/db.js" defer></script>
+    <script src="scripts/dailyLogScript.js" defer></script>
+    <link rel="stylesheet" href="stylesheets/weeklyStyle.css" />
+    <!-- Icons sourced from https://fontawesome.com/ -->
+    <script
+      src="https://kit.fontawesome.com/71f9f41756.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <!--
         This nav block defines the sidebar and should be included on every page.
         Dependencies are style.css, script.js, and the fontawesome script.
         Add <class="curr"> to the <a> element corresponding to the current page.
     -->
-  <nav>
-    <div class="sidebar" id="sidebar">
-      <a href="javascript:void(0)" id="menubutton" class="menubutton">
-        <span></span>
-        <i class="fas fa-bars fa-fw fa-2x"></i>
-      </a>
-      <a href="./calendar.html" title="Calendar View">
-        <span>Calendar View</span>
-        <i class="far fa-calendar-alt fa-fw fa-lg"></i>
-      </a>
-      <a href="./weeklyLog.html" title="Weekly Log">
-        <span>Weekly Log</span>
-        <i class="fas fa-edit fa-fw fa-lg"></i>
-      </a>
-      <a href="./dailyLog.html" title="Daily Log" class="curr">
-        <span>Daily Log</span>
-        <i class="fas fa-thumbtack fa-fw fa-lg"></i>
-      </a>
-      <a href="./settings.html" title="Settings" class="settingsbutton">
-        <span>Settings</span>
-        <i class="fas fa-tools fa-fw fa-lg"></i>
-      </a>
-    </div>
-  </nav>
+    <nav>
+      <div class="sidebar" id="sidebar">
+        <a href="javascript:void(0)" id="menubutton" class="menubutton">
+          <span></span>
+          <i class="fas fa-bars fa-fw fa-2x"></i>
+        </a>
+        <a href="./calendar.html" title="Calendar View">
+          <span>Calendar View</span>
+          <i class="far fa-calendar-alt fa-fw fa-lg"></i>
+        </a>
+        <a href="./weeklyLog.html" title="Weekly Log">
+          <span>Weekly Log</span>
+          <i class="fas fa-edit fa-fw fa-lg"></i>
+        </a>
+        <a href="./dailyLog.html" title="Daily Log" class="curr">
+          <span>Daily Log</span>
+          <i class="fas fa-thumbtack fa-fw fa-lg"></i>
+        </a>
+        <a href="./settings.html" title="Settings" class="settingsbutton">
+          <span>Settings</span>
+          <i class="fas fa-tools fa-fw fa-lg"></i>
+        </a>
+      </div>
+    </nav>
 
-  <main>
-    <div>
-      <button type="button" id="btnbold">Bold</button>
-      <button type="button" id="btnitalic">Italic</button>
-      <button type="button" id="btnunder">Underline</button>
-      <button type="button" id="btnstrike">Strikethrough</button>
-      <button id="btnAddNote">Add Note</button>
-      <button id="btnViewNote">View Note</button>
-      <button id="btnUpdateNote">Update Note</button>
-    </div>
-    <ul id="notelist"></ul>
-    <button type="button" id="newevent">New Event</button>
-  </main>
-</body>
+    <main>
+      <div>
+        <button type="button" id="btnbold">Bold</button>
+        <button type="button" id="btnitalic">Italic</button>
+        <button type="button" id="btnunder">Underline</button>
+        <button type="button" id="btnstrike">Strikethrough</button>
+        <button id="btnAddNote">Add Note</button>
+        <button id="btnViewNote">View Note</button>
+        <button id="btnUpdateNote">Update Note</button>
+      </div>
+      <ul id="notelist"></ul>
+      <button type="button" id="newevent">New Event</button>
 
+      <div id="calendar" class="calendar"></div>
+    </main>
+  </body>
 </html>
