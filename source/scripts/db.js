@@ -21,12 +21,12 @@ function viewNote(fromWeekly) {
 
   request.onerror = function err(error) {
     // Handle errors!
-    console.log(error);
+    console.error(error);
   };
+  // load the note from the specified date
   request.onsuccess = function success() {
-    // Do something with the request.result!
-    console.log(request.result);
     document.getElementById("notelist").innerHTML = request.result.text;
+    // remove unimportant notes
     if (fromWeekly) {
       let unimportantNotes = document.querySelectorAll(
         'bullet-note[data-important="false"]'
@@ -48,7 +48,6 @@ function viewNote(fromWeekly) {
  * @param {fromWeekly} - Boolean - If it's from the weekly page
  */
 function addNoteDB(fromWeekly) {
-  // allRecords.innerHTML = "";
   const today = new Date();
   const date = `${today.getFullYear()}-${
     today.getMonth() + 1
@@ -59,19 +58,22 @@ function addNoteDB(fromWeekly) {
     date,
     text: noteString,
   };
-  console.log(note);
 
   const tx = db.transaction("personal_notes", "readwrite");
   tx.onerror = (e) => alert(` Error! ${e.target.error}  `);
   const pNotes = tx.objectStore("personal_notes");
   const request = pNotes.get(date);
-  request.onerror = function err() {
-    // duplicate note
-    pNotes.add(note);
+  request.onerror = function err(error) {
+    console.error(error);
   };
-  request.onsuccess = function success() {
-    // note already exists, we need to view it
-    viewNote(fromWeekly);
+  request.onsuccess = (e) => {
+    // if note exists view it, otherwise add note
+    const data = e.target.result;
+    if (data) {
+      viewNote(fromWeekly);
+    } else {
+      pNotes.add(note);
+    }
   };
 } /* addNote */
 
@@ -89,7 +91,13 @@ function createDB(fromWeekly) {
       keyPath: "date",
     });
     objStore.createIndex("date", "date", { unique: false });
-    addNoteDB(fromWeekly);
+
+    // wait until notes are ready to be populated
+    const transaction = e.target.transaction;
+    transaction.oncomplete = function () {
+      addNoteDB(fromWeekly);
+    };
+
     console.log(
       `upgrade is called database name: ${db.name} version : ${db.version}`
     );
@@ -126,7 +134,6 @@ function updateNote() {
     console.log(error);
   };
   request.onsuccess = function success(e) {
-    // Do something with the request.result!
     const data = e.target.result;
     data.text = document.getElementById("notelist").innerHTML;
 
@@ -134,7 +141,7 @@ function updateNote() {
     requestUpdate.onerror = function err(error) {
       console.log(error);
     };
-    requestUpdate.onsuccess = function s() {
+    requestUpdate.onsuccess = function successful() {
       console.log("updated");
     };
   };
