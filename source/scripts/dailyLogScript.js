@@ -10,6 +10,7 @@ const importantBicons = ['fas fa-star fa-fw'];
 
 /**
  * Custom bullet-note element used for each editable bulleted item in the daily log
+ * Creates the bullet note and populates the bullet dropdown menu
  */
 class BulletNote extends HTMLElement {
   connectedCallback() {
@@ -100,6 +101,9 @@ function setEndOfContenteditable(contentEditableElement) {
   }
 }
 
+/**
+ * When the page loads, create the database and add the first blank bullet note
+ */
 window.onload = () => {
   createDB();
   addNote();
@@ -109,6 +113,12 @@ document.getElementById('btnAddNote').addEventListener('click', addNoteDB);
 document.getElementById('btnViewNote').addEventListener('click', (event) => { viewNote(event, false); });
 document.getElementById('btnUpdateNote').addEventListener('click', updateNote);
 
+/**
+ * Click listener
+ * Used for the bullet dropdown on each bullet note
+ * If element clicked is a bullet, open the corresponding dropdown
+ * Otherwise, close all dropdowns
+ */
 document.addEventListener('click', (event) => {
   // close all dropdowns
   let dropwdowns = document.querySelectorAll('.bdropdown');
@@ -163,6 +173,10 @@ document.getElementById('notelist').addEventListener('keydown', (event) => {
   }
 });
 
+/**
+ * Keyup listener
+ * Used to check if shift key is released
+ */
 document.getElementById('notelist').addEventListener('keyup', (event) => {
   if (event.key === 'Shift') {
     shift = false;
