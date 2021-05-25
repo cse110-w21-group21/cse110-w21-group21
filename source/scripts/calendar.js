@@ -11,6 +11,17 @@ function createCalendar(data) {
   calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
     aspectRatio: 2,
+    customButtons: {
+      create: {
+        text: 'create event',
+        click: function () {
+          popCreate.open();
+        }
+      },
+    },
+    headerToolbar: {
+      right: 'create today prev,next'
+    },
 
     /**
      * upon clicking a date move to that day
@@ -90,11 +101,6 @@ var popCreate = {
     popCreate.pWrap.classList.remove("open");
   }
 };
-
-/** Listen to the open create form button */
-document.getElementById('renderCreateForm').addEventListener('click', () => {
-  popCreate.open();
-});
 
 /** Listen to the close create form button */
 document.getElementById('popCloseCreateForm').addEventListener('click', () => {

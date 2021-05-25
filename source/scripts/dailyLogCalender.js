@@ -16,20 +16,6 @@ function createCalendar(data) {
       }
     },
     eventClick: function (info) {
-      let date = info.event.start.toISOString().slice(0, 10);
-        let existing = localStorage.getItem('currentEvents');
-
-        existing = JSON.parse(existing);
-
-      for (let i = 0; i < existing.length; i += 1) {
-        if(existing[i].title === info.event.title) {
-          existing.splice(i,1);
-        }
-      }
-
-      localStorage.setItem('currentEvents', JSON.stringify(existing));
-
-      info.event.remove();
     },
     
     events: data
