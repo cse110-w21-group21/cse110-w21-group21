@@ -58,8 +58,9 @@ eventCreation.addEventListener('submit', function () {
   let description = document.getElementById('description').value;
   let existing = localStorage.getItem('currentEvents');
 
-  if(inputTitle == "" || startDate == "") {
+  if(inputTitle === "" || startDate === "") {
     //TODO: throw some error
+    //need to notify the user that thier creation is invalid
   } else {
     existing = JSON.parse(existing);
     if(Array.isArray(existing)) {
@@ -134,7 +135,6 @@ var popEdit = {
   /** Delete an event */
   delete : function () {
     popEdit.pWrap.classList.remove("open");
-    let date = popEdit.currentInfo.event.start.toISOString().slice(0, 10);
     let existing = localStorage.getItem('currentEvents');
 
     existing = JSON.parse(existing);
@@ -145,7 +145,7 @@ var popEdit = {
         if(existing[i].start === popEdit.currentInfo.event.startStr) {
           if(existing[i].end === popEdit.currentInfo.event.endStr) {
             if(existing[i].color === popEdit.currentInfo.event.backgroundColor)
-              if(existing[i].description ===popEdit.currentInfo.event.extendedProps.description) {
+              if(existing[i].description === popEdit.currentInfo.event.extendedProps.description) {
                 existing.splice(i,1);
               }
           }
@@ -159,6 +159,39 @@ var popEdit = {
     popEdit.currentInfo.event.remove()
   }
 };
+
+/** Listen for edit form submission */
+document.getElementById('editEventForm').addEventListener('submit', () => {
+  if (popEdit.editTitle === "" || popEdit.editStart === "") {
+    //TODO: throw some sort of error here
+    // need to notify the user that their edit is invalid
+  } else {
+    let existing = localStorage.getItem('currentEvents');
+
+    existing = JSON.parse(existing);
+
+    /** Check to make sure the event is the right one */
+    for (let i = 0; i < existing.length; i += 1) {
+      if(existing[i].title === popEdit.currentInfo.event.title) {
+        if(existing[i].start === popEdit.currentInfo.event.startStr) {
+          if(existing[i].end === popEdit.currentInfo.event.endStr) {
+            if(existing[i].color === popEdit.currentInfo.event.backgroundColor)
+              if(existing[i].description === popEdit.currentInfo.event.extendedProps.description) {
+                existing[i].title = popEdit.editTitle.value;
+                existing[i].start = popEdit.editStart.value;
+                existing[i].end = popEdit.editEnd.value;
+                existing[i].color = popEdit.editColor.value;
+                existing[i].description = popEdit.editDescription.value;
+              }
+          }
+        }
+      }
+    }
+
+    /** Reset the saved currentEvents in localstorage */
+    localStorage.setItem('currentEvents', JSON.stringify(existing));
+  }
+});
 
 /** Listen for close form button */
 document.getElementById('popCloseEditForm').addEventListener('click', () => {
