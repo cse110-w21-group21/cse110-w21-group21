@@ -1,3 +1,79 @@
 .calendar {
   width: 100%;
 }
+
+/* CREATE EVENT FORM */
+#popupCreateEventForm {
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+#popupCreateEventForm.open {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* CLOSE BUTTON */
+#popCloseCreateForm {
+  position: absolute;
+  top: 0; right: 5px;
+  padding: 5px;
+  color: #ffdcdc;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+#popboxCreateEventForm {
+  position: relative;
+  max-width: 30vw;
+  background: #fff;
+  margin: 50vh auto 0 auto;
+  transform: translateY(-50%);
+}
+
+/* EDIT EVENT FORM */
+#popupEditEventForm {
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+#popupEditEventForm.open {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* CLOSE BUTTON */
+#popCloseEditForm {
+  position: absolute;
+  top: 0; right: 5px;
+  padding: 5px;
+  color: #ffdcdc;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+#popboxEditEventForm {
+  position: relative;
+  max-width: 30vw;
+  background: #fff;
+  margin: 50vh auto 0 auto;
+  transform: translateY(-50%);
+}
+
+[id*="escription"] {
+  resize: none;
+}

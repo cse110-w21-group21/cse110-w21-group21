@@ -1,8 +1,3 @@
-#color-calendar {
-  position: relative;
-  visibility: visible;
-}
-
 #meme {
   object-fit: fill;
   padding-top: 50px;
@@ -18,10 +13,6 @@
 
 .fc .fc-toolbar-title {
   font-size: 1em;
-}
-
-.fc .fc-button {
-  padding: 0.1em;
 }
 
 .fc .fc-daygrid-day {

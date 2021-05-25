@@ -50,23 +50,51 @@
 
   <main>
     <div class="calendar" id='calendar'></div>
-    <form id="createEventForm">
-      <label for="title">Title of Event</label>
-      <input id="title" name="title" type="text">
-      <label for="start">Start Date</label>
-      <input id="start" name="start" type="date">
-      <label for="end">End Date</label>
-      <input type="date" name="end" id="end">
-      <label for="colorSelect">Color Selection</label>
-      <input type="color" id="colorSelect" name="colorSelect">
-      <button type="submit">Create Event</button>
-    </form>
 
-    <form id="newEventForm">
-      <span id="formHeader">Create/Edit an Entry</span>
-      <span id="formSubheader">Fill out the form below to create a new entry</span>
-      
-    </form>
+    <input type="button" value="create event" id="renderCreateForm">
+    <div id="popupCreateEventForm">
+      <div id="popboxCreateEventForm">
+        <form id="createEventForm">
+          <span id="formHeader">Create an Entry</span><br>
+          <span id="formSubheader">Fill out the form below to create a new entry</span><br>
+          <label for="title">Title</label>
+          <label for="colorSelect">Color Selection</label><br>
+          <input id="title" name="title" type="text" placeholder="Title">
+          <input type="color" id="colorSelect" name="colorSelect"><br>
+          <label for="start">Start Date</label>
+          <label for="end">End Date</label><br>
+          <input id="start" name="start" type="date">
+          <input type="date" name="end" id="end"><br>
+          <label for="description">Details</label><br>
+          <textarea name="description" id="description" cols="90" rows="10" placeholder="Event Description"></textarea><br>
+          <button type="submit">Submit</button>
+        </form>
+        <div id="popCloseCreateForm">&#9746;</div>
+      </div>
+    </div>
+
+    <div id="popupEditEventForm">
+      <div id="popboxEditEventForm">
+        <form id="editEventForm">
+          <span id="formHeader">Edit an Entry</span><br>
+          <span id="formSubheader">Edit the form to modify your entry</span><br>
+          <label for="editTitle">Title</label>
+          <label for="editColorSelect">Color Selection</label><br>
+          <input id="editTitle" name="title" type="text" placeholder="Title">
+          <input type="color" id="editColorSelect" name="colorSelect"><br>
+          <label for="editStart">Start Date</label>
+          <label for="editEnd">End Date</label><br>
+          <input id="editStart" name="start" type="date">
+          <input type="date" name="end" id="editEnd"><br>
+          <label for="editDescription">Details</label><br>
+          <textarea name="description" id="editDescription" cols="90" rows="10" placeholder="Event Description"></textarea><br>
+          <button type="submit">Submit</button>
+          <button id="deleteEvent">Delete</button>
+        </form>
+        <div id="popCloseEditForm">&#9746;</div>
+      </div>
+    </div>
+
 
     <svg xmlns="http://www.w3.org/2000/svg" width="1132" height="548" viewBox="0 0 1132 548">
       <g id="Group_602" data-name="Group 602" transform="translate(-295 -870)">

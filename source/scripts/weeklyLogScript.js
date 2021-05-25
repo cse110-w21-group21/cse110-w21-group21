@@ -7,7 +7,7 @@ function createCalendar(data) {
     initialView: 'timeGridWeek',
     aspectRatio: 2,
 
-    dateClick: function (date,) {
+    dateClick: function (date) {
       localStorage.setItem('dateClicked', date.dateStr);
       location.href = "./dailyLog.html";
     },
