@@ -1,10 +1,13 @@
 /* eslint import/extensions: "off" */
-import {
-  createDB, addNoteDB, updateNote, viewNote,
-} from './db.js';
+import { createDB, updateNote } from './db.js';
 
 let shift = false;
-const bicons = ['fas fa-circle fa-fw', 'fas fa-square fa-fw', 'fas fa-star fa-fw'];
+let timer = null;
+const bicons = [
+  'fas fa-circle fa-fw',
+  'fas fa-square fa-fw',
+  'fas fa-star fa-fw',
+];
 // const bnames = ['Note', 'Task'];
 const importantBicons = ['fas fa-star fa-fw'];
 
@@ -100,14 +103,23 @@ function setEndOfContenteditable(contentEditableElement) {
   }
 }
 
-window.onload = () => {
-  createDB();
+/*
+ * This method will start the DB process and
+ * add the current days note if it exists
+ */
+window.onload = async () => {
+  await createDB(false);
   addNote();
 };
 
-document.getElementById('btnAddNote').addEventListener('click', addNoteDB);
-document.getElementById('btnViewNote').addEventListener('click', (event) => { viewNote(event, false); });
-document.getElementById('btnUpdateNote').addEventListener('click', updateNote);
+/*
+ * This method will update the note db between
+ * clicking on different pages
+ */
+window.onbeforeunload = () => {
+  // save note data
+  updateNote();
+};
 
 document.addEventListener('click', (event) => {
   // close all dropdowns
@@ -130,6 +142,13 @@ document.addEventListener('click', (event) => {
  * Backspace: If current note is empty, delete current note
  */
 document.getElementById('notelist').addEventListener('keydown', (event) => {
+  // on every keydown reset timer
+  if (timer != null) {
+    clearTimeout(timer);
+    timer = null;
+  }
+  // after 5 seconds of no keydowns update note
+  timer = setTimeout(updateNote, 5000);
   if (event.key === 'Shift') {
     shift = true;
   }
@@ -157,7 +176,9 @@ document.getElementById('notelist').addEventListener('keydown', (event) => {
       setEndOfContenteditable(textbox);
     }
     event.target.parentNode.remove();
-    if (document.getElementById('notelist').innerHTML.indexOf('bullet') === -1) {
+    if (
+      document.getElementById('notelist').innerHTML.indexOf('bullet') === -1
+    ) {
       addNote();
     }
   }
