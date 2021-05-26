@@ -16,7 +16,7 @@ In our current workflow, it will turn on with every push to a branch. The event 
 7. In the step named "pull-request", it will automatically create a pull request with customized title and body, where the source-branch is the triggered branch, destination branch is the main brnach.
 
 Below is a diagram of the current Continuous Integration Workflow
-
+![Diagram](./phase1.drawio.png)
 
 ## Planned/In Progress Functionalities
 
