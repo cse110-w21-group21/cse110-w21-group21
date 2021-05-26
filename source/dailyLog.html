@@ -9,9 +9,11 @@
   <link rel="stylesheet" href="stylesheets/style.css" />
   <link rel="stylesheet" href="stylesheets/notesStyle.css" />
   <link rel="stylesheet" href="stylesheets/dailyLogStyle.css" />
+  <link rel="stylesheet" href="stylesheets/stickyNotes.css" />
   <script src="scripts/script.js" defer></script>
   <script src="scripts/db.js" type="module" defer></script>
   <script src="scripts/dailyLogScript.js" type="module" defer></script>
+  <script src="scripts/stickyNotes.js"></script>
   <!-- Icons sourced from https://fontawesome.com/ -->
   <script src="https://kit.fontawesome.com/71f9f41756.js" crossorigin="anonymous"></script>
 </head>
@@ -58,7 +60,37 @@
       <button id="btnUpdateNote">Update Note</button>
     </div>
     <ul id="notelist"></ul>
+
+    <div class="stickyNotes" id="stickyNotes">
+      <button class="note-add-btn" type="button" aria-label="Add">
+          <i class="fa fa-plus"></i>
+          <span> Add a note</span>
+      </button>
+      <div>
+          <div class="note note-red" data-color="red">
+              <div class="note-header">
+                  <input class="note-title" type="text" placeholder="Untitled Note">
+              </div>
+              <div class="note-body">
+                  <textarea spellcheck="false"></textarea>
+              </div>
+              <div class="note-footer">
+                  <button class="note-color-btn note-red" type="button" title="red" aria-label="red" data-color="red"></button>
+                  <button class="note-color-btn note-orange" type="button" title="orange" aria-label="orange" data-color="orange"></button>
+                  <button class="note-color-btn note-yellow" type="button" title="yellow" aria-label="yellow" data-color="yellow"></button>
+                  <button class="note-color-btn note-green" type="button" title="green" aria-label="green" data-color="green"></button>
+                  <button class="note-color-btn note-blue" type="button" title="blue" aria-label="blue" data-color="blue"></button>
+                  <button class="note-color-btn note-purple" type="button" title="purple" aria-label="purple" data-color="purple"></button>
+                  <button class="note-delete-btn" type="button" aria-abel="Delete">
+                      <i class="fa fa-trash"></i>
+                  </button>
+              </div>
+          </div>
+      </div>
+  </div>
   </main>
+
+
 </body>
 
 </html>
