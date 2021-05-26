@@ -1,4 +1,3 @@
-/* eslint-disable */
 var calendar;
 function createCalendar(data) {
   var calendarEl = document.getElementById('calendar');
