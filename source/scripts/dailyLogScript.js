@@ -16,7 +16,7 @@ const importantBicons = ['fas fa-star fa-fw'];
  */
 class BulletNote extends HTMLElement {
   connectedCallback() {
-    if (this.innerHTML.indexOf('textbox') == -1) {
+    if (this.innerHTML.indexOf('textbox') === -1) {
       this.innerHTML = `
         <div class="${bicons[0]} bicon"></div>
         <ul class="bdropdown"></ul>
