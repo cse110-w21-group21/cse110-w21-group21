@@ -1,7 +1,9 @@
 .stickyNotes {
     position: absolute;
+    float: right;
     top: 0;
-    right: 1em;
+    right: 20px;
+    width: 320px;
 }
 
 .note {
