@@ -260,10 +260,4 @@ document.getElementById('newevent').addEventListener('click', () => {
   newNote.bullet = 1;
   newNote.getElementsByClassName("textbox")[0].focus();
 });
-
-/**
- * Used to prevent focus change when pressing New Event button
- */
-document.getElementById("newevent").addEventListener("mousedown", (event) => {
-  event.preventDefault();
-});
+*/
