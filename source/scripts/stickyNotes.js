@@ -56,11 +56,8 @@ function addEventListenerColorBtn(i) {
     deleteButton[i].addEventListener('click', function() {
         if (numberOfStickies > 0) {
             mainNote[i].remove();
-            numberOfStickies--;
+            numberOfStickies = numberOfStickies - 1;
             reloadVariables();
-        }
-        else if (numberOfStickies == 0) {
-            console.log("cannot click on this, we have to have at least 1 note");
         }
     });
 }
@@ -74,12 +71,11 @@ purpleButton[0].addEventListener('click', function() {
 addNote.addEventListener('click', function() {
     let cloneMainNote = mainNote[numberOfStickies].cloneNode(true);
     let randomColor = colorList[Math.floor(Math.random() * colorList.length)];
-    console.log(randomColor);
     cloneMainNote.querySelectorAll('input')[0].value = '';
     cloneMainNote.querySelectorAll('textarea')[0].value = '';
     cloneMainNote.className = 'note note-' + randomColor; 
     noteContainer.appendChild(cloneMainNote);
     reloadVariables();
-    numberOfStickies++;
-    addEventListenerColorBtn(i);
+    numberOfStickies = numberOfStickies + 1;
+    addEventListenerColorBtn(numberOfStickies);
 });
