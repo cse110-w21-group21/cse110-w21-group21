@@ -27,33 +27,39 @@
         Dependencies are style.css, script.js, and the fontawesome script.
         Add <class="curr"> to the <a> element corresponding to the current page.
     -->
-      <nav>
-        <div class="sidebar" id="sidebar">
-          <a href="javascript:void(0)" id="menubutton" class="menubutton">
-            <span></span>
-            <i class="fas fa-bars fa-fw fa-2x"></i>
-          </a>
-          <a href="./calendar.html" title="Calendar View">
-            <span>Calendar View</span>
-            <i class="far fa-calendar-alt fa-fw fa-lg"></i>
-          </a>
-          <a href="./weeklyLog.html" title="Weekly Log" class="curr">
-            <span>Weekly Log</span>
-            <i class="fas fa-edit fa-fw fa-lg"></i>
-          </a>
-          <a href="./dailyLog.html" title="Daily Log">
-            <span>Daily Log</span>
-            <i class="fas fa-thumbtack fa-fw fa-lg"></i>
-          </a>
-          <a href="./settings.html" title="Settings" class="settingsbutton">
-            <span>Settings</span>
-            <i class="fas fa-tools fa-fw fa-lg"></i>
-          </a>
-        </div>
-      </nav>
-      <div id="calendar" class="calendar"></div>
-      <div id="random-meme"></div>
-    </body>
+  <nav>
+    <div class="sidebar" id="sidebar">
+      <a href="javascript:void(0)" id="menubutton" class="menubutton">
+        <span></span>
+        <i class="fas fa-bars fa-fw fa-2x"></i>
+      </a>
+      <a href="./calendar.html" title="Calendar View">
+        <span>Calendar View</span>
+        <i class="far fa-calendar-alt fa-fw fa-lg"></i>
+      </a>
+      <a href="./weeklyLog.html" title="Weekly Log" class="curr">
+        <span>Weekly Log</span>
+        <i class="fas fa-edit fa-fw fa-lg"></i>
+      </a>
+      <a href="./dailyLog.html" title="Daily Log">
+        <span>Daily Log</span>
+        <i class="fas fa-thumbtack fa-fw fa-lg"></i>
+      </a>
+      <a href="./settings.html" title="Settings" class="settingsbutton">
+        <span>Settings</span>
+        <i class="fas fa-tools fa-fw fa-lg"></i>
+      </a>
+    </div>
+  </nav>
+  <main>
+    <div>
+      <button id="btnViewNote">View Note</button>
+      <ul id="notelist"></ul>
+    </div>
+    <div id="calendar" class="calendar"></div>
+    <div id="random-meme"></div>
   </main>
+
+</body>
+
 </html>
-@jannst

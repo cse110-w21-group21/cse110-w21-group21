@@ -1,4 +1,5 @@
-/* eslint-disable no-undef */
+const currentThemeSettings = localStorage.getItem("theme");
+
 document.getElementById("scheme-one").addEventListener("click", () => {
   document.body.classList.remove("blueHumans");
   document.body.classList.add("barcelona");
@@ -159,21 +160,21 @@ document.getElementById("scheme-eight").addEventListener("click", () => {
   localStorage.setItem("theme", "cityByNight");
 });
 
-if (currentTheme === "blueHumans") {
+if (currentThemeSettings === "blueHumans") {
   document.getElementById("scheme-two").checked = true;
-} else if (currentTheme === "hackers") {
+} else if (currentThemeSettings === "hackers") {
   document.getElementById("scheme-seven").checked = true;
-} else if (currentTheme === "beach") {
+} else if (currentThemeSettings === "beach") {
   document.getElementById("scheme-three").checked = true;
-} else if (currentTheme === "raptorize") {
+} else if (currentThemeSettings === "raptorize") {
   document.getElementById("scheme-four").checked = true;
-} else if (currentTheme === "cthuluRises") {
+} else if (currentThemeSettings === "cthuluRises") {
   document.getElementById("scheme-five").checked = true;
-} else if (currentTheme === "boringVolcano") {
+} else if (currentThemeSettings === "boringVolcano") {
   document.getElementById("scheme-six").checked = true;
-} else if (currentTheme === "cityByNight") {
+} else if (currentThemeSettings === "cityByNight") {
   document.getElementById("scheme-eight").checked = true;
-} else if (currentTheme === "barcelona") {
+} else if (currentThemeSettings === "barcelona") {
   document.getElementById("scheme-one").checked = true;
 } else {
   document.getElementById("scheme-one").checked = true;
