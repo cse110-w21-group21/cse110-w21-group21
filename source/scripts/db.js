@@ -123,10 +123,10 @@ function updateNote() {
   const tx = db.transaction("personal_notes", "readwrite");
   const pNotes = tx.objectStore("personal_notes");
 
-  const today = new Date();
-  const date = `${today.getFullYear()}-${
-    today.getMonth() + 1
-  }-${today.getDate()}`;
+  const thisDay = new Date(calendar.currentData.viewTitle);
+  const date = `${thisDay.getFullYear()}-${
+    thisDay.getMonth() + 1
+  }-${thisDay.getDate()}`;
   const request = pNotes.get(date);
 
   request.onerror = function err(error) {
