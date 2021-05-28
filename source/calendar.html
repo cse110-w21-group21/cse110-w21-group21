@@ -54,18 +54,18 @@
     <div id="popupCreateEventForm">
       <div id="popboxCreateEventForm">
         <form id="createEventForm">
-          <span id="formHeader">Create an Entry</span><br>
+          <span id="formHeader"><b>Create an Entry</b></span><br>
           <span id="formSubheader">Fill out the form below to create a new entry</span><br>
           <label for="title">Title</label>
-          <label for="colorSelect">Color Selection</label><br>
           <input id="title" name="title" type="text" placeholder="Title">
+          <label for="colorSelect">Color Selection</label>
           <input type="color" id="colorSelect" name="colorSelect"><br>
           <label for="start">Start Date</label>
-          <label for="end">End Date</label><br>
-          <input id="start" name="start" type="date">
+          <input id="start" name="start" type="date"><br>
+          <label for="end">End Date</label>
           <input type="date" name="end" id="end"><br>
           <label for="description">Details</label><br>
-          <textarea name="description" id="description" cols="90" rows="10" placeholder="Event Description"></textarea><br>
+          <textarea name="description" id="description" cols="60" rows="10" placeholder="Event Description"></textarea><br>
           <button type="submit">Submit</button>
         </form>
         <div id="popCloseCreateForm">&#9746;</div>
@@ -86,14 +86,27 @@
           <input id="editStart" name="start" type="date">
           <input type="date" name="end" id="editEnd"><br>
           <label for="editDescription">Details</label><br>
-          <textarea name="description" id="editDescription" cols="90" rows="10" placeholder="Event Description"></textarea><br>
+          <textarea name="description" id="editDescription" cols="60" rows="10" placeholder="Event Description"></textarea><br>
           <button type="submit">Submit</button>
           <button id="deleteEvent">Delete</button>
         </form>
         <div id="popCloseEditForm">&#9746;</div>
       </div>
     </div>
+    
+    <style>
+      #createEventForm, #editEventForm{
+        background-color: antiquewhite;
+        font-family: Helvetica;
+      }
+      #formHeader{
+        font-size: 18px;
+      }
+      #formSubheader{
+        font-size: 12px;
+      }
 
+    </style>
 
     <svg xmlns="http://www.w3.org/2000/svg" width="1132" height="548" viewBox="0 0 1132 548">
       <g id="Group_602" data-name="Group 602" transform="translate(-295 -870)">
