@@ -61,11 +61,11 @@
           <label for="colorSelect">Color Selection</label>
           <input type="color" id="colorSelect" name="colorSelect"><br>
           <label for="start">Start Date</label>
-          <input id="start" name="start" type="date"><br>
+          <input id="start" name="start" type="date">
           <label for="end">End Date</label>
           <input type="date" name="end" id="end"><br>
           <label for="description">Details</label><br>
-          <textarea name="description" id="description" cols="60" rows="10" placeholder="Event Description"></textarea><br>
+          <textarea name="description" id="description" cols="65" rows="10" placeholder="Event Description"></textarea><br>
           <button type="submit">Submit</button>
         </form>
         <div id="popCloseCreateForm">&#9746;</div>
@@ -98,13 +98,27 @@
       #createEventForm, #editEventForm{
         background-color: antiquewhite;
         font-family: Helvetica;
+        box-sizing: border-box;
+        width: 100%;
+        border: solid #5B6DCD 10px;
+        padding: 5px;
       }
       #formHeader{
-        font-size: 18px;
+        font-size: 30px;
       }
       #formSubheader{
         font-size: 12px;
       }
+      button:hover{
+        color: rgb(10, 161, 207);
+      }
+      
+      
+      
+      
+      
+      
+      
 
     </style>
 
