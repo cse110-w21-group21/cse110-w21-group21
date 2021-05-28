@@ -36,6 +36,11 @@
   background: #fff;
   margin: 50vh auto 0 auto;
   transform: translateY(-50%);
+  font-family: Helvetica;
+  box-sizing: border-box;
+  width: 100%;
+  border: solid antiquewhite 10px;
+  padding: 5px;
 }
 
 /* EDIT EVENT FORM */
@@ -72,6 +77,16 @@
   background: #fff;
   margin: 50vh auto 0 auto;
   transform: translateY(-50%);
+}
+
+#formHeader{
+  font-size: 30px;
+}
+#formSubheader{
+  font-size: 12px;
+}
+button:hover{
+  color: rgb(10, 161, 207);
 }
 
 [id*="escription"] {
