@@ -10,7 +10,7 @@ Jerry Guo, Tyler Holston
 
 ### When and where:
 
-May.21.2021, 5:30 - 6:00pm Friday on Zoom
+May.27.2021, 5:30 - 6:00pm Thursday on Zoom
 
 ### Last time
 
