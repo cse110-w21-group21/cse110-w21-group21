@@ -1,5 +1,3 @@
-const currentThemeSettings = localStorage.getItem("theme");
-
 document.getElementById("scheme-one").addEventListener("click", () => {
   document.body.classList.remove("blueHumans");
   document.body.classList.add("barcelona");
