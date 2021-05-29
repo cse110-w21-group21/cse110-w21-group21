@@ -5,10 +5,14 @@
     <title>Weekly Log</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="scripts/script.js" defer></script>
-    <link rel="stylesheet" href="stylesheets/style.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/color-calendar/dist/bundle.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <link rel="stylesheet" href="stylesheets/notesStyle.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.js"></script>
+    <script src="scripts/weeklyLogScript.js" type="module" defer></script>
     <script src="scripts/memeGenerator.js" defer></script>
     <script src="scripts/weeklyLogScript.js" defer></script>
     <link rel="stylesheet" href="stylesheets/weeklyStyle.css" />
@@ -18,40 +22,46 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <main>
+
     <body>
       <!--
         This nav block defines the sidebar and should be included on every page.
         Dependencies are style.css, script.js, and the fontawesome script.
         Add <class="curr"> to the <a> element corresponding to the current page.
     -->
-      <nav>
-        <div class="sidebar" id="sidebar">
-          <a href="javascript:void(0)" id="menubutton" class="menubutton">
-            <span></span>
-            <i class="fas fa-bars fa-fw fa-2x"></i>
-          </a>
-          <a href="./calendar.html" title="Calendar View">
-            <span>Calendar View</span>
-            <i class="far fa-calendar-alt fa-fw fa-lg"></i>
-          </a>
-          <a href="./weeklyLog.html" title="Weekly Log" class="curr">
-            <span>Weekly Log</span>
-            <i class="fas fa-edit fa-fw fa-lg"></i>
-          </a>
-          <a href="./dailyLog.html" title="Daily Log">
-            <span>Daily Log</span>
-            <i class="fas fa-thumbtack fa-fw fa-lg"></i>
-          </a>
-          <a href="./settings.html" title="Settings" class="settingsbutton">
-            <span>Settings</span>
-            <i class="fas fa-tools fa-fw fa-lg"></i>
-          </a>
-        </div>
-      </nav>
-      <div id="random-meme"></div>
-      <div id="calendar" class="calendar"></div>
-    </body>
+  <nav>
+    <div class="sidebar" id="sidebar">
+      <a href="javascript:void(0)" id="menubutton" class="menubutton">
+        <span></span>
+        <i class="fas fa-bars fa-fw fa-2x"></i>
+      </a>
+      <a href="./calendar.html" title="Calendar View">
+        <span>Calendar View</span>
+        <i class="far fa-calendar-alt fa-fw fa-lg"></i>
+      </a>
+      <a href="./weeklyLog.html" title="Weekly Log" class="curr">
+        <span>Weekly Log</span>
+        <i class="fas fa-edit fa-fw fa-lg"></i>
+      </a>
+      <a href="./dailyLog.html" title="Daily Log">
+        <span>Daily Log</span>
+        <i class="fas fa-thumbtack fa-fw fa-lg"></i>
+      </a>
+      <a href="./settings.html" title="Settings" class="settingsbutton">
+        <span>Settings</span>
+        <i class="fas fa-tools fa-fw fa-lg"></i>
+      </a>
+    </div>
+  </nav>
+  <main>
+    <div>
+      <button id="btnViewNote">View Note</button>
+      <ul id="notelist"></ul>
+    </div>
+    <div id="calendar" class="calendar"></div>
+    <div id="random-meme"></div>
   </main>
+
+</body>
+
 </html>
-@jannst

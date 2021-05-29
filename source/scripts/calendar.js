@@ -6,10 +6,10 @@ var calendar;
  * @param {events} data 
  */
 function createCalendar(data) {
-  var calendarEl = document.getElementById('calendar');
+  var calendarEl = document.getElementById("calendar");
 
   calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'dayGridMonth',
+    initialView: "dayGridMonth",
     aspectRatio: 2,
     customButtons: {
       create: {
