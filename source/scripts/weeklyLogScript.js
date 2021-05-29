@@ -1,4 +1,5 @@
 /* eslint import/extensions: "off" */
+/* eslint no-undef: "error" */
 
 import { createDB, viewNote } from "./db.js";
 
@@ -20,7 +21,7 @@ function createCalendar(data) {
 
     dateClick: function (date) {
       localStorage.setItem('dateClicked', date.dateStr);
-      location.href = "./dailyLog.html";
+      window.location.href = "./dailyLog.html";
     },
 
     events: data
