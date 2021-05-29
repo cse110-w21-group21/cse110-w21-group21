@@ -1,5 +1,6 @@
 /* eslint import/extensions: "off" */
-/* eslint no-undef: "error" */
+/*global FullCalendar */
+/* eslint no-undef: 2 */
 
 import { createDB, viewNote } from "./db.js";
 
