@@ -23,7 +23,7 @@
 /* CLOSE BUTTON */
 #popCloseCreateForm {
   position: absolute;
-  top: 0; right: 5px;
+  top: 0; right: 1%;
   padding: 5px;
   color: #fa6b6b;
   font-size: 32px;
@@ -32,7 +32,7 @@
 
 #popboxCreateEventForm {
   position: relative;
-  max-width: 30vw;
+  max-width: 25vw;
   background: #fff;
   margin: 50vh auto 0 auto;
   transform: translateY(-50%);
@@ -91,8 +91,18 @@
   font-size: 12px;
 }
 button:hover{
-  color: rgb(10, 161, 207);
+  color: white;
+  background-color: rgb(10, 161, 207);
 }
+
+#description{
+  width: 100%;
+}
+
+#title{
+  width: 55%;
+}
+
 
 [id*="escription"] {
   resize: none;
