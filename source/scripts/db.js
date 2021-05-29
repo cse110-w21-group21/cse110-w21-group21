@@ -25,7 +25,9 @@ function viewNote(fromWeekly) {
   };
   // load the note from the specified date
   request.onsuccess = function success() {
-    document.getElementById("notelist").innerHTML = request.result.text;
+    if(!(request.result.text === "" || request.result.text === "<br>")){
+      document.getElementById("notelist").innerHTML = request.result.text;
+    }
     // remove unimportant notes
     if (fromWeekly) {
       let unimportantNotes = document.querySelectorAll(
