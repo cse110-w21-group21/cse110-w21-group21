@@ -1,4 +1,15 @@
-/* eslint-disable */
+/* eslint import/extensions: "off" */
+
+import { createDB, viewNote } from "./db.js";
+
+window.onload = () => {
+  createDB(true);
+};
+
+document.getElementById("btnViewNote").addEventListener("click", (event) => {
+  viewNote(event, true);
+});
+
 var calendar;
 function createCalendar(data) {
   var calendarEl = document.getElementById('calendar');
@@ -27,16 +38,3 @@ const menuToggle = document.querySelector('main');
 menuToggle.addEventListener('transitionend', () => {
   calendar.updateSize();
 });
-
-/* eslint import/extensions: "off" */
-
-import { createDB, viewNote } from "./db.js";
-
-window.onload = () => {
-  createDB(true);
-};
-
-document.getElementById("btnViewNote").addEventListener("click", (event) => {
-  viewNote(event, true);
-});
-

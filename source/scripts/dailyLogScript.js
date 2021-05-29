@@ -246,25 +246,3 @@ document.getElementById("btnstrike").addEventListener("click", () => {
 document.getElementById("btnstrike").addEventListener("mousedown", (event) => {
   event.preventDefault();
 });
-
-/**
- * New Event button, adds a note with a time
- */
-/*
-document.getElementById('newevent').addEventListener('click', () => {
-  const noteList = document.getElementById('notelist');
-  const newNote = document.createElement('bullet-note');
-  newNote.className = 'bullet';
-  newNote.dataset.starttime = true;
-  noteList.appendChild(newNote);
-  newNote.bullet = 1;
-  newNote.getElementsByClassName('textbox')[0].focus();
-});
-
-/**
- * Used to prevent focus change when pressing New Event button
- */
-document.getElementById('newevent').addEventListener('mousedown', (event) => {
-  event.preventDefault();
-});
-

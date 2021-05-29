@@ -84,10 +84,10 @@
   transform: translateY(-50%);
 }
 
-#formHeader{
+.formHeader{
   font-size: 30px;
 }
-#formSubheader{
+.formSubheader{
   font-size: 12px;
 }
 button:hover{
