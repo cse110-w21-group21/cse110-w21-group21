@@ -1,5 +1,5 @@
 /* eslint import/extensions: "off" */
-import { createDB, updateNote } from "./db.js";
+import { addNoteDB, createDB, updateNote, viewNote } from "./db.js";
 
 let shift = false;
 let timer = null;
@@ -121,7 +121,6 @@ window.onbeforeunload = () => {
   // save note data
   updateNote();
 };
-
 
 /**
  * Click listener
@@ -273,3 +272,29 @@ document.getElementById('newevent').addEventListener('click', () => {
   newNote.getElementsByClassName("textbox")[0].focus();
 });
 */
+
+/**
+ * Used to save notes when enter is pressed
+ */
+ document.getElementById('notelist').addEventListener('keyup', (event) => {
+  if (event.key === 'Enter') {
+    updateNote();
+  }
+});
+
+/**
+ * Listener for prev/next buttons on calendar
+ * Will change calendar date and update user's notes accordingly
+ */
+document.addEventListener('click', (e) => {
+
+  if(e.target.className == 'fc-next-button fc-button fc-button-primary' || 
+      e.target.className == "fc-prev-button fc-button fc-button-primary" || 
+      e.target.className ==  'fc-icon fc-icon-chevron-right' ||
+      e.target.className == "fc-icon fc-icon-chevron-left") {
+    addNoteDB(false);
+    viewNote(false);
+  }
+
+ 
+});
