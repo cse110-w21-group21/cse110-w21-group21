@@ -288,10 +288,10 @@ document.getElementById('newevent').addEventListener('click', () => {
  */
 document.addEventListener('click', (e) => {
 
-  if(e.target.className == 'fc-next-button fc-button fc-button-primary' || 
-      e.target.className == "fc-prev-button fc-button fc-button-primary" || 
-      e.target.className ==  'fc-icon fc-icon-chevron-right' ||
-      e.target.className == "fc-icon fc-icon-chevron-left") {
+  if(e.target.className === 'fc-next-button fc-button fc-button-primary' || 
+      e.target.className === "fc-prev-button fc-button fc-button-primary" || 
+      e.target.className ===  'fc-icon fc-icon-chevron-right' ||
+      e.target.className === "fc-icon fc-icon-chevron-left") {
     addNoteDB(false);
     viewNote(false);
   }
