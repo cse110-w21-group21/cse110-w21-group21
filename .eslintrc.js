@@ -10,7 +10,7 @@ module.exports = {
   },
   rules: {
     "prefer-const": "off",
-    quotes: "warn",
+    quotes: "off",
     "no-const-assign": "warn",
     indent: "warn",
   },
