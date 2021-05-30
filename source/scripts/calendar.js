@@ -73,6 +73,13 @@ eventCreation.addEventListener('submit', function () {
     //TODO: throw some error
     //need to notify the user that thier creation is invalid
   } else {
+    if(startDate === endDate) {
+      endDate = "";
+    }
+    let currEnd = new Date(new Date(endDate));
+    currEnd.setDate(currEnd.getDate() + 2);
+
+    console.log(currEnd.toUTCString().split('T')[0]);
     existing = JSON.parse(existing);
     if(Array.isArray(existing)) {
       existing.push({ title: inputTitle, start: startDate, end: endDate, color: colorSelection, description: description });
@@ -183,11 +190,19 @@ document.getElementById('editEventForm').addEventListener('submit', () => {
           if(existing[i].end === popEdit.currentInfo.event.endStr) {
             if(existing[i].color === popEdit.currentInfo.event.backgroundColor)
               if(existing[i].description === popEdit.currentInfo.event.extendedProps.description) {
-                existing[i].title = popEdit.editTitle.value;
-                existing[i].start = popEdit.editStart.value;
-                existing[i].end = popEdit.editEnd.value;
-                existing[i].color = popEdit.editColor.value;
-                existing[i].description = popEdit.editDescription.value;
+                if(popEdit.editTitle.value === "" || popEdit.editStart.value === "") {
+                  //TODO: throw some error
+                  //need to notify the user that thier creation is invalid
+                } else {
+                  if(popEdit.editStart.value === popEdit.editEnd.value) {
+                    popEdit.editEnd.value = "";
+                  }
+                  existing[i].title = popEdit.editTitle.value;
+                  existing[i].start = popEdit.editStart.value;
+                  existing[i].end = popEdit.editEnd.value;
+                  existing[i].color = popEdit.editColor.value;
+                  existing[i].description = popEdit.editDescription.value;
+                }
               }
           }
         }
