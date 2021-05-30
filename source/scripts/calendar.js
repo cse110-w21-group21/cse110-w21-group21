@@ -73,24 +73,24 @@ eventCreation.addEventListener('submit', function () {
     //TODO: throw some error
     //need to notify the user that thier creation is invalid
   } else {
-    if(startDate === endDate) {
-      endDate = "";
-    }
     let currEnd = new Date(new Date(endDate));
     currEnd.setDate(currEnd.getDate() + 2);
-
-    console.log(currEnd.toUTCString().split('T')[0]);
-    existing = JSON.parse(existing);
-    if(Array.isArray(existing)) {
-      existing.push({ title: inputTitle, start: startDate, end: endDate, color: colorSelection, description: description });
+    if(formatDate(currEnd) > startDate) {
+      existing = JSON.parse(existing);
+      if(Array.isArray(existing)) {
+        existing.push({ title: inputTitle, start: startDate, end: formatDate(currEnd), color: colorSelection, description: description });
+      } else {
+        existing = { title: inputTitle, start: startDate, end: endDate, color: colorSelection, description: description }; 
+        existing = [ existing ];
+      }
+      localStorage.setItem('currentEvents', JSON.stringify(existing));
+  
+      createCalendar(existing);
+      popCreate.close();
     } else {
-      existing = { title: inputTitle, start: startDate, end: endDate, color: colorSelection, description: description }; 
-      existing = [ existing ];
+      //the end date is before the start date
+      //need to notify the user their creation is invalid
     }
-    localStorage.setItem('currentEvents', JSON.stringify(existing));
-
-    createCalendar(existing);
-    popCreate.close();
   }
 });
 
@@ -135,7 +135,9 @@ var popEdit = {
     popEdit.editTitle.value = info.event.title;
     popEdit.editColor.value = info.event.backgroundColor;
     popEdit.editStart.value = info.event.startStr;
-    popEdit.editEnd.value = info.event.endStr;
+    let currEnd = new Date(new Date(info.event.endStr));
+    currEnd.setDate(currEnd.getDate());
+    popEdit.editEnd.value = formatDate(currEnd);
     popEdit.editDescription.value = info.event.extendedProps.description;
     popEdit.pWrap.classList.add("open");
   },
@@ -194,14 +196,18 @@ document.getElementById('editEventForm').addEventListener('submit', () => {
                   //TODO: throw some error
                   //need to notify the user that thier creation is invalid
                 } else {
-                  if(popEdit.editStart.value === popEdit.editEnd.value) {
-                    popEdit.editEnd.value = "";
+                  let currEnd = new Date(new Date(popEdit.editEnd.value));
+                  currEnd.setDate(currEnd.getDate() + 2);
+                  if(formatDate(currEnd) > popEdit.editStart.value) {
+                    existing[i].title = popEdit.editTitle.value;
+                    existing[i].start = popEdit.editStart.value;
+                    existing[i].end = formatDate(currEnd);
+                    existing[i].color = popEdit.editColor.value;
+                    existing[i].description = popEdit.editDescription.value;
+                  } else {
+                    //the end date is before the start date
+                    //need to notify the user that their creation is invalid
                   }
-                  existing[i].title = popEdit.editTitle.value;
-                  existing[i].start = popEdit.editStart.value;
-                  existing[i].end = popEdit.editEnd.value;
-                  existing[i].color = popEdit.editColor.value;
-                  existing[i].description = popEdit.editDescription.value;
                 }
               }
           }
@@ -223,3 +229,22 @@ document.getElementById('popCloseEditForm').addEventListener('click', () => {
 document.getElementById('deleteEvent').addEventListener('click', () => {
   popEdit.delete();
 })
+
+/**
+ * format date to proper fullcalendar syntax
+ * @param {Date} date 
+ * @returns 
+ */
+function formatDate(date) {
+  var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+  if (month.length < 2) 
+      month = '0' + month;
+  if (day.length < 2) 
+      day = '0' + day;
+
+  return [year, month, day].join('-');
+}
