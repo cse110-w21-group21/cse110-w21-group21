@@ -110,9 +110,9 @@
     box-shadow: 0 0 10px rgba(128, 128, 128, 0.3);
     cursor: pointer;
 }
-/* 
+
 @media screen and (max-width: 1100px){
     .stickyNotes {
         display: none;
     }
-} */
+}
