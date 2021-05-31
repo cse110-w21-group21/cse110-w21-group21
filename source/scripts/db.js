@@ -1,5 +1,4 @@
 /* eslint-disable */
-import { addNote } from "./dailyLogScript.js";
 let db;
 
 /**
@@ -160,36 +159,4 @@ function updateNote() {
   };
 } /* updateNote */
 
-/**
- * Listener for prev/next buttons on calendar
- * Will change calendar date and update user's notes accordingly
- */
-document.addEventListener("click", (e) => {
-  if (
-    e.target.className === "fc-next-button fc-button fc-button-primary" ||
-    e.target.className === "fc-prev-button fc-button fc-button-primary" ||
-    e.target.className === "fc-icon fc-icon-chevron-right" ||
-    e.target.className === "fc-icon fc-icon-chevron-left"
-  ) {
-    const tx = db.transaction("personal_notes", "readwrite");
-    const pNotes = tx.objectStore("personal_notes");
-    const thisDay = new Date(calendar.currentData.viewTitle);
-    const date = `${thisDay.getFullYear()}-${
-      thisDay.getMonth() + 1
-    }-${thisDay.getDate()}`;
-    const request = pNotes.openCursor(date);
-    request.onsuccess = function (e) {
-      let cursor = e.target.result;
-      if (cursor) {
-        // date already exists in database
-        viewNote(false);
-      } else {
-        // date does not exist in database
-        document.getElementById("notelist").innerHTML = "";
-        addNote();
-        addNoteDB(false);
-      }
-    };
-  }
-});
-export { createDB, updateNote, viewNote, addNoteDB };
+export { createDB, updateNote, viewNote, db, addNoteDB };
