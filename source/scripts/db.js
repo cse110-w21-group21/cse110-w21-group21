@@ -192,4 +192,4 @@ document.addEventListener("click", (e) => {
     };
   }
 });
-export { createDB, updateNote };
+export { createDB, updateNote, viewNote, addNoteDB };
