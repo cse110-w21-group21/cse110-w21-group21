@@ -67,6 +67,30 @@ function addNote() {
   // newNote.getElementsByClassName("textbox")[0].focus();
 }
 
+function loadDropdowns() {
+  let myNotes = document.querySelectorAll('bullet-note');
+  myNotes.forEach((d) => {
+    let dropdown = d.querySelector(".bdropdown");
+    dropdown.innerHTML = "";
+    dropdown.dataset.show = false;
+    for (let i = 0; i < bicons.length; i += 1) {
+      let option = document.createElement("li");
+      option.classList.add("bdropdown-option");
+      option.dataset.bindex = i;
+      let optionIcon = document.createElement("div");
+      optionIcon.className = bicons[i];
+      optionIcon.classList.add("bdropdown-option-icon");
+      option.appendChild(optionIcon);
+      dropdown.appendChild(option);
+      option.addEventListener("click", () => {
+        let myIndex = option.dataset.bindex;
+        d.querySelector(".bicon").className = `${bicons[myIndex]} bicon`;
+        d.dataset.important = importantBicons.includes(bicons[myIndex]);
+      });
+    }
+  });
+}
+
 /**
  * setEndOfContenteditable authored by Nico Burns on Stack Overflow
  * https://stackoverflow.com/questions/1125292/how-to-move-cursor-to-end-of-contenteditable-entity/3866442#3866442
@@ -109,7 +133,7 @@ function setEndOfContenteditable(contentEditableElement) {
  * add the current days note if it exists
  */
 window.onload = async () => {
-  await createDB(false);
+  await createDB(false,loadDropdowns);
   addNote();
 };
 

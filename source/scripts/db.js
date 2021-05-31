@@ -8,7 +8,7 @@ let db;
  * @param {fromWeekly} - Boolean - If it's from the weekly page
  * @param {event} - event default click event
  */
-function viewNote(fromWeekly) {
+function viewNote(fromWeekly,myCallback) {
   const tx = db.transaction("personal_notes", "readonly");
   const pNotes = tx.objectStore("personal_notes");
 
@@ -42,6 +42,7 @@ function viewNote(fromWeekly) {
         t2.contentEditable = false;
       });
     }
+    typeof myCallback === 'function' && myCallback();
   };
 } /* viewNote */
 
@@ -49,7 +50,7 @@ function viewNote(fromWeekly) {
  * Adds a note to the DB. Will be called from createDB to add a note.
  * @param {fromWeekly} - Boolean - If it's from the weekly page
  */
-function addNoteDB(fromWeekly) {
+function addNoteDB(fromWeekly,myCallback) {
   const today = new Date();
   const date = `${today.getFullYear()}-${
     today.getMonth() + 1
@@ -72,7 +73,7 @@ function addNoteDB(fromWeekly) {
     // if note exists view it, otherwise add note
     const data = e.target.result;
     if (data) {
-      viewNote(fromWeekly);
+      viewNote(fromWeekly,myCallback);
     } else {
       pNotes.add(note);
     }
@@ -82,7 +83,7 @@ function addNoteDB(fromWeekly) {
 /**
  * Creates a database and/or upgrades the database
  */
-function createDB(fromWeekly) {
+function createDB(fromWeekly,myCallback) {
   const request = indexedDB.open("noteDB", 1);
 
   // on upgrade needed --> if database doesn't exist
@@ -97,7 +98,7 @@ function createDB(fromWeekly) {
     // wait until notes are ready to be populated
     const transaction = e.target.transaction;
     transaction.oncomplete = function () {
-      addNoteDB(fromWeekly);
+      addNoteDB(fromWeekly,myCallback);
     };
 
     console.log(
@@ -107,7 +108,7 @@ function createDB(fromWeekly) {
   // on success
   request.onsuccess = (e) => {
     db = e.target.result;
-    addNoteDB(fromWeekly);
+    addNoteDB(fromWeekly,myCallback);
     console.log(
       `success is called database name: ${db.name} version : ${db.version}`
     );
