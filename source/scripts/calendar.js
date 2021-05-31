@@ -233,7 +233,7 @@ document.getElementById('deleteEvent').addEventListener('click', () => {
 /**
  * format date to proper fullcalendar syntax
  * @param {Date} date 
- * @returns 
+ * @returns formatted date 
  */
 function formatDate(date) {
   var d = new Date(date),
