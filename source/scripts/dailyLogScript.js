@@ -1,5 +1,7 @@
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable import/no-cycle */
 /* eslint import/extensions: "off" */
-import { addNoteDB, createDB, updateNote, viewNote } from "./db.js";
+import { createDB, updateNote } from "./db.js";
 
 let shift = false;
 let timer = null;

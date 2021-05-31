@@ -181,7 +181,7 @@ document.addEventListener("click", (e) => {
     request.onsuccess = function (e) {
       let cursor = e.target.result;
       if (cursor) {
-        // date already exists
+        // date already exists in database
         viewNote(false);
       } else {
         // date does not exist in database
@@ -192,5 +192,4 @@ document.addEventListener("click", (e) => {
     };
   }
 });
-
-export { createDB, addNoteDB, updateNote, viewNote };
+export { createDB, updateNote };
