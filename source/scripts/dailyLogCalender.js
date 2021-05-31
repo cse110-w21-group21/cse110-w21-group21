@@ -1,33 +1,30 @@
-/* eslint import/extensions: "off" */
-/*global FullCalendar */
-/* eslint no-undef: 2 */
-
-import { createDB, viewNote } from "./db.js";
-
-window.onload = () => {
-  createDB(true);
-};
-
-document.getElementById("btnViewNote").addEventListener("click", (event) => {
-  viewNote(event, true);
-});
-
+/* eslint-disable */
 var calendar;
 function createCalendar(data) {
   var calendarEl = document.getElementById('calendar');
-
   calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'timeGridWeek',
+    initialView: 'timeGridDay',
     aspectRatio: 2,
 
-    dateClick: function (date) {
-      localStorage.setItem('dateClicked', date.dateStr);
-      window.location.href = "./dailyLog.html";
+    customButtons: {
+      today: {
+        text: 'today',
+        click: function() {
+          localStorage.removeItem('dateClicked');
+          calendar.today();
+        }
+      }
     },
-
+    eventClick: function (info) {
+    },
+    
     events: data
+    
   });
-
+  var todaysDate = localStorage.getItem('dateClicked');
+  if(todaysDate !== null) {
+    calendar.gotoDate(todaysDate);
+  }
   calendar.render();
 }
 
