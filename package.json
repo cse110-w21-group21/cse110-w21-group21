@@ -10,7 +10,7 @@
     "lint": "eslint --fix 'source/**/*.js'",
     "prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
     "prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "generate-docs": "jsdoc -c ./docConf.json"
   },
   "repository": {
@@ -24,15 +24,23 @@
     "url": "https://github.com/cse110-w21-group21/cse110-w21-group21/issues"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
     "@prettier/plugin-xml": "^0.13.1",
-    "@sa11y/jest": "^0.3.0",
+    "babel-jest": "^27.0.2",
     "eslint": "^7.26.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-import": "^2.22.1",
+    "fake-indexeddb": "^3.1.2",
+    "jest": "^27.0.3",
+    "jest-puppeteer": "^5.0.3",
     "jsdoc": "^3.6.7",
     "prettier": "^2.2.1",
-    "prettier-plugin-apex": "^1.8.0"
+    "puppeteer": "^9.1.1"
   },
-  "homepage": "https://github.com/cse110-w21-group21/cse110-w21-group21#readme"
+  "jest": {
+    "preset": "jest-puppeteer",
+    "verbose": true
+  }
 }
