@@ -69,8 +69,9 @@ function addNote() {
 
 function loadDropdowns() {
   let myNotes = document.querySelectorAll('bullet-note');
-  myNotes.forEach((d) => {
-    let dropdown = d.querySelector(".bdropdown");
+  myNotes.forEach((n) => {
+    let thisNote = n;
+    let dropdown = thisNote.querySelector(".bdropdown");
     dropdown.innerHTML = "";
     dropdown.dataset.show = false;
     for (let i = 0; i < bicons.length; i += 1) {
@@ -84,8 +85,8 @@ function loadDropdowns() {
       dropdown.appendChild(option);
       option.addEventListener("click", () => {
         let myIndex = option.dataset.bindex;
-        d.querySelector(".bicon").className = `${bicons[myIndex]} bicon`;
-        d.dataset.important = importantBicons.includes(bicons[myIndex]);
+        thisNote.querySelector(".bicon").className = `${bicons[myIndex]} bicon`;
+        thisNote.dataset.important = importantBicons.includes(bicons[myIndex]);
       });
     }
   });
