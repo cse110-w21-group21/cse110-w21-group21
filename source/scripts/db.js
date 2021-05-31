@@ -1,4 +1,5 @@
 /* eslint-disable */
+import { addNote } from "./dailyLogScript.js";
 let db;
 
 /**
@@ -13,7 +14,7 @@ function viewNote(fromWeekly) {
   const pNotes = tx.objectStore("personal_notes");
 
   const thisDay = new Date(calendar.currentData.viewTitle);
-  console.log(thisDay)
+  console.log(thisDay);
   const date = `${thisDay.getFullYear()}-${
     thisDay.getMonth() + 1
   }-${thisDay.getDate()}`;
@@ -27,9 +28,15 @@ function viewNote(fromWeekly) {
 
   // load the note from the specified date
   request.onsuccess = function success() {
-    if(!(request.result.text === "" || request.result.text === "<br>")){
+    if (
+      !(
+        request.result.text === "" ||
+        request.result.text === "<br>" ||
+        request.result === undefined
+      )
+    ) {
       document.getElementById("notelist").innerHTML = request.result.text;
-    } 
+    }
 
     // remove unimportant notes
     if (fromWeekly) {
@@ -53,12 +60,11 @@ function viewNote(fromWeekly) {
  * @param {fromWeekly} - Boolean - If it's from the weekly page
  */
 function addNoteDB(fromWeekly) {
-
   const thisDay = new Date(calendar.currentData.viewTitle);
   const date = `${thisDay.getFullYear()}-${
     thisDay.getMonth() + 1
   }-${thisDay.getDate()}`;
-  
+
   const noteString = document.getElementById("notelist").innerHTML;
   const note = {
     time: Math.floor(Date.now() / 1000),
@@ -153,5 +159,38 @@ function updateNote() {
     };
   };
 } /* updateNote */
+
+/**
+ * Listener for prev/next buttons on calendar
+ * Will change calendar date and update user's notes accordingly
+ */
+document.addEventListener("click", (e) => {
+  if (
+    e.target.className === "fc-next-button fc-button fc-button-primary" ||
+    e.target.className === "fc-prev-button fc-button fc-button-primary" ||
+    e.target.className === "fc-icon fc-icon-chevron-right" ||
+    e.target.className === "fc-icon fc-icon-chevron-left"
+  ) {
+    const tx = db.transaction("personal_notes", "readwrite");
+    const pNotes = tx.objectStore("personal_notes");
+    const thisDay = new Date(calendar.currentData.viewTitle);
+    const date = `${thisDay.getFullYear()}-${
+      thisDay.getMonth() + 1
+    }-${thisDay.getDate()}`;
+    const request = pNotes.openCursor(date);
+    request.onsuccess = function (e) {
+      let cursor = e.target.result;
+      if (cursor) {
+        // date already exists
+        viewNote(false);
+      } else {
+        // date does not exist in database
+        document.getElementById("notelist").innerHTML = "";
+        addNote();
+        addNoteDB(false);
+      }
+    };
+  }
+});
 
 export { createDB, addNoteDB, updateNote, viewNote };

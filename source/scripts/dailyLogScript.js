@@ -128,7 +128,7 @@ window.onbeforeunload = () => {
  * If element clicked is a bullet, open the corresponding dropdown
  * Otherwise, close all dropdowns
  */
-document.addEventListener('click', (event) => {
+document.addEventListener("click", (event) => {
   // close all dropdowns
   let dropwdowns = document.querySelectorAll(".bdropdown");
   dropwdowns.forEach((e) => {
@@ -154,8 +154,8 @@ document.getElementById("notelist").addEventListener("keydown", (event) => {
     clearTimeout(timer);
     timer = null;
   }
-  // after 5 seconds of no keydowns update note
-  timer = setTimeout(updateNote, 5000);
+  // after 3 seconds of no keydowns update note
+  timer = setTimeout(updateNote, 3000);
   if (event.key === "Shift") {
     shift = true;
   }
@@ -196,8 +196,8 @@ document.getElementById("notelist").addEventListener("keydown", (event) => {
  * Keyup listener
  * Used to check if shift key is released
  */
-document.getElementById('notelist').addEventListener('keyup', (event) => {
-  if (event.key === 'Shift') {
+document.getElementById("notelist").addEventListener("keyup", (event) => {
+  if (event.key === "Shift") {
     shift = false;
   }
 });
@@ -276,25 +276,10 @@ document.getElementById('newevent').addEventListener('click', () => {
 /**
  * Used to save notes when enter is pressed
  */
- document.getElementById('notelist').addEventListener('keyup', (event) => {
-  if (event.key === 'Enter') {
+document.getElementById("notelist").addEventListener("keyup", (event) => {
+  if (event.key === "Enter") {
     updateNote();
   }
 });
 
-/**
- * Listener for prev/next buttons on calendar
- * Will change calendar date and update user's notes accordingly
- */
-document.addEventListener('click', (e) => {
-
-  if(e.target.className === 'fc-next-button fc-button fc-button-primary' || 
-      e.target.className === "fc-prev-button fc-button fc-button-primary" || 
-      e.target.className ===  'fc-icon fc-icon-chevron-right' ||
-      e.target.className === "fc-icon fc-icon-chevron-left") {
-    addNoteDB(false);
-    viewNote(false);
-  }
-
- 
-});
+export { addNote };
