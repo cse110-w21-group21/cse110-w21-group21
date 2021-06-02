@@ -69,10 +69,10 @@
       <div id="sticky-note-container">
           <div class="note note-red">
               <div class="note-header">
-                  <input class="note-title" type="text" placeholder="Untitled Note">
+                  <input id="mytitle" class="note-title" type="text" placeholder="Untitled Note">
               </div>
               <div class="note-body">
-                  <textarea spellcheck="false"></textarea>
+                  <textarea id="mytextarea" spellcheck="false"></textarea>
               </div>
               <div class="note-footer">
                   <button class="note-color-btn note-red" id="sticky-btn-red"></button>
@@ -91,6 +91,7 @@
     <div id="calendar" class="calendar"></div>
   </main>
   <script src="scripts/stickyNotes.js"></script>
+  <script src="scripts/autosave.js"></script>
 </body>
 
 </html>
