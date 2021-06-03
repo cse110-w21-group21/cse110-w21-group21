@@ -1,9 +1,9 @@
 var timer = null;
 
 function getSticky() {
-    var title = document.getElementById("mytitle");
-    var textarea = document.getElementById("mytextarea");
-    return [title, textarea];
+    var title = document.getElementsByClassName("note-title");
+    var textarea = document.getElementsByClassName("note-textarea");
+    return [title[0], textarea[0]];
 }
 
 function getContainer() {
@@ -12,29 +12,29 @@ function getContainer() {
 
 function save() {
     var sticky = getSticky();
-    var container = getContainer();
-    if (container) {
-        localStorage.setItem("AUTOSAVE_container" + document.location, container.innerHTML);
-    }
     if (sticky) {
         localStorage.setItem("AUTOSAVE_title" + document.location, sticky[0].value);
         localStorage.setItem("AUTOSAVE_textarea" + document.location, sticky[1].value);
     }
+    // var container = getContainer();
+    // if (container) {
+    //     localStorage.setItem("AUTOSAVE_container" + document.location, container.innerHTML);
+    // }
 }
 
 function restore() {
     var saved_title = localStorage.getItem("AUTOSAVE_title" + document.location);
     var saved_textarea = localStorage.getItem("AUTOSAVE_textarea" + document.location);
-    var saved_container = localStorage.getItem("AUTOSAVE_container" + document.location)
     var sticky = getSticky();
-    var container = getContainer();
-    if (container && saved_container) {
-        container.innerHTML = saved_container;
-    }
     if ((saved_title || saved_textarea) && sticky) {
         sticky[0].value = saved_title;
         sticky[1].value = saved_textarea;
     }
+    // var saved_container = localStorage.getItem("AUTOSAVE_container" + document.location)
+    // var container = getContainer();
+    // if (container && saved_container) {
+    //     container.innerHTML = saved_container;
+    // }
 }
 
 function start() {
