@@ -60,7 +60,7 @@
           <label for="colorSelect">Color Selection</label>
           <input type="color" id="colorSelect" name="colorSelect"><br>
           <label for="start">Start Date</label>
-          <input id="start" name="start" type="date">
+          <input id="start" name="start" type="date"><br>
           <label for="end">End Date</label>
           <input type="date" name="end" id="end"><br>
           <label for="isDayEvent">All Day Event</label>
@@ -89,9 +89,15 @@
           <input id="editTitle" name="title" type="text" placeholder="Title">
           <input type="color" id="editColorSelect" name="colorSelect"><br>
           <label for="editStart">Start Date</label>
-          <label for="editEnd">End Date</label><br>
-          <input id="editStart" name="start" type="date">
+          <input id="editStart" name="start" type="date"><br>
+          <label for="editEnd">End Date</label>
           <input type="date" name="end" id="editEnd"><br>
+          <div id="editTimeDIV" style="display: none;">
+            <label for="editStartTime">Start Time</label>
+            <input type="time" name="editStartTime" id="editStartTime"><br>
+            <label for="editEndTime">End Time</label>
+            <input type="time" name="editEndTime" id="editEndTime">
+          </div>
           <label for="editDescription">Details</label><br>
           <textarea name="description" id="editDescription" cols="40" rows="10" placeholder="Event Description"></textarea><br>
           <button type="submit">Submit</button>
