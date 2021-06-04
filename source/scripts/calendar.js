@@ -74,6 +74,7 @@ eventCreation.addEventListener('submit', function () {
   if(inputTitle === "" || startDate === "") {
     //TODO: throw some error
     //need to notify the user that their creation is invalid
+    alert("Your event has no title or start date!");
   } else {
     if(endDate === "") {
       endDate = startDate;
@@ -85,6 +86,7 @@ eventCreation.addEventListener('submit', function () {
         startDate+="T"+startTime;
       } else {
         // NEED AN ERROR TO SAY INVALID TIME RANGE
+        alert("Your event's time range is invalid!");
         return;
       }
     } else {
@@ -108,6 +110,7 @@ eventCreation.addEventListener('submit', function () {
     } else {
       //the end date is before the start date
       //need to notify the user their creation is invalid
+      alert("Your event's date range is invalid!");
     }
   }
 });
@@ -211,6 +214,7 @@ var popEdit = {
 document.getElementById('editEventForm').addEventListener('submit', () => {
   if (popEdit.editTitle === "" || popEdit.editStart === "") {
     //TODO: throw some sort of error here
+    alert("Your event doesn't have a title or start time!");
     // need to notify the user that their edit is invalid
   } else {
     let existing = localStorage.getItem('currentEvents');
@@ -226,6 +230,7 @@ document.getElementById('editEventForm').addEventListener('submit', () => {
               if(existing[i].description === popEdit.currentInfo.event.extendedProps.description) {
                 if(popEdit.editTitle.value === "" || popEdit.editStart.value === "") {
                   //TODO: throw some error
+                  alert("Your event doesn't have a title or start time!");
                   //need to notify the user that thier creation is invalid
                 } else {
                   let currStart = popEdit.editStart.value;
@@ -235,6 +240,7 @@ document.getElementById('editEventForm').addEventListener('submit', () => {
                       currStart+="T"+popEdit.editStartTime.value;
                     } else {
                       // NEED AN ERROR TO SAY INVALID TIME RANGE
+                      alert("Your event's time range is invalid!");
                       return;
                     }
                   } else {
@@ -252,6 +258,7 @@ document.getElementById('editEventForm').addEventListener('submit', () => {
                   } else {
                     //the end date is before the start date
                     //need to notify the user that their creation is invalid
+                    alert("Your event's date range is invalid!");
                   }
                 }
               }
