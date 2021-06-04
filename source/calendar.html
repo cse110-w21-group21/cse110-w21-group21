@@ -63,6 +63,14 @@
           <input id="start" name="start" type="date">
           <label for="end">End Date</label>
           <input type="date" name="end" id="end"><br>
+          <label for="isDayEvent">All Day Event</label>
+          <input type="checkbox" name="isDayEvent" id="isDayEvent"><br>
+          <div id="timeDIV" style="display: none;">
+            <label for="startTime">Start Time</label>
+            <input type="time" name="startTime" id="startTime"><br>
+            <label for="endTime">End Time</label>
+            <input type="time" name="endTime" id="endTime">
+          </div>
           <label for="description">Details</label><br>
           <textarea name="description" id="description" cols="40" rows="10" placeholder="Event Description"></textarea><br>
           <button type="submit">Submit</button>

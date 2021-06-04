@@ -68,17 +68,31 @@ eventCreation.addEventListener('submit', function () {
   let colorSelection = document.getElementById('colorSelect').value;
   let description = document.getElementById('description').value;
   let existing = localStorage.getItem('currentEvents');
+  let startTime = document.getElementById('startTime').value;
+  let endTime = document.getElementById('endTime').value;
 
   if(inputTitle === "" || startDate === "") {
     //TODO: throw some error
-    //need to notify the user that thier creation is invalid
+    //need to notify the user that their creation is invalid
   } else {
     let currEnd = new Date(new Date(endDate));
     currEnd.setDate(currEnd.getDate() + 2);
-    if(formatDate(currEnd) > startDate) {
+    currEnd = formatDate(currEnd)
+
+    if(startTimeElement.style.display == "block") {
+      if(startTime != "" && endTime != "" && startTime < endTime) {
+        currEnd=startDate+"T"+endTime;
+        startDate+="T"+startTime;
+      } else {
+        // NEED AN ERROR TO SAY INVALID TIME RANGE
+        return;
+      }
+    }
+
+    if(!isNaN(currEnd[0]) && currEnd > startDate) {
       existing = JSON.parse(existing);
       if(Array.isArray(existing)) {
-        existing.push({ title: inputTitle, start: startDate, end: formatDate(currEnd), color: colorSelection, description: description });
+        existing.push({ title: inputTitle, start: startDate, end: currEnd, color: colorSelection, description: description });
       } else {
         existing = { title: inputTitle, start: startDate, end: endDate, color: colorSelection, description: description }; 
         existing = [ existing ];
@@ -198,10 +212,11 @@ document.getElementById('editEventForm').addEventListener('submit', () => {
                 } else {
                   let currEnd = new Date(new Date(popEdit.editEnd.value));
                   currEnd.setDate(currEnd.getDate() + 2);
-                  if(formatDate(currEnd) > popEdit.editStart.value) {
+                  currEnd = formatDate(currEnd)
+                  if(!isNaN(currEnd[0]) && currEnd > popEdit.editStart.value) {
                     existing[i].title = popEdit.editTitle.value;
                     existing[i].start = popEdit.editStart.value;
-                    existing[i].end = formatDate(currEnd);
+                    existing[i].end = currEnd;
                     existing[i].color = popEdit.editColor.value;
                     existing[i].description = popEdit.editDescription.value;
                   } else {
@@ -247,4 +262,13 @@ function formatDate(date) {
       day = '0' + day;
 
   return [year, month, day].join('-');
-}
+};
+
+const startTimeElement = document.getElementById('timeDIV');
+document.getElementById('isDayEvent').addEventListener('click', () => {
+  if(startTimeElement.style.display === "none") {
+    startTimeElement.style.display = "block";
+  } else {
+    startTimeElement.style.display = "none";
+  }
+});
