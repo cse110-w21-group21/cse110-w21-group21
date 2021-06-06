@@ -306,7 +306,7 @@ document.addEventListener("click", (e) => {
       let cursor = e.target.result;
       if (cursor) {
         // date already exists in database
-        viewNote(false);
+        viewNote();
       } else {
         // date does not exist in database
         document.getElementById("notelist").innerHTML = "";

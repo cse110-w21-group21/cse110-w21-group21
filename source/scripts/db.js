@@ -2,22 +2,16 @@
 let db;
 
 /**
- * Views a note for the current day, if it's from the weekly page
- * load only important notes.
- *
- * @param {fromWeekly} - Boolean - If it's from the weekly page
- * @param {event} - event default click event
+ * Views a note for the current day
  */
-function viewNote(fromWeekly) {
+function viewNote() {
   const tx = db.transaction("personal_notes", "readonly");
   const pNotes = tx.objectStore("personal_notes");
 
   const thisDay = new Date(calendar.currentData.viewTitle);
-  console.log(thisDay);
   const date = `${thisDay.getFullYear()}-${
     thisDay.getMonth() + 1
   }-${thisDay.getDate()}`;
-  console.log(date);
   const request = pNotes.get(date);
 
   request.onerror = function err(error) {
@@ -36,23 +30,49 @@ function viewNote(fromWeekly) {
     ) {
       document.getElementById("notelist").innerHTML = request.result.text;
     }
-
-    // remove unimportant notes
-    if (fromWeekly) {
-      let unimportantNotes = document.querySelectorAll(
-        'bullet-note[data-important="false"]'
-      );
-      unimportantNotes.forEach((u) => {
-        u.remove();
-      });
-      let noteTextboxes = document.querySelectorAll(".textbox");
-      noteTextboxes.forEach((t) => {
-        let t2 = t;
-        t2.contentEditable = false;
-      });
-    }
   };
 } /* viewNote */
+
+/**
+ * Views all saved notes for the current week
+ * @param {*} date - the day within the week
+ */
+function viewNoteWeekly(date) {
+  const tx = db.transaction("personal_notes", "readonly");
+  const pNotes = tx.objectStore("personal_notes");
+  const request = pNotes.get(date);
+
+  request.onerror = function err(error) {
+    // Handle errors!
+    console.error(error);
+  }; /* viewNoteWeekly */
+
+  // load the note from the specified date
+  request.onsuccess = function success() {
+    if (
+      !(
+        request.result.text === "" ||
+        request.result.text === "<br>" ||
+        request.result === undefined
+      )
+    ) {
+      document.getElementById("notelist").innerHTML += request.result.text;
+    }
+
+    // remove unimportant notes
+    let unimportantNotes = document.querySelectorAll(
+      'bullet-note[data-important="false"]'
+    );
+    unimportantNotes.forEach((u) => {
+      u.remove();
+    });
+    let noteTextboxes = document.querySelectorAll(".textbox");
+    noteTextboxes.forEach((t) => {
+      let t2 = t;
+      t2.contentEditable = false;
+    });
+  };
+}
 
 /**
  * Adds a note to the DB. Will be called from createDB to add a note.
@@ -159,4 +179,4 @@ function updateNote() {
   };
 } /* updateNote */
 
-export { createDB, updateNote, viewNote, db, addNoteDB };
+export { createDB, updateNote, viewNote, db, addNoteDB, viewNoteWeekly };
