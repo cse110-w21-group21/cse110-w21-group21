@@ -7,21 +7,20 @@ window.onload = () => {
 };
 
 /**
- * Displays note content from the past 7 days on weekly page only upon its first time loading
- * Implemented it like this instead of extracting the exact week because its difficult to find
- * the beginning of the week on page refresh with FullCalendar for some reason. So this uses
- * the current date and goes back 7 days instead of finding the week. The content will change to
- * the "Weekly Overview" when the week is changed
+ * Waits .2 seconds after DOMContentLoaded to make sure the calendar data is accessible
+ * Displays important notes for the current week when the weekly page is refreshed
  */
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     const tx = db.transaction("personal_notes", "readwrite");
     const pNotes = tx.objectStore("personal_notes");
-    document.getElementById("notelist").innerHTML =
-      "Highlights From The Past 7 Days:";
-    for (let i = 7; i >= 0; i--) {
-      let thisDay = new Date(calendar.currentData.currentDate);
-      thisDay.setDate(thisDay.getDate() - i);
+    document.getElementById("notelist").innerHTML = "Weekly Overview:";
+    for (let i = 1; i < 8; i++) {
+      //thisDay is one day before the start of the week, thus the loop starts at 1
+      let thisDay = new Date(
+        document.querySelector(".fc-col-header-cell").getAttribute("data-date")
+      );
+      thisDay.setDate(thisDay.getDate() + i);
       const date = `${thisDay.getFullYear()}-${
         thisDay.getMonth() + 1
       }-${thisDay.getDate()}`;
@@ -46,6 +45,7 @@ document.addEventListener("click", (e) => {
     const pNotes = tx.objectStore("personal_notes");
     document.getElementById("notelist").innerHTML = "Weekly Overview:";
     for (let i = 1; i < 8; i++) {
+      //thisDay is one day before the start of the week, thus the loop starts at 1
       let thisDay = new Date(calendar.currentData.currentDate);
       thisDay.setDate(thisDay.getDate() + i);
       const date = `${thisDay.getFullYear()}-${

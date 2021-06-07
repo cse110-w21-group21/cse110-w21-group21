@@ -23,9 +23,9 @@ function viewNote() {
   request.onsuccess = function success() {
     if (
       !(
+        request.result === undefined ||
         request.result.text === "" ||
-        request.result.text === "<br>" ||
-        request.result === undefined
+        request.result.text === "<br>"
       )
     ) {
       document.getElementById("notelist").innerHTML = request.result.text;
@@ -51,26 +51,26 @@ function viewNoteWeekly(date) {
   request.onsuccess = function success() {
     if (
       !(
+        request.result === undefined ||
         request.result.text === "" ||
-        request.result.text === "<br>" ||
-        request.result === undefined
+        request.result.text === "<br>"
       )
     ) {
       document.getElementById("notelist").innerHTML += request.result.text;
-    }
 
-    // remove unimportant notes
-    let unimportantNotes = document.querySelectorAll(
-      'bullet-note[data-important="false"]'
-    );
-    unimportantNotes.forEach((u) => {
-      u.remove();
-    });
-    let noteTextboxes = document.querySelectorAll(".textbox");
-    noteTextboxes.forEach((t) => {
-      let t2 = t;
-      t2.contentEditable = false;
-    });
+      // remove unimportant notes
+      let unimportantNotes = document.querySelectorAll(
+        'bullet-note[data-important="false"]'
+      );
+      unimportantNotes.forEach((u) => {
+        u.remove();
+      });
+      let noteTextboxes = document.querySelectorAll(".textbox");
+      noteTextboxes.forEach((t) => {
+        let t2 = t;
+        t2.contentEditable = false;
+      });
+    }
   };
 }
 
