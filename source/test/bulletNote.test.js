@@ -74,6 +74,55 @@ describe('Bullet Notes', () => {
     },
     timeout
   );
+  test(
+    'Change icon of second note to star',
+    async () => {
+      let notes = await page.$$('.bullet');
+      secondNote = notes[1];
+      let bicon = await secondNote.$('.bicon');
+      // console.log(testIcon);
+      await bicon.click();
+      //   await page.waitForTimeout(1500);
+      let option = await secondNote.$('.bdropdown-option[data-bindex="2"]');
+      await option.click();
+      //   await page.waitForTimeout(1500);
+      let secondNoteIcon = await page.evaluate(
+        () => document.querySelectorAll('.bicon')[1].classList[1]
+      );
+      //   let secondNoteIcon = await secondNote.$eval('.bicon', (e) => e.classList);
+      expect(secondNoteIcon).toBe('fa-star');
+    },
+    timeout
+  );
+  test(
+    'Click to Weekly Log',
+    async () => {
+      await page.waitForSelector('a[title="Weekly Log"]');
+      await page.click('a[title="Weekly Log"]');
+      //   await page.waitForNavigation();
+      const url = await page.url();
+      // await page.waitForTimeout(1500);
+      expect(url).toBe('http://127.0.0.1:5500/source/weeklyLog.html');
+    },
+    timeout
+  );
+  test(
+    'Check if starred note is in weekly log',
+    async () => {
+      await page.waitForSelector('.textbox[contentEditable=false]');
+      let hold = await page.$eval('.textbox', (e) => e.innerHTML);
+      expect(hold).toBe('TESTING ANOTHER NOTE');
+    },
+    timeout
+  );
+  test(
+    'Check that only one note is in weekly log',
+    async () => {
+      let hold = await page.$eval('#notelist', (e) => e.childNodes.length);
+      expect(hold).toBe(1);
+    },
+    timeout
+  );
 });
 
 //       await page.waitForTimeout(3000);
