@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint no-undef: "off" */
 const timeout = process.env.SLOWMO ? 30000 : 10000;
 
 beforeAll(async () => {
@@ -15,7 +15,7 @@ describe('Bullet Notes', () => {
       const url = await page.url();
       expect(url).toBe('http://127.0.0.1:5500/source/dailyLog.html');
     },
-    timeout
+    timeout,
   );
   test(
     'Type a Note',
@@ -28,7 +28,7 @@ describe('Bullet Notes', () => {
       let hold = await page.$eval('.textbox', (e) => e.innerHTML);
       expect(hold).toBe('TESTING');
     },
-    timeout
+    timeout,
   );
   test(
     'Click to Weekly Log',
@@ -40,7 +40,7 @@ describe('Bullet Notes', () => {
       // await page.waitForTimeout(1500);
       expect(url).toBe('http://127.0.0.1:5500/source/weeklyLog.html');
     },
-    timeout
+    timeout,
   );
   test(
     'Go to Daily Log',
@@ -51,7 +51,7 @@ describe('Bullet Notes', () => {
       const url = await page.url();
       expect(url).toBe('http://127.0.0.1:5500/source/dailyLog.html');
     },
-    timeout
+    timeout,
   );
   test(
     'Check if Note Saved',
@@ -61,7 +61,7 @@ describe('Bullet Notes', () => {
       let hold = await page.$eval('.textbox', (e) => e.innerHTML);
       expect(hold).toBe('TESTING');
     },
-    timeout
+    timeout,
   );
   test(
     'Click on saved note and Press Enter',
@@ -71,17 +71,17 @@ describe('Bullet Notes', () => {
       let notes = await page.$$('.textbox');
       await notes[1].type('TESTING ANOTHER NOTE');
       let hold = await page.evaluate(
-        () => document.querySelectorAll('.textbox')[1].innerHTML
+        () => document.querySelectorAll('.textbox')[1].innerHTML,
       );
       expect(hold).toBe('TESTING ANOTHER NOTE');
     },
-    timeout
+    timeout,
   );
   test(
     'Change icon of second note to star',
     async () => {
       let notes = await page.$$('.bullet');
-      secondNote = notes[1];
+      let secondNote = notes[1];
       let bicon = await secondNote.$('.bicon');
       // console.log(testIcon);
       await bicon.click();
@@ -90,12 +90,12 @@ describe('Bullet Notes', () => {
       await option.click();
       //   await page.waitForTimeout(1500);
       let secondNoteIcon = await page.evaluate(
-        () => document.querySelectorAll('.bicon')[1].classList[1]
+        () => document.querySelectorAll('.bicon')[1].classList[1],
       );
       //   let secondNoteIcon = await secondNote.$eval('.bicon', (e) => e.classList);
       expect(secondNoteIcon).toBe('fa-star');
     },
-    timeout
+    timeout,
   );
   test(
     'Click to Weekly Log',
@@ -107,7 +107,7 @@ describe('Bullet Notes', () => {
       // await page.waitForTimeout(1500);
       expect(url).toBe('http://127.0.0.1:5500/source/weeklyLog.html');
     },
-    timeout
+    timeout,
   );
   test(
     'Check if starred note is in weekly log',
@@ -116,7 +116,7 @@ describe('Bullet Notes', () => {
       let hold = await page.$eval('.textbox', (e) => e.innerHTML);
       expect(hold).toBe('TESTING ANOTHER NOTE');
     },
-    timeout
+    timeout,
   );
   test(
     'Check that only one note is in weekly log',
@@ -124,7 +124,7 @@ describe('Bullet Notes', () => {
       let hold = await page.$eval('#notelist', (e) => e.childNodes.length);
       expect(hold).toBe(1);
     },
-    timeout
+    timeout,
   );
   test(
     'Go to Daily Log',
@@ -135,34 +135,34 @@ describe('Bullet Notes', () => {
       const url = await page.url();
       expect(url).toBe('http://127.0.0.1:5500/source/dailyLog.html');
     },
-    timeout
+    timeout,
   );
   test(
     'Delete first note',
     async () => {
       await page.waitForSelector('.textbox');
       await page.waitForTimeout(500);
-      await page.evaluate( () => document.getElementsByClassName('textbox')[0].innerHTML = "");
+      await page.evaluate(() => { document.getElementsByClassName('textbox')[0].innerHTML = ""; });
       await page.click('.textbox');
       await page.keyboard.press('Backspace');
-      await page.waitForTimeout(1500);
+      // await page.waitForTimeout(1500);
       // check to see if there is only one note
       let hold = await page.$eval('#notelist', (e) => e.childNodes.length);
       expect(hold).toBe(1);
     },
-    timeout
+    timeout,
   );
   test(
     'Delete the other note, check that new note is created in its place',
     async () => {
-      await page.evaluate( () => document.getElementsByClassName('textbox')[0].innerHTML = "");
+      await page.evaluate(() => { document.getElementsByClassName('textbox')[0].innerHTML = ""; });
       await page.click('.textbox');
       await page.keyboard.press('Backspace');
       // check to see if there is only one note
       let hold = await page.$eval('#notelist', (e) => e.childNodes.length);
       expect(hold).toBe(1);
     },
-    timeout
+    timeout,
   );
   test(
     'Click to Weekly Log',
@@ -172,7 +172,7 @@ describe('Bullet Notes', () => {
       const url = await page.url();
       expect(url).toBe('http://127.0.0.1:5500/source/weeklyLog.html');
     },
-    timeout
+    timeout,
   );
   test(
     'Check that no notes are in weekly log',
@@ -181,7 +181,7 @@ describe('Bullet Notes', () => {
       let hold = await page.$eval('#notelist', (e) => e.childNodes.length);
       expect(hold).toBe(0);
     },
-    timeout
+    timeout,
   );
   test(
     'Go to Daily Log',
@@ -192,7 +192,7 @@ describe('Bullet Notes', () => {
       const url = await page.url();
       expect(url).toBe('http://127.0.0.1:5500/source/dailyLog.html');
     },
-    timeout
+    timeout,
   );
   test(
     'Type a Note',
@@ -205,7 +205,7 @@ describe('Bullet Notes', () => {
       let hold = await page.$eval('.textbox', (e) => e.innerHTML);
       expect(hold).toBe('Test note for refresh');
     },
-    timeout
+    timeout,
   );
   test(
     'Refresh the page, check that note autosaved',
@@ -215,6 +215,6 @@ describe('Bullet Notes', () => {
       let hold = await page.$eval('.textbox', (e) => e.innerHTML);
       expect(hold).toBe('Test note for refresh');
     },
-    timeout
+    timeout,
   );
 });
