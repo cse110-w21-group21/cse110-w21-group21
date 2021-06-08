@@ -1,5 +1,5 @@
-/* eslint import/extensions: "off" */
-import { createDB, updateNote } from "./db.js";
+/*eslint-disable*/
+import { createDB, updateNote, db, viewNote, addNoteDB } from "./db.js";
 
 let shift = false;
 let timer = null;
@@ -147,14 +147,13 @@ window.onbeforeunload = () => {
   updateNote();
 };
 
-
 /**
  * Click listener
  * Used for the bullet dropdown on each bullet note
  * If element clicked is a bullet, open the corresponding dropdown
  * Otherwise, close all dropdowns
  */
-document.addEventListener('click', (event) => {
+document.addEventListener("click", (event) => {
   // close all dropdowns
   let dropwdowns = document.querySelectorAll(".bdropdown");
   dropwdowns.forEach((e) => {
@@ -180,8 +179,8 @@ document.getElementById("notelist").addEventListener("keydown", (event) => {
     clearTimeout(timer);
     timer = null;
   }
-  // after 5 seconds of no keydowns update note
-  timer = setTimeout(updateNote, 5000);
+  // after 3 seconds of no keydowns update note
+  timer = setTimeout(updateNote, 3000);
   if (event.key === "Shift") {
     shift = true;
   }
@@ -222,8 +221,8 @@ document.getElementById("notelist").addEventListener("keydown", (event) => {
  * Keyup listener
  * Used to check if shift key is released
  */
-document.getElementById('notelist').addEventListener('keyup', (event) => {
-  if (event.key === 'Shift') {
+document.getElementById("notelist").addEventListener("keyup", (event) => {
+  if (event.key === "Shift") {
     shift = false;
   }
 });
@@ -282,4 +281,63 @@ document.getElementById("btnstrike").addEventListener("click", () => {
  */
 document.getElementById("btnstrike").addEventListener("mousedown", (event) => {
   event.preventDefault();
+});
+
+/**
+ * New Event button, adds a note with a time
+ */
+/*
+document.getElementById('newevent').addEventListener('click', () => {
+  const noteList = document.getElementById('notelist');
+  const newNote = document.createElement('bullet-note');
+  newNote.className = 'bullet';
+  newNote.dataset.starttime = true;
+  noteList.appendChild(newNote);
+  newNote.bullet = 1;
+  newNote.getElementsByClassName("textbox")[0].focus();
+});
+*/
+
+/**
+ * Used to save notes when enter is pressed
+ */
+document.getElementById("notelist").addEventListener("keyup", (event) => {
+  if (event.key === "Enter") {
+    updateNote();
+  }
+});
+
+/**
+ * Listener for prev/next buttons on calendar for daily log
+ * Will change calendar date and update user's notes accordingly
+ * Pulls up any saved notes for the selected day or a blank bullet
+ * list for a new day
+ */
+document.addEventListener("click", (e) => {
+  if (
+    e.target.className === "fc-next-button fc-button fc-button-primary" ||
+    e.target.className === "fc-prev-button fc-button fc-button-primary" ||
+    e.target.className === "fc-icon fc-icon-chevron-right" ||
+    e.target.className === "fc-icon fc-icon-chevron-left"
+  ) {
+    const tx = db.transaction("personal_notes", "readwrite");
+    const pNotes = tx.objectStore("personal_notes");
+    const thisDay = new Date(calendar.currentData.viewTitle);
+    const date = `${thisDay.getFullYear()}-${
+      thisDay.getMonth() + 1
+    }-${thisDay.getDate()}`;
+    const request = pNotes.openCursor(date);
+    request.onsuccess = function (e) {
+      let cursor = e.target.result;
+      if (cursor) {
+        // date already exists in database
+        viewNote(loadDropdowns);
+      } else {
+        // date does not exist in database
+        document.getElementById("notelist").innerHTML = "";
+        addNote();
+        addNoteDB(false,loadDropdowns);
+      }
+    };
+  }
 });
