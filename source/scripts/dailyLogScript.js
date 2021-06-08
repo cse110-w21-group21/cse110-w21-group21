@@ -47,7 +47,8 @@ class BulletNote extends HTMLElement {
   }
 
   /**
-   * @param {number} index
+   * Sets the bullet icon of the note
+   * @param {number} index - index of the bullet icon
    */
   set bullet(index) {
     this.querySelectorAll(".bicon")[0].className = `${bicons[index]} bicon`;
@@ -69,6 +70,10 @@ function addNote() {
   // newNote.getElementsByClassName("textbox")[0].focus();
 }
 
+/**
+ * Loads the dropdown menus for each note and adds event listeners
+ * Should be called after any time notes are loaded in daily log
+ */
 function loadDropdowns() {
   let myNotes = document.querySelectorAll('bullet-note');
   myNotes.forEach((n) => {
