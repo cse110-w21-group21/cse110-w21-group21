@@ -2,34 +2,63 @@
 let db;
 
 /**
- * Views a note for the current day, if it's from the weekly page
- * load only important notes.
- *
- * @param {fromWeekly} - Boolean - If it's from the weekly page
- * @param {event} - event default click event
+ * Views a note for the current day
  */
-function viewNote(fromWeekly) {
+function viewNote() {
   const tx = db.transaction("personal_notes", "readonly");
   const pNotes = tx.objectStore("personal_notes");
 
-  const today = new Date();
-  const date = `${today.getFullYear()}-${
-    today.getMonth() + 1
-  }-${today.getDate()}`;
-  console.log(date);
+  const thisDay = new Date(calendar.currentData.viewTitle);
+  const date = `${thisDay.getFullYear()}-${
+    thisDay.getMonth() + 1
+  }-${thisDay.getDate()}`;
   const request = pNotes.get(date);
 
   request.onerror = function err(error) {
     // Handle errors!
     console.error(error);
   };
+
   // load the note from the specified date
   request.onsuccess = function success() {
-    if(!(request.result.text === "" || request.result.text === "<br>")){
+    if (
+      !(
+        request.result === undefined ||
+        request.result.text === "" ||
+        request.result.text === "<br>"
+      )
+    ) {
       document.getElementById("notelist").innerHTML = request.result.text;
     }
-    // remove unimportant notes
-    if (fromWeekly) {
+  };
+} /* viewNote */
+
+/**
+ * Views all saved notes for the current week
+ * @param {*} date - the day within the week
+ */
+function viewNoteWeekly(date) {
+  const tx = db.transaction("personal_notes", "readonly");
+  const pNotes = tx.objectStore("personal_notes");
+  const request = pNotes.get(date);
+
+  request.onerror = function err(error) {
+    // Handle errors!
+    console.error(error);
+  }; /* viewNoteWeekly */
+
+  // load the note from the specified date
+  request.onsuccess = function success() {
+    if (
+      !(
+        request.result === undefined ||
+        request.result.text === "" ||
+        request.result.text === "<br>"
+      )
+    ) {
+      document.getElementById("notelist").innerHTML += request.result.text;
+
+      // remove unimportant notes
       let unimportantNotes = document.querySelectorAll(
         'bullet-note[data-important="false"]'
       );
@@ -43,17 +72,18 @@ function viewNote(fromWeekly) {
       });
     }
   };
-} /* viewNote */
+}
 
 /**
  * Adds a note to the DB. Will be called from createDB to add a note.
  * @param {fromWeekly} - Boolean - If it's from the weekly page
  */
 function addNoteDB(fromWeekly) {
-  const today = new Date();
-  const date = `${today.getFullYear()}-${
-    today.getMonth() + 1
-  }-${today.getDate()}`;
+  const thisDay = new Date(calendar.currentData.viewTitle);
+  const date = `${thisDay.getFullYear()}-${
+    thisDay.getMonth() + 1
+  }-${thisDay.getDate()}`;
+
   const noteString = document.getElementById("notelist").innerHTML;
   const note = {
     time: Math.floor(Date.now() / 1000),
@@ -72,7 +102,7 @@ function addNoteDB(fromWeekly) {
     // if note exists view it, otherwise add note
     const data = e.target.result;
     if (data) {
-      viewNote(fromWeekly);
+      viewNote();
     } else {
       pNotes.add(note);
     }
@@ -149,4 +179,4 @@ function updateNote() {
   };
 } /* updateNote */
 
-export { createDB, addNoteDB, updateNote, viewNote };
+export { createDB, updateNote, viewNote, db, addNoteDB, viewNoteWeekly };

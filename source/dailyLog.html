@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NinePlusTen</title>
-  <link rel="stylesheet" href="stylesheets/style.css" />
-  <link rel="stylesheet" href="stylesheets/notesStyle.css" />
-  <link rel="stylesheet" href="stylesheets/dailyLogStyle.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NinePlusTen</title>
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <link rel="stylesheet" href="stylesheets/notesStyle.css" />
+    <link rel="stylesheet" href="stylesheets/dailyLogStyle.css" />
+    <link rel="stylesheet" href="stylesheets/stickyNotes.css" />
+    <script src="scripts/script.js" defer></script>
+    <script src="scripts/dailyLogScript.js" type="module" defer></script>
+    <script src="scripts/db.js" type="module" defer></script>
+    <!-- Icons sourced from https://fontawesome.com/ -->
+    <script
+      src="https://kit.fontawesome.com/71f9f41756.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.js"></script>
+    <script src="scripts/dailyLogCalendar.js" defer></script>
+  </head>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.js"></script>
-
-  <link rel="stylesheet" href="stylesheets/stickyNotes.css" />
-
-  <script src="scripts/script.js" defer></script>
-  <script src="scripts/db.js" type="module" defer></script>
-  <script src="scripts/dailyLogCalender.js" defer></script>
-  <script src="scripts/dailyLogScript.js" type="module" defer></script>
-  <!-- Icons sourced from https://fontawesome.com/ -->
-  <script src="https://kit.fontawesome.com/71f9f41756.js" crossorigin="anonymous"></script>
-</head>
   <body>
     <!--
         This nav block defines the sidebar and should be included on every page.
@@ -52,46 +56,66 @@
       </div>
     </nav>
 
-  <main>
-    <div id="calendar" class="calendar"></div>
-    <div>
-      <button type="button" id="btnbold">Bold</button>
-      <button type="button" id="btnitalic">Italic</button>
-      <button type="button" id="btnunder">Underline</button>
-      <button type="button" id="btnstrike">Strikethrough</button>
-    </div>
-    <ul id="notelist"></ul>
+    <main>
+      <div id="calendar" class="calendar"></div>
+      <div>
+        <button type="button" id="btnbold">Bold</button>
+        <button type="button" id="btnitalic">Italic</button>
+        <button type="button" id="btnunder">Underline</button>
+        <button type="button" id="btnstrike">Strikethrough</button>
+      </div>
+      <ul id="notelist"></ul>
 
-    <div class="stickyNotes" id="stickyNotes">
-      <button class="note-add-btn" id="note-add-btn">
+      <div class="stickyNotes" id="stickyNotes">
+        <button class="note-add-btn" id="note-add-btn">
           <i class="fa fa-plus"></i>
           <span> Add a note</span>
-      </button>
-      <div id="sticky-note-container">
+        </button>
+        <div id="sticky-note-container">
           <div class="note note-red">
-              <div class="note-header">
-                  <input class="note-title" type="text" placeholder="Untitled Note">
-              </div>
-              <div class="note-body">
-                  <textarea spellcheck="false"></textarea>
-              </div>
-              <div class="note-footer">
-                  <button class="note-color-btn note-red" id="sticky-btn-red"></button>
-                  <button class="note-color-btn note-orange" id="sticky-btn-orange"></button>
-                  <button class="note-color-btn note-yellow" id="sticky-btn-yellow"></button>
-                  <button class="note-color-btn note-green" id="sticky-btn-green"></button>
-                  <button class="note-color-btn note-blue" id="sticky-btn-blue"></button>
-                  <button class="note-color-btn note-purple" id="sticky-btn-purple"></button>
-                  <button class="note-delete-btn" id="sticky-btn-delete">
-                      <i class="fa fa-trash"></i>
-                  </button>
-              </div>
+            <div class="note-header">
+              <input
+                class="note-title"
+                type="text"
+                placeholder="Untitled Note"
+              />
+            </div>
+            <div class="note-body">
+              <textarea spellcheck="false"></textarea>
+            </div>
+            <div class="note-footer">
+              <button
+                class="note-color-btn note-red"
+                id="sticky-btn-red"
+              ></button>
+              <button
+                class="note-color-btn note-orange"
+                id="sticky-btn-orange"
+              ></button>
+              <button
+                class="note-color-btn note-yellow"
+                id="sticky-btn-yellow"
+              ></button>
+              <button
+                class="note-color-btn note-green"
+                id="sticky-btn-green"
+              ></button>
+              <button
+                class="note-color-btn note-blue"
+                id="sticky-btn-blue"
+              ></button>
+              <button
+                class="note-color-btn note-purple"
+                id="sticky-btn-purple"
+              ></button>
+              <button class="note-delete-btn" id="sticky-btn-delete">
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
           </div>
+        </div>
       </div>
-  </div>
-    <div id="calendar" class="calendar"></div>
-  </main>
-  <script src="scripts/stickyNotes.js"></script>
-</body>
-
+    </main>
+    <script src="scripts/stickyNotes.js"></script>
+  </body>
 </html>
