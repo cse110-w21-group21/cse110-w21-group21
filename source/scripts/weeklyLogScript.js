@@ -1,8 +1,38 @@
+/* eslint-disable no-plusplus */
 /* eslint import/extensions: "off" */
-/*global FullCalendar */
+/* global FullCalendar */
 /* eslint no-undef: 2 */
 
-import { createDB, viewNoteWeekly, db } from "./db.js";
+import { createDB, viewNoteWeekly } from "./db.js";
+
+let calendar;
+function createCalendar(data) {
+  let calendarEl = document.getElementById("calendar");
+
+  calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: "timeGridWeek",
+    aspectRatio: 2,
+
+    dateClick(date) {
+      localStorage.setItem("dateClicked", date.dateStr);
+      window.location.href = "./dailyLog.html";
+    },
+
+    events: data,
+  });
+
+  calendar.render();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  let existing = localStorage.getItem("currentEvents");
+  createCalendar(JSON.parse(existing));
+});
+
+const menuToggle = document.querySelector("main");
+menuToggle.addEventListener("transitionend", () => {
+  calendar.updateSize();
+});
 
 window.onload = () => {
   createDB(true);
@@ -14,11 +44,9 @@ window.onload = () => {
  */
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
-    const tx = db.transaction("personal_notes", "readwrite");
-    const pNotes = tx.objectStore("personal_notes");
     document.getElementById("notelist").innerHTML = "Weekly Overview:";
     for (let i = 1; i < 8; i++) {
-      //thisDay is one day before the start of the week, thus the loop starts at 1
+      // thisDay is one day before the start of the week, thus the loop starts at 1
       let thisDay = new Date(
         document.querySelector(".fc-col-header-cell").getAttribute("data-date")
       );
@@ -43,11 +71,9 @@ document.addEventListener("click", (e) => {
     e.target.className === "fc-icon fc-icon-chevron-right" ||
     e.target.className === "fc-icon fc-icon-chevron-left"
   ) {
-    const tx = db.transaction("personal_notes", "readwrite");
-    const pNotes = tx.objectStore("personal_notes");
     document.getElementById("notelist").innerHTML = "Weekly Overview:";
     for (let i = 1; i < 8; i++) {
-      //thisDay is one day before the start of the week, thus the loop starts at 1
+      // thisDay is one day before the start of the week, thus the loop starts at 1
       let thisDay = new Date(calendar.currentData.currentDate);
       thisDay.setDate(thisDay.getDate() + i);
       const date = `${thisDay.getFullYear()}-${
@@ -56,33 +82,4 @@ document.addEventListener("click", (e) => {
       viewNoteWeekly(date);
     }
   }
-});
-
-var calendar;
-function createCalendar(data) {
-  var calendarEl = document.getElementById('calendar');
-
-  calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'timeGridWeek',
-    aspectRatio: 2,
-
-    dateClick: function (date) {
-      localStorage.setItem('dateClicked', date.dateStr);
-      window.location.href = "./dailyLog.html";
-    },
-
-    events: data
-  });
-
-  calendar.render();
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-  let existing = localStorage.getItem('currentEvents');
-  createCalendar(JSON.parse(existing));
-});
-
-const menuToggle = document.querySelector('main');
-menuToggle.addEventListener('transitionend', () => {
-  calendar.updateSize();
 });
