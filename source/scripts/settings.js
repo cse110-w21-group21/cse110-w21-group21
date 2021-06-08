@@ -1,5 +1,3 @@
-const currentThemeSettings = localStorage.getItem("theme");
-
 document.getElementById("scheme-one").addEventListener("click", () => {
   document.body.classList.remove("blueHumans");
   document.body.classList.add("barcelona");
@@ -160,22 +158,23 @@ document.getElementById("scheme-eight").addEventListener("click", () => {
   localStorage.setItem("theme", "cityByNight");
 });
 
-if (currentThemeSettings === "blueHumans") {
-  document.getElementById("scheme-two").checked = true;
-} else if (currentThemeSettings === "hackers") {
-  document.getElementById("scheme-seven").checked = true;
-} else if (currentThemeSettings === "beach") {
-  document.getElementById("scheme-three").checked = true;
-} else if (currentThemeSettings === "raptorize") {
-  document.getElementById("scheme-four").checked = true;
-} else if (currentThemeSettings === "cthuluRises") {
-  document.getElementById("scheme-five").checked = true;
-} else if (currentThemeSettings === "boringVolcano") {
-  document.getElementById("scheme-six").checked = true;
-} else if (currentThemeSettings === "cityByNight") {
-  document.getElementById("scheme-eight").checked = true;
-} else if (currentThemeSettings === "barcelona") {
-  document.getElementById("scheme-one").checked = true;
+const currentTheme = localStorage.getItem("theme");
+if (currentTheme === "blueHumans") {
+  document.getElementById('scheme-two').checked = true;
+} else if (currentTheme === "hackers") {
+  document.getElementById('scheme-seven').checked = true;
+} else if (currentTheme === "beach") {
+  document.getElementById('scheme-three').checked = true;
+} else if (currentTheme === "raptorize") {
+  document.getElementById('scheme-four').checked = true;
+} else if (currentTheme === "cthuluRises") {
+  document.getElementById('scheme-five').checked = true;
+} else if (currentTheme === "boringVolcano") {
+  document.getElementById('scheme-six').checked = true;
+} else if (currentTheme === "cityByNight") {
+  document.getElementById('scheme-eight').checked = true;
+} else if (currentTheme === "barcelona") {
+  document.getElementById('scheme-one').checked = true;
 } else {
   document.getElementById("scheme-one").checked = true;
 }

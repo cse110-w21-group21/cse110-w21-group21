@@ -1,8 +1,3 @@
-#color-calendar {
-  position: relative;
-  visibility: visible;
-}
-
 #meme {
   object-fit: fill;
   padding-top: 50px;
@@ -20,30 +15,12 @@
   font-size: 1em;
 }
 
-.fc .fc-button {
-  padding: 0.1em;
-}
-
 .fc .fc-daygrid-day {
   max-height: 20px;
 }
 
-/* #container {
-  position: absolute;
-  width: 500px;
-  margin: auto;
+.random-meme {
+  position: fixed;
+  right: 0;
 }
-#random-meme {
-  width: 100px;
-  float: left;
-  height: 300px;
-}
-#notes {
-  width: auto;
-  float: left;
-  height: auto;
-  padding-left: 200px;
-}
-#clear {
-  clear: both;
-} */
+
