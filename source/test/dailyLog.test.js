@@ -31,12 +31,13 @@ describe('Daily Log', () => {
     },
     timeout,
   );
-/*
+
   test(
     'Switch to Weekly Log 1',
     async () => {
       await page.waitForSelector('a[title="Weekly Log"]');
       await page.click('a[title="Weekly Log"]');
+      await page.waitForTimeout(500);
       const url = await page.url();
       expect(url).toBe('http://127.0.0.1:5500/source/weeklyLog.html');
     },
@@ -53,14 +54,10 @@ describe('Daily Log', () => {
     },
     timeout,
   );
-*/
+
   test(
     'Check if Note Saved',
     async () => {
-
-      page.goto('http://127.0.0.1:5500/source/weeklyLog.html')
-      page.waitForTimeout(500)
-      page.goto('http://127.0.0.1:5500/source/dailyLog.html')
 
       await page.waitForSelector('.textbox');
       await page.waitForTimeout(1000);
@@ -129,6 +126,7 @@ describe('Daily Log', () => {
         await page.waitForSelector('.fc-prev-button');
         await page.waitForTimeout(500);
         await page.click('.fc-prev-button');
+        await page.waitForTimeout(500);
 
         await page.click('.textbox');
         await page.type('.textbox', 'prevNote');
@@ -149,15 +147,16 @@ describe('Daily Log', () => {
   test(
     'Click Next, Previous, Check Previous',
     async () => {
-      
-        await page.waitForSelector('.fc-next-button');
-        await page.waitForTimeout(500);
-        await page.click('.fc-next-button');
-        await page.waitForTimeout(500);
-        await page.click('.fc-prev-button');
+        
+      await page.waitForSelector('.fc-next-button');
+      await page.waitForTimeout(500);
+      await page.click('.fc-next-button');
+      await page.waitForTimeout(500);
+      await page.click('.fc-prev-button');
+      await page.waitForTimeout(500);
 
-        let hold = await page.$eval('.textbox', (e) => e.innerHTML);
-        expect(hold).toBe('prevNote');
+      let hold = await page.$eval('.textbox', (e) => e.innerHTML);
+      expect(hold).toBe('prevNote');
     },
     timeout,
   );
@@ -175,6 +174,7 @@ describe('Daily Log', () => {
         await page.click('.fc-next-button');
         await page.waitForTimeout(500);
         await page.click('.fc-next-button');
+        await page.waitForTimeout(500);
 
         await page.click('.textbox');
         await page.type('.textbox', 'nextNote');
@@ -244,6 +244,7 @@ describe('Daily Log', () => {
       await page.waitForSelector('.fc-prev-button');
       await page.waitForTimeout(1000);
       await page.click('.fc-prev-button');
+      await page.waitForTimeout(500);
       let hold = await page.$eval('.textbox', (e) => e.innerHTML);
       expect(hold).toBe('prevNote');
     },
@@ -258,6 +259,7 @@ describe('Daily Log', () => {
       await page.waitForSelector('.fc-next-button');
       await page.waitForTimeout(1000);
       await page.click('.fc-next-button');
+      await page.waitForTimeout(500);
       let hold = await page.evaluate(
         () => document.querySelectorAll('.textbox')[1].innerHTML,
       );      
@@ -272,8 +274,24 @@ describe('Daily Log', () => {
       await page.waitForSelector('.fc-next-button');
       await page.waitForTimeout(1000);
       await page.click('.fc-next-button');
+      await page.waitForTimeout(500);
       let hold = await page.$eval('.textbox', (e) => e.innerHTML);
       expect(hold).toBe('nextNote');
+    },
+    timeout,
+  );
+
+  test(
+    'Clear DB',
+    async () => {
+      await page.evaluate(() => { window.indexedDB.deleteDatabase("noteDB"); });
+
+      await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
+      await page.waitForSelector('.textbox');
+      await page.waitForTimeout(500);
+  
+      let hold = await page.$eval('.textbox', (e) => e.innerHTML);
+      expect(hold).toBe('');
     },
     timeout,
   );

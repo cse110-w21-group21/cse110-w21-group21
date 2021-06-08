@@ -9,6 +9,7 @@ describe('Bullet Notes', () => {
   test(
     'Go to Daily Log',
     async () => {
+
       await page.waitForSelector('a[title="Daily Log"]');
       await page.waitForTimeout(500);
       await page.click('a[title="Daily Log"]');
@@ -217,4 +218,20 @@ describe('Bullet Notes', () => {
     },
     timeout,
   );
+  
+  test(
+    'Clear DB',
+    async () => {
+      await page.evaluate(() => { window.indexedDB.deleteDatabase("noteDB"); });
+
+      await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
+      await page.waitForSelector('.textbox');
+      await page.waitForTimeout(500);
+  
+      let hold = await page.$eval('.textbox', (e) => e.innerHTML);
+      expect(hold).toBe('');
+    },
+    timeout,
+  );
+
 });
