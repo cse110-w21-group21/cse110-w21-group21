@@ -102,7 +102,7 @@ function addNoteDB(fromWeekly) {
     // if note exists view it, otherwise add note
     const data = e.target.result;
     if (data) {
-      viewNote(fromWeekly);
+      viewNote();
     } else {
       pNotes.add(note);
     }
