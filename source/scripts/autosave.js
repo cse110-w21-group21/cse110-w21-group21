@@ -16,10 +16,6 @@ function save() {
         localStorage.setItem("AUTOSAVE_title" + document.location, sticky[0].value);
         localStorage.setItem("AUTOSAVE_textarea" + document.location, sticky[1].value);
     }
-    // var container = getContainer();
-    // if (container) {
-    //     localStorage.setItem("AUTOSAVE_container" + document.location, container.innerHTML);
-    // }
 }
 
 function restore() {
@@ -30,11 +26,6 @@ function restore() {
         sticky[0].value = saved_title;
         sticky[1].value = saved_textarea;
     }
-    // var saved_container = localStorage.getItem("AUTOSAVE_container" + document.location)
-    // var container = getContainer();
-    // if (container && saved_container) {
-    //     container.innerHTML = saved_container;
-    // }
 }
 
 function start() {
@@ -46,8 +37,6 @@ function start() {
         clearInterval(timer);
         timer = null;
     }
-
-    // autosaving every 5 seconds
     timer = setInterval(save, 3000);
 }
 
