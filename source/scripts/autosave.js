@@ -6,10 +6,6 @@ function getSticky() {
     return [title[0], textarea[0]];
 }
 
-function getContainer() {
-    return document.getElementById('sticky-note-container');
-}
-
 function save() {
     var sticky = getSticky();
     if (sticky) {
@@ -19,12 +15,12 @@ function save() {
 }
 
 function restore() {
-    var saved_title = localStorage.getItem("AUTOSAVE_title" + document.location);
-    var saved_textarea = localStorage.getItem("AUTOSAVE_textarea" + document.location);
+    var savedTitle = localStorage.getItem("AUTOSAVE_title" + document.location);
+    var savedTextarea = localStorage.getItem("AUTOSAVE_textarea" + document.location);
     var sticky = getSticky();
-    if ((saved_title || saved_textarea) && sticky) {
-        sticky[0].value = saved_title;
-        sticky[1].value = saved_textarea;
+    if ((savedTitle || savedTextarea) && sticky) {
+        sticky[0].value = savedTitle;
+        sticky[1].value = savedTextarea;
     }
 }
 

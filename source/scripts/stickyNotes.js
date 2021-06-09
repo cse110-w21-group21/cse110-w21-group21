@@ -66,7 +66,7 @@ function addEventListenerDeleteBtn(i) {
             alert("cannot remove the last note!");
         } else {
             let j;
-            for (j = 0; j <= numberOfStickies; j++) {
+            for (j = 0; j <= numberOfStickies; j = j + 1) {
                 removeEventListenerColorBtn(j);
             }
             // remove sticky
@@ -75,7 +75,7 @@ function addEventListenerDeleteBtn(i) {
             // reload variables
             reloadVariables();
             // add color button listeners for the rest of page
-            for (j = 0; j <= numberOfStickies; j++) {
+            for (j = 0; j <= numberOfStickies; j = j + 1) {
                 addEventListenerColorBtn(j);
             }
         }
