@@ -189,11 +189,19 @@ var popEdit = {
 
     existing = JSON.parse(existing);
 
+    let currEnd, currStart;
+    if (popEdit.currentInfo.event.startStr.includes("T")) {
+      currEnd = popEdit.currentInfo.event.endStr.substr(0,16);
+      currStart = popEdit.currentInfo.event.startStr.substr(0,16);
+    } else {
+      currEnd = popEdit.currentInfo.event.endStr;
+      currStart = popEdit.currentInfo.event.startStr;
+    }
     /** Check to make sure the event is the right one */
     for (let i = 0; i < existing.length; i += 1) {
       if(existing[i].title === popEdit.currentInfo.event.title) {
-        if(existing[i].start === popEdit.currentInfo.event.startStr) {
-          if(existing[i].end === popEdit.currentInfo.event.endStr) {
+        if(existing[i].start === currStart) {
+          if(existing[i].end === currEnd) {
             if(existing[i].color === popEdit.currentInfo.event.backgroundColor)
               if(existing[i].description === popEdit.currentInfo.event.extendedProps.description) {
                 existing.splice(i,1);
