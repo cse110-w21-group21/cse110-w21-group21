@@ -3,8 +3,9 @@ let db;
 
 /**
  * Views a note for the current day
+ * @param {Function} myCallback - function to be called after notes are loaded
  */
-function viewNote() {
+function viewNote(myCallback) {
   const tx = db.transaction("personal_notes", "readonly");
   const pNotes = tx.objectStore("personal_notes");
 
@@ -29,6 +30,7 @@ function viewNote() {
       )
     ) {
       document.getElementById("notelist").innerHTML = request.result.text;
+      typeof myCallback === 'function' && myCallback();
     }
   };
 } /* viewNote */
@@ -76,9 +78,10 @@ function viewNoteWeekly(date) {
 
 /**
  * Adds a note to the DB. Will be called from createDB to add a note.
- * @param {fromWeekly} - Boolean - If it's from the weekly page
+ * @param {Boolean} fromWeekly - If it's from the weekly page
+ * @param {Function} myCallback - function to be called after notes are loaded
  */
-function addNoteDB(fromWeekly) {
+function addNoteDB(fromWeekly,myCallback) {
   const thisDay = new Date(calendar.currentData.viewTitle);
   const date = `${thisDay.getFullYear()}-${
     thisDay.getMonth() + 1
@@ -102,7 +105,7 @@ function addNoteDB(fromWeekly) {
     // if note exists view it, otherwise add note
     const data = e.target.result;
     if (data) {
-      viewNote();
+      viewNote(myCallback);
     } else {
       pNotes.add(note);
     }
@@ -111,8 +114,10 @@ function addNoteDB(fromWeekly) {
 
 /**
  * Creates a database and/or upgrades the database
+ * @param {Boolean} fromWeekly - If it's from the weekly page
+ * @param {Function} myCallback - function to be called after notes are loaded
  */
-function createDB(fromWeekly) {
+function createDB(fromWeekly,myCallback) {
   const request = indexedDB.open("noteDB", 1);
 
   // on upgrade needed --> if database doesn't exist
@@ -127,7 +132,7 @@ function createDB(fromWeekly) {
     // wait until notes are ready to be populated
     const transaction = e.target.transaction;
     transaction.oncomplete = function () {
-      addNoteDB(fromWeekly);
+      addNoteDB(fromWeekly,myCallback);
     };
 
     console.log(
@@ -137,7 +142,7 @@ function createDB(fromWeekly) {
   // on success
   request.onsuccess = (e) => {
     db = e.target.result;
-    addNoteDB(fromWeekly);
+    addNoteDB(fromWeekly,myCallback);
     console.log(
       `success is called database name: ${db.name} version : ${db.version}`
     );

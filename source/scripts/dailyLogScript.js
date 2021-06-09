@@ -1,5 +1,7 @@
-/*eslint-disable*/
-import { createDB, updateNote, db, viewNote, addNoteDB } from "./db.js";
+/* eslint-disable */
+import {
+  createDB, updateNote, db, viewNote, addNoteDB,
+} from "./db.js";
 
 let shift = false;
 let timer = null;
@@ -45,7 +47,8 @@ class BulletNote extends HTMLElement {
   }
 
   /**
-   * @param {number} index
+   * Sets the bullet icon of the note
+   * @param {number} index - index of the bullet icon
    */
   set bullet(index) {
     this.querySelectorAll(".bicon")[0].className = `${bicons[index]} bicon`;
@@ -65,6 +68,35 @@ function addNote() {
   newNote.dataset.important = false;
   noteList.appendChild(newNote);
   // newNote.getElementsByClassName("textbox")[0].focus();
+}
+
+/**
+ * Loads the dropdown menus for each note and adds event listeners
+ * Should be called after any time notes are loaded in daily log
+ */
+function loadDropdowns() {
+  let myNotes = document.querySelectorAll('bullet-note');
+  myNotes.forEach((n) => {
+    let thisNote = n;
+    let dropdown = thisNote.querySelector(".bdropdown");
+    dropdown.innerHTML = "";
+    dropdown.dataset.show = false;
+    for (let i = 0; i < bicons.length; i += 1) {
+      let option = document.createElement("li");
+      option.classList.add("bdropdown-option");
+      option.dataset.bindex = i;
+      let optionIcon = document.createElement("div");
+      optionIcon.className = bicons[i];
+      optionIcon.classList.add("bdropdown-option-icon");
+      option.appendChild(optionIcon);
+      dropdown.appendChild(option);
+      option.addEventListener("click", () => {
+        let myIndex = option.dataset.bindex;
+        thisNote.querySelector(".bicon").className = `${bicons[myIndex]} bicon`;
+        thisNote.dataset.important = importantBicons.includes(bicons[myIndex]);
+      });
+    }
+  });
 }
 
 /**
@@ -109,7 +141,7 @@ function setEndOfContenteditable(contentEditableElement) {
  * add the current days note if it exists
  */
 window.onload = async () => {
-  await createDB(false);
+  await createDB(false, loadDropdowns);
   addNote();
 };
 
@@ -170,16 +202,15 @@ document.getElementById("notelist").addEventListener("keydown", (event) => {
     newNote.getElementsByClassName("textbox")[0].focus();
   }
   if (
-    event.key === "Backspace" &&
-    event.target.className === "textbox" &&
-    (event.target.innerHTML === "" || event.target.innerHTML === "<br>")
+    event.key === "Backspace"
+    && event.target.className === "textbox"
+    && (event.target.innerHTML === "" || event.target.innerHTML === "<br>")
   ) {
     event.preventDefault();
     if (event.target.parentNode.previousElementSibling != null) {
-      const textbox =
-        event.target.parentNode.previousElementSibling.querySelector(
-          ".textbox"
-        );
+      const textbox = event.target.parentNode.previousElementSibling.querySelector(
+        ".textbox",
+      );
       textbox.focus();
       setEndOfContenteditable(textbox);
     }
@@ -290,10 +321,10 @@ document.getElementById("notelist").addEventListener("keyup", (event) => {
  */
 document.addEventListener("click", (e) => {
   if (
-    e.target.className === "fc-next-button fc-button fc-button-primary" ||
-    e.target.className === "fc-prev-button fc-button fc-button-primary" ||
-    e.target.className === "fc-icon fc-icon-chevron-right" ||
-    e.target.className === "fc-icon fc-icon-chevron-left"
+    e.target.className === "fc-next-button fc-button fc-button-primary"
+    || e.target.className === "fc-prev-button fc-button fc-button-primary"
+    || e.target.className === "fc-icon fc-icon-chevron-right"
+    || e.target.className === "fc-icon fc-icon-chevron-left"
   ) {
     const tx = db.transaction("personal_notes", "readwrite");
     const pNotes = tx.objectStore("personal_notes");
@@ -302,16 +333,16 @@ document.addEventListener("click", (e) => {
       thisDay.getMonth() + 1
     }-${thisDay.getDate()}`;
     const request = pNotes.openCursor(date);
-    request.onsuccess = function (e) {
+    request.onsuccess = function () {
       let cursor = e.target.result;
       if (cursor) {
         // date already exists in database
-        viewNote();
+        viewNote(loadDropdowns);
       } else {
         // date does not exist in database
         document.getElementById("notelist").innerHTML = "";
         addNote();
-        addNoteDB(false);
+        addNoteDB(false, loadDropdowns);
       }
     };
   }
