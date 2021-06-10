@@ -6,6 +6,11 @@
 import { createDB, viewNoteWeekly } from "./db.js";
 
 let calendar;
+
+/**
+ * render the calendar with given event data
+ * @param {Object} data 
+ */
 function createCalendar(data) {
   let calendarEl = document.getElementById("calendar");
 
@@ -13,6 +18,10 @@ function createCalendar(data) {
     initialView: "timeGridWeek",
     aspectRatio: 2,
 
+    /**
+     * upon click of a date traverse to the proper dailyLog page
+     * @param {Date} date 
+     */
     dateClick(date) {
       localStorage.setItem("dateClicked", date.dateStr);
       window.location.href = "./dailyLog.html";
@@ -24,12 +33,19 @@ function createCalendar(data) {
   calendar.render();
 }
 
+/**
+ * render the calendar onload of the page
+ */
 document.addEventListener("DOMContentLoaded", () => {
   let existing = localStorage.getItem("currentEvents");
   createCalendar(JSON.parse(existing));
 });
 
 const menuToggle = document.querySelector("main");
+
+/**
+ * on page size change resize the calendar
+ */
 menuToggle.addEventListener("transitionend", () => {
   calendar.updateSize();
 });
