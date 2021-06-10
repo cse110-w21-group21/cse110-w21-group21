@@ -26,31 +26,157 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>let db;
+            <pre class="prettyprint source linenums"><code>/* eslint-disable */
+let db;
+
+/**
+ * Views a note for the current day
+ * @param {Function} myCallback - function to be called after notes are loaded
+ */
+function viewNote(myCallback) {
+  const tx = db.transaction("personal_notes", "readonly");
+  const pNotes = tx.objectStore("personal_notes");
+
+  const thisDay = new Date(calendar.currentData.viewTitle);
+  const date = `${thisDay.getFullYear()}-${
+    thisDay.getMonth() + 1
+  }-${thisDay.getDate()}`;
+  const request = pNotes.get(date);
+
+  request.onerror = function err(error) {
+    // Handle errors!
+    console.error(error);
+  };
+
+  // load the note from the specified date
+  request.onsuccess = function success() {
+    if (
+      !(
+        request.result === undefined ||
+        request.result.text === "" ||
+        request.result.text === "&lt;br>"
+      )
+    ) {
+      document.getElementById("notelist").innerHTML = request.result.text;
+      typeof myCallback === 'function' &amp;&amp; myCallback();
+    }
+  };
+} /* viewNote */
+
+/**
+ * Views all saved notes for the current week
+ * @param {*} date - the day within the week
+ */
+function viewNoteWeekly(date) {
+  const tx = db.transaction("personal_notes", "readonly");
+  const pNotes = tx.objectStore("personal_notes");
+  const request = pNotes.get(date);
+
+  request.onerror = function err(error) {
+    // Handle errors!
+    console.error(error);
+  }; /* viewNoteWeekly */
+
+  // load the note from the specified date
+  request.onsuccess = function success() {
+    if (
+      !(
+        request.result === undefined ||
+        request.result.text === "" ||
+        request.result.text === "&lt;br>"
+      )
+    ) {
+      document.getElementById("notelist").innerHTML += request.result.text;
+
+      // remove unimportant notes
+      let unimportantNotes = document.querySelectorAll(
+        'bullet-note[data-important="false"]'
+      );
+      unimportantNotes.forEach((u) => {
+        u.remove();
+      });
+      let noteTextboxes = document.querySelectorAll(".textbox");
+      noteTextboxes.forEach((t) => {
+        let t2 = t;
+        t2.contentEditable = false;
+      });
+    }
+  };
+}
+
+/**
+ * Adds a note to the DB. Will be called from createDB to add a note.
+ * @param {Boolean} fromWeekly - If it's from the weekly page
+ * @param {Function} myCallback - function to be called after notes are loaded
+ */
+function addNoteDB(fromWeekly,myCallback) {
+  const thisDay = new Date(calendar.currentData.viewTitle);
+  const date = `${thisDay.getFullYear()}-${
+    thisDay.getMonth() + 1
+  }-${thisDay.getDate()}`;
+
+  const noteString = document.getElementById("notelist").innerHTML;
+  const note = {
+    time: Math.floor(Date.now() / 1000),
+    date,
+    text: noteString,
+  };
+
+  const tx = db.transaction("personal_notes", "readwrite");
+  tx.onerror = (e) => alert(` Error! ${e.target.error}  `);
+  const pNotes = tx.objectStore("personal_notes");
+  const request = pNotes.get(date);
+  request.onerror = function err(error) {
+    console.error(error);
+  };
+  request.onsuccess = (e) => {
+    // if note exists view it, otherwise add note
+    const data = e.target.result;
+    if (data) {
+      viewNote(myCallback);
+    } else {
+      pNotes.add(note);
+    }
+  };
+} /* addNote */
 
 /**
  * Creates a database and/or upgrades the database
+ * @param {Boolean} fromWeekly - If it's from the weekly page
+ * @param {Function} myCallback - function to be called after notes are loaded
  */
-function createDB() {
-  const request = indexedDB.open('noteDB', 1);
+function createDB(fromWeekly,myCallback) {
+  const request = indexedDB.open("noteDB", 1);
 
   // on upgrade needed --> if database doesn't exist
   request.onupgradeneeded = (e) => {
     db = e.target.result;
 
-    const objStore = db.createObjectStore('personal_notes', {
-      keyPath: 'date',
+    const objStore = db.createObjectStore("personal_notes", {
+      keyPath: "date",
     });
-    objStore.createIndex('date', 'date', { unique: false });
+    objStore.createIndex("date", "date", { unique: false });
+
+    // wait until notes are ready to be populated
+    const transaction = e.target.transaction;
+    transaction.oncomplete = function () {
+      if(!fromWeekly){
+        addNoteDB(fromWeekly,myCallback);
+      }
+    };
+
     console.log(
-      `upgrade is called database name: ${db.name} version : ${db.version}`,
+      `upgrade is called database name: ${db.name} version : ${db.version}`
     );
   };
   // on success
   request.onsuccess = (e) => {
     db = e.target.result;
+    if(!fromWeekly){
+      addNoteDB(fromWeekly,myCallback);
+    }
     console.log(
-      `success is called database name: ${db.name} version : ${db.version}`,
+      `success is called database name: ${db.name} version : ${db.version}`
     );
   };
   // on error
@@ -60,82 +186,16 @@ function createDB() {
 } /* createDB  */
 
 /**
- * Adds a note to the DB. Should be called when first creating a note
- * for the current day.
- *
- * @param {event} - event default click event
+ * Updates a note to the DB. Should be called after editing notes.s
  */
-function addNoteDB(event) {
-  // allRecords.innerHTML = "";
-  const today = new Date();
-  const date = `${today.getFullYear()}-${today.getMonth() + 1
-  }-${today.getDate()}`;
-  const noteString = document.getElementById('notelist').innerHTML;
-  const note = {
-    time: Math.floor(Date.now() / 1000),
-    date,
-    text: noteString,
-  };
-  console.log(note);
+function updateNote() {
+  const tx = db.transaction("personal_notes", "readwrite");
+  const pNotes = tx.objectStore("personal_notes");
 
-  const tx = db.transaction('personal_notes', 'readwrite');
-  tx.onerror = (e) => alert(` Error! ${e.target.error}  `);
-  const pNotes = tx.objectStore('personal_notes');
-  pNotes.add(note);
-  event.preventDefault();
-} /* addNote */
-
-/**
- * Views a note for the current day, if it's from the weekly page
- * load only important notes.
- *
- * @param {fromWeekly} - Boolean - If it's from the weekly page
- * @param {event} - event default click event
- */
-function viewNote(event, fromWeekly) {
-  const tx = db.transaction('personal_notes', 'readonly');
-  const pNotes = tx.objectStore('personal_notes');
-
-  const today = new Date();
-  const date = `${today.getFullYear()}-${today.getMonth() + 1
-  }-${today.getDate()}`;
-  console.log(date);
-  const request = pNotes.get(date);
-
-  request.onerror = function err(error) {
-    // Handle errors!
-    console.log(error);
-  };
-  request.onsuccess = function success() {
-    // Do something with the request.result!
-    console.log(request.result);
-    document.getElementById('notelist').innerHTML = request.result.text;
-    if (fromWeekly) {
-      let unimportantNotes = document.querySelectorAll('bullet-note[data-important="false"]');
-      unimportantNotes.forEach((u) => { u.remove(); });
-      let noteTextboxes = document.querySelectorAll('.textbox');
-      noteTextboxes.forEach((t) => {
-        let t2 = t;
-        t2.contentEditable = false;
-      });
-    }
-  };
-
-  event.preventDefault();
-} /* viewNote */
-
-/**
- * Updates a note to the DB. Should be called after editing notes.
- *
- * @param {event} - event default click event
- */
-function updateNote(event) {
-  const tx = db.transaction('personal_notes', 'readwrite');
-  const pNotes = tx.objectStore('personal_notes');
-
-  const today = new Date();
-  const date = `${today.getFullYear()}-${today.getMonth() + 1
-  }-${today.getDate()}`;
+  const thisDay = new Date(calendar.currentData.viewTitle);
+  const date = `${thisDay.getFullYear()}-${
+    thisDay.getMonth() + 1
+  }-${thisDay.getDate()}`;
   const request = pNotes.get(date);
 
   request.onerror = function err(error) {
@@ -143,25 +203,20 @@ function updateNote(event) {
     console.log(error);
   };
   request.onsuccess = function success(e) {
-    // Do something with the request.result!
     const data = e.target.result;
-    data.text = document.getElementById('notelist').innerHTML;
+    data.text = document.getElementById("notelist").innerHTML;
 
     const requestUpdate = pNotes.put(data);
     requestUpdate.onerror = function err(error) {
       console.log(error);
     };
-    requestUpdate.onsuccess = function s() {
-      console.log('updated');
+    requestUpdate.onsuccess = function successful() {
+      console.log("updated");
     };
   };
-
-  event.preventDefault();
 } /* updateNote */
 
-export {
-  createDB, addNoteDB, updateNote, viewNote,
-};
+export { createDB, updateNote, viewNote, db, addNoteDB, viewNoteWeekly };
 </code></pre>
         </article>
     </section>
@@ -172,13 +227,13 @@ export {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BulletNote.html">BulletNote</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addNote">addNote</a></li><li><a href="global.html#addNoteDB">addNoteDB</a></li><li><a href="global.html#createDB">createDB</a></li><li><a href="global.html#setEndOfContenteditable">setEndOfContenteditable</a></li><li><a href="global.html#updateNote">updateNote</a></li><li><a href="global.html#viewNote">viewNote</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BulletNote.html">BulletNote</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addEventListenerColorBtn">addEventListenerColorBtn</a></li><li><a href="global.html#addEventListenerDeleteBtn">addEventListenerDeleteBtn</a></li><li><a href="global.html#addNote">addNote</a></li><li><a href="global.html#addNoteDB">addNoteDB</a></li><li><a href="global.html#createCalendar">createCalendar</a></li><li><a href="global.html#createDB">createDB</a></li><li><a href="global.html#dateClick">dateClick</a></li><li><a href="global.html#eventClick">eventClick</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#loadDropdowns">loadDropdowns</a></li><li><a href="global.html#menuToggle">menuToggle</a></li><li><a href="global.html#onClickColorBtn">onClickColorBtn</a></li><li><a href="global.html#popCreate">popCreate</a></li><li><a href="global.html#popEdit">popEdit</a></li><li><a href="global.html#reloadVariables">reloadVariables</a></li><li><a href="global.html#removeEventListenerColorBtn">removeEventListenerColorBtn</a></li><li><a href="global.html#saveBody">saveBody</a></li><li><a href="global.html#saveHeader">saveHeader</a></li><li><a href="global.html#setEndOfContenteditable">setEndOfContenteditable</a></li><li><a href="global.html#updateNote">updateNote</a></li><li><a href="global.html#viewNote">viewNote</a></li><li><a href="global.html#viewNoteWeekly">viewNoteWeekly</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri May 21 2021 12:44:29 GMT-0700 (Pacific Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 10 2021 00:19:36 GMT-0700 (Pacific Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
