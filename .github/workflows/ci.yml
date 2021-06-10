@@ -33,7 +33,7 @@ jobs:
         run: npx serve source &
 
       - name: "E2E + Unit Tests Execution"
-        run: npm run test
+        run: npm run test allTest
 
       - name: "E2E + Unit Tests Terminate Server"
         run: killall -9 node

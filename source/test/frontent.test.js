@@ -15,6 +15,6 @@ describe('Test header and title of the page', () => {
     test('Stickies of the page', async () => {
         await page.click("#daily-log");
         const url = await page.url();
-        expect(url).toBe("http://127.0.0.1:5500/source/dailyLog.html");
+        expect(url).toBe("http://localhost:5000/dailyLog");
     }, timeout);
 });
