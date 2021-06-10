@@ -15,7 +15,7 @@ Should we make the sidebar on the application retractable?
 
 ## Decision Outcome
 
-Chose to implement application as only a webpage unless schedule opens up near the end of the development cycle.
+Implement retractable sidebar
 
 ## Pros and Cons of the Options
 
