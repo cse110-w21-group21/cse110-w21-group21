@@ -69,10 +69,10 @@
       <div id="sticky-note-container">
           <div class="note note-red">
               <div class="note-header">
-                  <input class="note-title" type="text" placeholder="Untitled Note">
+                  <input class="note-title" type="text" placeholder="Untitled Note" onkeyup="saveHeader()">
               </div>
               <div class="note-body">
-                  <textarea class="note-textarea" spellcheck="false"></textarea>
+                  <textarea class="note-textarea" spellcheck="false" onkeyup="saveBody()"></textarea>
               </div>
               <div class="note-footer">
                   <button class="note-color-btn note-red" id="sticky-btn-red"></button>

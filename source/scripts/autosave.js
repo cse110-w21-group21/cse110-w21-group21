@@ -1,4 +1,4 @@
-let timer = null;
+/*let timer = null;
 
 function getSticky() {
     let title = document.getElementsByClassName("note-title");
@@ -37,3 +37,4 @@ function start() {
 }
 
 start();
+*/
