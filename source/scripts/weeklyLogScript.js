@@ -44,7 +44,7 @@ window.onload = () => {
  */
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
-    document.getElementById("notelist").innerHTML = "Weekly Overview:";
+    document.getElementById("notelist").innerHTML = "";
     for (let i = 1; i < 8; i++) {
       // thisDay is one day before the start of the week, thus the loop starts at 1
       let thisDay = new Date(
@@ -72,7 +72,7 @@ document.addEventListener("click", (e) => {
     e.target.className === "fc-icon fc-icon-chevron-left" ||
     e.target.className === "fc-today-button fc-button fc-button-primary"
   ) {
-    document.getElementById("notelist").innerHTML = "Weekly Overview:";
+    document.getElementById("notelist").innerHTML = "";
     for (let i = 1; i < 8; i++) {
       // thisDay is one day before the start of the week, thus the loop starts at 1
       let thisDay = new Date(calendar.currentData.currentDate);
