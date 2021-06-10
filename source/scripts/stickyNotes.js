@@ -23,50 +23,64 @@ function reloadVariables() {
     deleteButton = document.querySelectorAll('#sticky-btn-delete');
 }
 
-function onClickColorBtn(num, color) {
+let onClickColorBtn = function (num, color) {
     mainNote[num].className = 'note note-' + color;
 }
 
+let handlers = new Map();
+
 function addEventListenerColorBtn(i) {
-    redButton[i].addEventListener('click',function() {
-        onClickColorBtn(i, 'red');
-    });
 
-    orangeButton[i].addEventListener('click', function() {
-        onClickColorBtn(i, 'orange');
-    });
+    let wrapAddRedBtn = onClickColorBtn.bind(null, i, 'red');
+    let wrapAddOrangeBtn = onClickColorBtn.bind(null, i, 'orange');
+    let wrapAddYellowBtn = onClickColorBtn.bind(null, i, 'yellow');
+    let wrapAddGreenBtn = onClickColorBtn.bind(this, i, 'green');
+    let wrapAddBlueBtn = onClickColorBtn.bind(this, i, 'blue');
+    let wrapAddPurpleBtn = onClickColorBtn.bind(this, i, 'purple');
 
-    yellowButton[i].addEventListener('click', function() {
-        onClickColorBtn(i, 'yellow');
-    });
+    handlers.set(i, [wrapAddRedBtn, wrapAddOrangeBtn, wrapAddYellowBtn, wrapAddGreenBtn, wrapAddBlueBtn, wrapAddPurpleBtn]);
 
-    greenButton[i].addEventListener('click', function() {
-        onClickColorBtn(i, 'green');
-    });
+    redButton[i].addEventListener('click', wrapAddRedBtn, false);
+    orangeButton[i].addEventListener('click', wrapAddOrangeBtn, false);
+    yellowButton[i].addEventListener('click', wrapAddYellowBtn, false);
+    greenButton[i].addEventListener('click', wrapAddGreenBtn, false);
+    blueButton[i].addEventListener('click', wrapAddBlueBtn, false);
+    purpleButton[i].addEventListener('click', wrapAddPurpleBtn, false);
+}
 
-    blueButton[i].addEventListener('click', function() {
-        onClickColorBtn(i, 'blue');
-    });
+function removeEventListenerColorBtn(i) {
+    redButton[i].removeEventListener('click', handlers.get(i)[0], false);
+    orangeButton[i].removeEventListener('click', handlers.get(i)[1], false);
+    yellowButton[i].removeEventListener('click', handlers.get(i)[2], false);
+    greenButton[i].removeEventListener('click', handlers.get(i)[3], false);
+    blueButton[i].removeEventListener('click', handlers.get(i)[4], false);
+    purpleButton[i].removeEventListener('click', handlers.get(i)[5], false);
+    handlers.delete(i);
+}
 
-    purpleButton[i].addEventListener('click', function() {
-        onClickColorBtn(i, 'purple');
-    });
-
-    // TODO: fix the error that occurs when deleting the last note
+function addEventListenerDeleteBtn(i) {
+    
     deleteButton[i].addEventListener('click', function() {
-        if (numberOfStickies > 0) {
+
+        if (numberOfStickies === 0) {
+            alert("cannot remove the last note!");
+        } else {
+            let j;
+            for (j = 0; j <= numberOfStickies; j = j + 1) {
+                removeEventListenerColorBtn(j);
+            }
+            // remove sticky
             mainNote[i].remove();
             numberOfStickies = numberOfStickies - 1;
+            // reload variables
             reloadVariables();
+            // add color button listeners for the rest of page
+            for (j = 0; j <= numberOfStickies; j = j + 1) {
+                addEventListenerColorBtn(j);
+            }
         }
     });
 }
-
-addEventListenerColorBtn(numberOfStickies);
-
-purpleButton[0].addEventListener('click', function() {
-    onClickColorBtn(0, 'purple');
-});
 
 addNote.addEventListener('click', function() {
     let cloneMainNote = mainNote[numberOfStickies].cloneNode(true);
@@ -78,4 +92,9 @@ addNote.addEventListener('click', function() {
     reloadVariables();
     numberOfStickies = numberOfStickies + 1;
     addEventListenerColorBtn(numberOfStickies);
+    addEventListenerDeleteBtn(numberOfStickies);
 });
+
+// setting up the first note on the page
+addEventListenerColorBtn(0);
+addEventListenerDeleteBtn(0);

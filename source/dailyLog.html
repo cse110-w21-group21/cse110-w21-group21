@@ -74,12 +74,26 @@
         <span> Add a note</span>
       </button>
       <div id="sticky-note-container">
-        <div class="note note-red">
-          <div class="note-header">
-            <input class="note-title" type="text" placeholder="Untitled Note" />
-          </div>
-          <div class="note-body">
-            <textarea spellcheck="false"></textarea>
+
+          <div class="note note-red">
+              <div class="note-header">
+                  <input class="note-title" type="text" placeholder="Untitled Note">
+              </div>
+              <div class="note-body">
+                  <textarea class="note-textarea" spellcheck="false"></textarea>
+              </div>
+              <div class="note-footer">
+                  <button class="note-color-btn note-red" id="sticky-btn-red"></button>
+                  <button class="note-color-btn note-orange" id="sticky-btn-orange"></button>
+                  <button class="note-color-btn note-yellow" id="sticky-btn-yellow"></button>
+                  <button class="note-color-btn note-green" id="sticky-btn-green"></button>
+                  <button class="note-color-btn note-blue" id="sticky-btn-blue"></button>
+                  <button class="note-color-btn note-purple" id="sticky-btn-purple"></button>
+                  <button class="note-delete-btn" id="sticky-btn-delete">
+                      <i class="fa fa-trash"></i>
+                  </button>
+              </div>
+
           </div>
           <div class="note-footer">
             <button class="note-color-btn note-red" id="sticky-btn-red"></button>
@@ -92,10 +106,10 @@
               <i class="fa fa-trash"></i>
             </button>
           </div>
-        </div>
-      </div>
+       </div>
     </div>
   </main>
+  <script src="scripts/autosave.js"></script>
   <script src="scripts/stickyNotes.js"></script>
 </body>
 
