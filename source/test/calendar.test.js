@@ -12,7 +12,7 @@ describe('Calendar', () => {
       await page.waitForSelector('a[title="Calendar View"]');
       await page.waitForTimeout(500);
       await page.click('a[title="Calendar View"]');
-      const url = await page.url();
+      let url = await page.url();
       expect(url).toBe('http://127.0.0.1:5500/source/calendar.html');
     },
     timeout
@@ -21,24 +21,17 @@ describe('Calendar', () => {
   test(
     'Clicking on a day brings us to the daily log page',
     async () => {
-      //selects day and will pull up the daily log page
       await page.waitForSelector(
-        '.fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other'
+        '.fc-daygrid-day.fc-day.fc-day-sun.fc-day-past.fc-day-other'
       );
       await page.waitForTimeout(500);
       await page.click(
-        '.fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other'
+        '.fc-daygrid-day.fc-day.fc-day-sun.fc-day-past.fc-day-other'
       );
-      expect(url).toBe('http://127.0.0.1:5500/source/dailyLog.html');
-    },
-    timeout
-  );
+      await page.waitForTimeout(500);
+      let url = await page.url();
 
-  test(
-    'The date shown is the correct date',
-    async () => {
-      let dateShown = document.querySelector('.fc-toolbar-title').innerHTML;
-      expect(dateShown).toBe(calendar.firstDate);
+      expect(url).toBe('http://127.0.0.1:5500/source/dailyLog.html');
     },
     timeout
   );
@@ -47,20 +40,12 @@ describe('Calendar', () => {
     "Clicking the today button brings us to today's event page",
     async () => {
       await page.waitForSelector(
-        '.fc-today-button fc-button fc-button-primary'
+        '.fc-today-button.fc-button.fc-button-primary'
       );
       await page.waitForTimeout(500);
-      await page.click('.fc-today-button fc-button fc-button-primary');
+      await page.click('.fc-today-button.fc-button.fc-button-primary');
+      let url = await page.url();
       expect(url).toBe('http://127.0.0.1:5500/source/dailyLog.html');
-    },
-    timeout
-  );
-
-  test(
-    'The date shown is the correct date',
-    async () => {
-      let dateShown = document.querySelector('.fc-toolbar-title').innerHTML;
-      expect(dateShown).toBe(calendar.dateShown);
     },
     timeout
   );
@@ -68,10 +53,8 @@ describe('Calendar', () => {
   test(
     'Clicking on Calendar View still brings us back to calendar page',
     async () => {
-      //select a day
       await page.waitForSelector('a[title="Calendar View"]');
       await page.waitForTimeout(500);
-      //click on the day
       await page.click('a[title="Calendar View"]');
       const url = await page.url();
       expect(url).toBe('http://127.0.0.1:5500/source/calendar.html');
@@ -82,21 +65,22 @@ describe('Calendar', () => {
   test(
     'Creating event makes an event',
     async () => {
-      await page.waitForSelector(
-        '.fc-create-button fc-button fc-button-primary'
-      );
+      await page.waitForSelector('.fc-create-button.fc-button.fc-button-primary');
       await page.waitForTimeout(500);
-      await page.click('.fc-create-button fc-button fc-button-primary');
+      await page.click('.fc-create-button.fc-button.fc-button-primary');
       await page.waitForSelector('#title');
-      await page.type('#textbox', 'TESTING');
+      await page.type('#title', 'TESTING');
       await page.waitForSelector('#start');
-      //await page.//start date calendar.firstDate
+      await page.click('#start');
+      await page.type('#start', '05302021')
       await page.waitForSelector('#end');
-      //await page.//end date calendar.lastdate?
-      await page.waitForSelector('.submit');
-      //check indexDB if the event is correct
-
-      expect(true).toBe(true); //should be the event into a string
+      await page.click('#end');
+      await page.type('#end', '06102021');
+      await page.waitForSelector('button[type="submit"]');
+      await page.click('button[type="submit"]');
+      await page.waitForTimeout(500);
+      let stuff = await page.$$('.fc-event-title-container');
+      expect(stuff.length).toBeGreaterThan(0);
     },
     timeout
   );
@@ -107,8 +91,8 @@ describe('Calendar', () => {
       await page.waitForSelector('.fc-event-title-container');
       await page.waitForTimeout(500);
       await page.click('.fc-event-title-container');
-      //check to see if the edit box is visible
-      expect(true).toBe(true);
+      const url = await page.url();
+      expect(url).toBe('http://127.0.0.1:5500/source/calendar.html?title=TESTING&colorSelect=%23000000&start=2021-05-30&end=2021-06-10&startTime=&endTime=&description=');
     },
     timeout
   );
@@ -119,8 +103,9 @@ describe('Calendar', () => {
       await page.waitForSelector('#deleteEvent');
       await page.waitForTimeout(500);
       await page.click('#deleteEvent');
-      //make sure that the event does not exist in the DB
-      expect(true).toBe(true);
+      await page.waitForTimeout(500);
+      let stuff = await page.$$('.fc-event-title-container');
+      expect(stuff.length).toBe(0);
     },
     timeout
   );
@@ -128,54 +113,57 @@ describe('Calendar', () => {
   test(
     'Check for single day event creation',
     async () => {
-      await page.waitForSelector(
-        '.fc-create-button fc-button fc-button-primary'
-      );
+      await page.waitForSelector('.fc-create-button.fc-button.fc-button-primary');
       await page.waitForTimeout(500);
-      await page.click('.fc-create-button fc-button fc-button-primary');
-      await page.waitForSelector('#editTitle');
-      await page.type('#textbox', 'TESTING2');
+      await page.click('.fc-create-button.fc-button.fc-button-primary');
+      await page.waitForSelector('#title');
+      await page.type('#title', 'TESTING2');
       await page.waitForSelector('#start');
-      //enter start date
-      //pick the isDayEvent box to be true
-      //pick times too D:
-      await page.waitForSelector('.submit');
-      //check indexDB
-      expect(true).toBe(true);
+      await page.click('#start');
+      await page.type('#start', '05302021')
+      await page.waitForSelector('#isDayEvent');
+      await page.click('#isDayEvent');
+      await page.waitForSelector('#startTime');
+      await page.type('#startTime', '01021');
+      await page.waitForSelector('#endTime');
+      await page.type('#endTime', '05022');
+      await page.waitForSelector('button[type="submit"]');
+      await page.click('button[type="submit"]');
+      await page.waitForTimeout(500);
+      let stuff = await page.$$('.fc-event-time');
+      expect(stuff.length).toBeGreaterThan(0);
     },
     timeout
   );
-  //click event, delete it
+  
   test(
     'Check for single day edit event deletion',
     async () => {
-      //edit a single day event deletion
-      await page.waitForSelector(
-        '.fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-start fc-event-end fc-event-past'
-      );
+      await page.waitForSelector('.fc-daygrid-event.fc-daygrid-dot-event.fc-event.fc-event-start.fc-event-end.fc-event-past');
       await page.waitForTimeout(500);
-      await page.click(
-        '.fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-start fc-event-end fc-event-past'
-      );
+      await page.click('.fc-daygrid-event.fc-daygrid-dot-event.fc-event.fc-event-start.fc-event-end.fc-event-past');
       await page.waitForSelector('#deleteEvent');
       await page.click('#deleteEvent');
-      //check indexDB to see if it exists in there or not
-      expect(true).toBe(true);
+      await page.waitForTimeout(500);
+      let stuff = await page.$$('.fc-event-time');
+      expect(stuff.length).toBe(0);
     },
     timeout
   );
-  //click event creation, put in bad data, should return an alert
+
   test(
     'Check for creating a bad event',
     async () => {
-      await page.waitForSelector(
-        '.fc-create-button fc-button fc-button-primary'
-      );
+      await page.waitForSelector('.fc-create-button.fc-button.fc-button-primary');
       await page.waitForTimeout(500);
-      await page.click('.fc-create-button fc-button fc-button-primary');
-      await page.waitForSelector('#submit');
-      //check for alert
-      expect(true).toBe(true);
+      await page.click('.fc-create-button.fc-button.fc-button-primary');
+      await page.waitForSelector('button[type="submit"]');
+      await page.click('button[type="submit"]');
+      page.on('dialog', async (dialog) =>{
+        expect(dialog.message()).toBe('Your event has no title or start date!');
+        await dialog.dismiss();
+        await browser.close();
+      });
     },
     timeout
   );
