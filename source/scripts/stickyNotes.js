@@ -146,7 +146,7 @@ addNote.addEventListener('click', function() {
     cloneMainNote.querySelectorAll('textarea')[0].value = '';
     cloneMainNote.className = 'note note-' + randomColor; 
 
-    noteColors = localStorage.getItem('notepadColors');
+    let noteColors = localStorage.getItem('notepadColors');
     noteColors = JSON.parse(noteColors);
     noteColors.push(randomColor);
     localStorage.setItem('notepadColors', JSON.stringify(noteColors));
