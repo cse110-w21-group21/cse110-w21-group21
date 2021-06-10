@@ -11,7 +11,7 @@
     flex-direction: row;
     align-items: baseline;
     list-style: none;
-    margin-bottom: 0.2em;
+    padding-bottom: 0.2em;
     position: relative;
 }
 
@@ -27,7 +27,8 @@
 
 .bicon {
     font-size: 0.5em;
-    margin-right: 0.5em;
+    margin-right: 0.25rem;
+    height: 0.75rem;
 }
 
 .bicon:hover {
@@ -37,10 +38,14 @@
 .bdropdown {
     list-style: none;
     padding: 0px;
-    background-color:gray;
+    /* background-color:gray; */
     position: absolute;
     left: -2em;
+    top: 0.2em;
     display: none;
+    border: 1px solid;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 .bdropdown[data-show="true"] {
@@ -54,5 +59,21 @@
 }
 
 .bdropdown-option:hover {
-    outline: solid 1px;
+    /* outline: solid 1px; */
+    background-color: rgba(var(--text-color),0.15);
+}
+
+.delete-note {
+    color: red;
+    opacity: 0%;
+    margin-right: 0.25rem;
+}
+
+.bullet:hover .delete-note {
+    opacity: 15%;
+}
+
+.delete-note:hover {
+    opacity: 100% !important;
+    cursor: pointer;
 }
