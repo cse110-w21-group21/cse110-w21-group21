@@ -2,8 +2,8 @@
     position: absolute;
     float: right;
     top: 0;
-    right: 20px;
-    width: 320px;
+    right: 0px;
+    width: 340px;
 }
 
 .note {
@@ -13,6 +13,19 @@
     border-radius: 3px;
     box-shadow: 0 0 10px rgba(128, 128, 128, 0.3);
     float: left;
+}
+
+#random-meme {
+    margin: 1rem 0 0rem 1rem;
+    width: 300px;
+    float: left;
+}
+
+#random-meme img {
+    border: 1px solid rgba(0, 0, 0, .3);
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(128, 128, 128, 0.3);
+    object-fit: fill;
 }
   
 .note-red {

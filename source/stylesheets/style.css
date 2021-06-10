@@ -1,6 +1,7 @@
 :root {
   --sb-width: 15rem;
   --sb-collapsed-width: 4rem;
+  --text-color: 0,0,0;
 }
 
 * {
@@ -43,8 +44,8 @@ main {
 .sidebar i {
   display: block;
   width: 2rem;
-  color: black;
-  opacity: 60%;
+  /* color: black; */
+  /* opacity: 60%; */
   margin: 1rem;
 }
 
@@ -62,10 +63,57 @@ main {
   background-color: #f3f3f3;
 }
 
+/* LIGHT */
+body.light {
+  background-color: white;
+  color: black;
+  --text-color: 0,0,0;
+}
+
+.sidebar.light {
+  background-color: #ebebeb;
+}
+
+.sidebar.light a:hover {
+  background-color: lightgrey;
+}
+
+.sidebar.light .curr {
+  background-color: #f3f3f3;
+}
+
+.sidebar.light a {
+  color: black;
+}
+
+/* DARK */
+body.dark {
+  background-color: rgb(40, 40, 40);
+  color: rgb(220, 220, 220);
+  --text-color: 220,220,220;
+}
+
+.sidebar.dark {
+  background-color: rgb(30, 30, 30);
+}
+
+.sidebar.dark a:hover {
+  background-color: rgb(60, 60, 60);
+}
+
+.sidebar.dark .curr {
+  background-color: rgb(35, 35, 35);
+}
+
+.sidebar.dark a {
+  color: rgb(220,220,220);
+}
+
 /* BARCELONA */
 body.barcelona {
   background-color: #FDFFF7;
   color: #27282D;
+  --text-color: 39, 40, 45;
 }
 
 .sidebar.barcelona {
@@ -88,6 +136,7 @@ body.barcelona {
 body.blueHumans {
   background-color: #F8E4CC;
   color: #294052;
+  --text-color: 41, 64, 82;
 }
 
 .sidebar.blueHumans {
@@ -110,6 +159,7 @@ body.blueHumans {
 body.beach {
   background-color: #EECCAA;
   color: #886655;
+  --text-color: 136, 102, 85;
 }
 
 .sidebar.beach {
@@ -133,6 +183,7 @@ body.beach {
 body.raptorize {
   background-color: #C1BF95;
   color: #070A1E;
+  --text-color: 7, 10, 30;
 }
 
 .sidebar.raptorize {
@@ -156,6 +207,7 @@ body.raptorize {
 body.cthuluRises {
   background-color: #aabbaa;
   color: #553333;
+  --text-color: 85, 51, 51;
 }
 
 .sidebar.cthuluRises {
@@ -178,6 +230,7 @@ body.cthuluRises {
 body.boringVolcano {
   background-color: #bbcccc;
   color: #223333;
+  --text-color: 34, 51, 51;
 }
 
 .sidebar.boringVolcano {
@@ -200,6 +253,7 @@ body.boringVolcano {
 body.hackers {
   background-color: #000000;
   color: #05a300;
+  --text-color: 5, 163, 0;
 }
 
 .sidebar.hackers {
@@ -222,6 +276,7 @@ body.hackers {
 body.cityByNight {
   background-color: #ffdd99;
   color: #332244;
+  --text-color: 51, 34, 68;
 }
 
 .sidebar.cityByNight {
