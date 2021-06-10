@@ -132,7 +132,9 @@ function createDB(fromWeekly,myCallback) {
     // wait until notes are ready to be populated
     const transaction = e.target.transaction;
     transaction.oncomplete = function () {
-      addNoteDB(fromWeekly,myCallback);
+      if(!fromWeekly){
+        addNoteDB(fromWeekly,myCallback);
+      }
     };
 
     console.log(
@@ -142,7 +144,9 @@ function createDB(fromWeekly,myCallback) {
   // on success
   request.onsuccess = (e) => {
     db = e.target.result;
-    addNoteDB(fromWeekly,myCallback);
+    if(!fromWeekly){
+      addNoteDB(fromWeekly,myCallback);
+    }
     console.log(
       `success is called database name: ${db.name} version : ${db.version}`
     );

@@ -69,7 +69,8 @@ document.addEventListener("click", (e) => {
     e.target.className === "fc-next-button fc-button fc-button-primary" ||
     e.target.className === "fc-prev-button fc-button fc-button-primary" ||
     e.target.className === "fc-icon fc-icon-chevron-right" ||
-    e.target.className === "fc-icon fc-icon-chevron-left"
+    e.target.className === "fc-icon fc-icon-chevron-left" ||
+    e.target.className === "fc-today-button fc-button fc-button-primary"
   ) {
     document.getElementById("notelist").innerHTML = "Weekly Overview:";
     for (let i = 1; i < 8; i++) {
