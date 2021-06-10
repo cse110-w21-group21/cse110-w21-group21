@@ -94,6 +94,14 @@ button:hover{
   color: rgb(10, 161, 207);
 }
 
+#title, #editTitle{
+  width: 100%;
+}
+
+#description, #editDescription{
+  width: 100%;
+}
+
 [id*="escription"] {
   resize: none;
 }
