@@ -25,7 +25,7 @@ class BulletNote extends HTMLElement {
         <ul class="bdropdown"></ul>
         <input type="time" class="bullettime">
         <p class="textbox" contenteditable=true></p>
-        <div class="delete-note fas fa-trash fa-fw" onclick="this.parentElement.remove()"></div>
+        <div class="delete-note fas fa-trash fa-fw" onclick="deleteNote(this)"></div>
         `;
       let dropdown = this.querySelector(".bdropdown");
       dropdown.dataset.show = false;
@@ -69,6 +69,15 @@ function addNote() {
   newNote.dataset.important = false;
   noteList.appendChild(newNote);
   // newNote.getElementsByClassName("textbox")[0].focus();
+}
+
+window.deleteNote = function deleteNote(e) {
+  e.parentNode.remove();
+  if (
+    document.getElementById("notelist").innerHTML.indexOf("bullet") === -1
+  ) {
+    addNote();
+  }
 }
 
 /**
@@ -331,9 +340,8 @@ document.addEventListener("click", (e) => {
     const tx = db.transaction("personal_notes", "readwrite");
     const pNotes = tx.objectStore("personal_notes");
     const thisDay = new Date(calendar.currentData.viewTitle);
-    const date = `${thisDay.getFullYear()}-${
-      thisDay.getMonth() + 1
-    }-${thisDay.getDate()}`;
+    const date = `${thisDay.getFullYear()}-${thisDay.getMonth() + 1
+      }-${thisDay.getDate()}`;
     const request = pNotes.openCursor(date);
     request.onsuccess = function () {
       let cursor = e.target.result;
@@ -349,3 +357,5 @@ document.addEventListener("click", (e) => {
     };
   }
 });
+
+export { addNote };
