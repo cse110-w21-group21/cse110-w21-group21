@@ -325,6 +325,7 @@ document.addEventListener("click", (e) => {
     || e.target.className === "fc-prev-button fc-button fc-button-primary"
     || e.target.className === "fc-icon fc-icon-chevron-right"
     || e.target.className === "fc-icon fc-icon-chevron-left"
+    || e.target.className === "fc-today-button fc-button fc-button-primary"
   ) {
     const tx = db.transaction("personal_notes", "readwrite");
     const pNotes = tx.objectStore("personal_notes");
