@@ -13,7 +13,7 @@ Here is the link to [NinePlusTen Bullet Journal](https://cse110-w21-group21.gith
 
 ## Documentations
 - [Onboarding Doc](./docs/admin/onboarding.md), click on it to learn how to contribute to the BuJo App
-- [JSDoc: BulletNote](https://cse110-w21-group21.github.io/cse110-w21-group21/out/BulletNote.html)
+- [JSDoc](https://cse110-w21-group21.github.io/cse110-w21-group21/out/index.html)
 - [CI/CD Pipeline](./admin/cipipeline/phase1.md)
 
 ## Design
