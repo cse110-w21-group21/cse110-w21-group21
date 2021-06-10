@@ -72,7 +72,6 @@ function addNote() {
 }
 
 window.deleteNote = function deleteNote(e) {
-  console.log(e);
   e.parentNode.remove();
   if (
     document.getElementById("notelist").innerHTML.indexOf("bullet") === -1
