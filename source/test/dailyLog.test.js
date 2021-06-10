@@ -13,7 +13,7 @@ describe('Daily Log', () => {
       await page.waitForTimeout(500);
       await page.click('a[title="Daily Log"]');
       const url = await page.url();
-      expect(url).toBe('http://127.0.0.1:5500/source/dailyLog.html');
+      expect(url).toBe('http://localhost:5000/dailyLog');
     },
     timeout,
   );
@@ -39,7 +39,7 @@ describe('Daily Log', () => {
       await page.click('a[title="Weekly Log"]');
       await page.waitForTimeout(500);
       const url = await page.url();
-      expect(url).toBe('http://127.0.0.1:5500/source/weeklyLog.html');
+      expect(url).toBe('http://localhost:5000/weeklyLog');
     },
     timeout,
   );
@@ -50,7 +50,7 @@ describe('Daily Log', () => {
       await page.waitForSelector('a[title="Daily Log"]');
       await page.click('a[title="Daily Log"]');
       const url = await page.url();
-      expect(url).toBe('http://127.0.0.1:5500/source/dailyLog.html');
+      expect(url).toBe('http://localhost:5000/dailyLog');
     },
     timeout,
   );
@@ -89,7 +89,7 @@ describe('Daily Log', () => {
       await page.waitForSelector('a[title="Weekly Log"]');
       await page.click('a[title="Weekly Log"]');
       const url = await page.url();
-      expect(url).toBe('http://127.0.0.1:5500/source/weeklyLog.html');
+      expect(url).toBe('http://localhost:5000/weeklyLog');
     },
     timeout,
   );
@@ -100,7 +100,7 @@ describe('Daily Log', () => {
       await page.waitForSelector('a[title="Daily Log"]');
       await page.click('a[title="Daily Log"]');
       const url = await page.url();
-      expect(url).toBe('http://127.0.0.1:5500/source/dailyLog.html');
+      expect(url).toBe('http://localhost:5000/dailyLog');
     },
     timeout,
   );
@@ -218,7 +218,7 @@ describe('Daily Log', () => {
       await page.waitForSelector('a[title="Weekly Log"]');
       await page.click('a[title="Weekly Log"]');
       const url = await page.url();
-      expect(url).toBe('http://127.0.0.1:5500/source/weeklyLog.html');
+      expect(url).toBe('http://localhost:5000/weeklyLog');
     },
     timeout,
   );
@@ -229,7 +229,7 @@ describe('Daily Log', () => {
       await page.waitForSelector('a[title="Daily Log"]');
       await page.click('a[title="Daily Log"]');
       const url = await page.url();
-      expect(url).toBe('http://127.0.0.1:5500/source/dailyLog.html');
+      expect(url).toBe('http://localhost:5000/dailyLog');
     },
     timeout,
   );
