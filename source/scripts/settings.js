@@ -1,3 +1,6 @@
+/**
+ * select color scheme one
+ */
 document.getElementById("scheme-one").addEventListener("click", () => {
   document.body.classList.remove("blueHumans");
   document.body.classList.add("barcelona");
@@ -18,6 +21,9 @@ document.getElementById("scheme-one").addEventListener("click", () => {
   localStorage.setItem("theme", "barcelona");
 });
 
+/**
+ * select color scheme two
+ */
 document.getElementById("scheme-two").addEventListener("click", () => {
   document.body.classList.add("blueHumans");
   document.body.classList.remove("barcelona");
@@ -38,6 +44,9 @@ document.getElementById("scheme-two").addEventListener("click", () => {
   localStorage.setItem("theme", "blueHumans");
 });
 
+/**
+ * select color scheme three
+ */
 document.getElementById("scheme-three").addEventListener("click", () => {
   document.body.classList.remove("blueHumans");
   document.body.classList.remove("barcelona");
@@ -58,6 +67,9 @@ document.getElementById("scheme-three").addEventListener("click", () => {
   localStorage.setItem("theme", "beach");
 });
 
+/**
+ * select color scheme four
+ */
 document.getElementById("scheme-four").addEventListener("click", () => {
   document.body.classList.remove("blueHumans");
   document.body.classList.remove("barcelona");
@@ -78,6 +90,9 @@ document.getElementById("scheme-four").addEventListener("click", () => {
   localStorage.setItem("theme", "raptorize");
 });
 
+/**
+ * select color scheme five
+ */
 document.getElementById("scheme-five").addEventListener("click", () => {
   document.body.classList.remove("blueHumans");
   document.body.classList.remove("barcelona");
@@ -98,6 +113,9 @@ document.getElementById("scheme-five").addEventListener("click", () => {
   localStorage.setItem("theme", "cthuluRises");
 });
 
+/**
+ * select color scheme six
+ */
 document.getElementById("scheme-six").addEventListener("click", () => {
   document.body.classList.remove("blueHumans");
   document.body.classList.remove("barcelona");
@@ -118,6 +136,9 @@ document.getElementById("scheme-six").addEventListener("click", () => {
   localStorage.setItem("theme", "boringVolcano");
 });
 
+/**
+ * select color scheme seven
+ */
 document.getElementById("scheme-seven").addEventListener("click", () => {
   document.body.classList.remove("blueHumans");
   document.body.classList.remove("barcelona");
@@ -138,6 +159,9 @@ document.getElementById("scheme-seven").addEventListener("click", () => {
   localStorage.setItem("theme", "hackers");
 });
 
+/**
+ * select color scheme eight
+ */
 document.getElementById("scheme-eight").addEventListener("click", () => {
   document.body.classList.remove("blueHumans");
   document.body.classList.remove("barcelona");
