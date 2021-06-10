@@ -1,4 +1,7 @@
 /* eslint no-unused-vars: "off" */
+/* eslint no-continue: "off" */
+/* eslint no-alert: "off" */
+/* eslint func-names: "off" */
 
 let addNote = document.getElementById('note-add-btn');
 let mainNote = document.querySelectorAll('.note');
