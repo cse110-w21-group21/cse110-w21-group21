@@ -25,6 +25,7 @@ class BulletNote extends HTMLElement {
         <ul class="bdropdown"></ul>
         <input type="time" class="bullettime">
         <p class="textbox" contenteditable=true></p>
+        <div class="delete-note fas fa-trash fa-fw" onclick="this.parentElement.remove()"></div>
         `;
       let dropdown = this.querySelector(".bdropdown");
       dropdown.dataset.show = false;

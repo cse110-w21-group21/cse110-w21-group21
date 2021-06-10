@@ -50,3 +50,8 @@
     height: calc(100% - 2.5em);
     margin-top: 0.5em;
 }
+
+.stickyNotes {
+    height: calc(100vh - 16px);
+    overflow: auto;
+}
