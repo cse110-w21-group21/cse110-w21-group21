@@ -1,3 +1,4 @@
+/* eslint no-undef: "off" */
 const timeout = process.env.SLOWMO ? 30000 : 10000;
 
 beforeAll(async () => {
