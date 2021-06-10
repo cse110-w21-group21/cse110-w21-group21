@@ -17,6 +17,9 @@ let blueButton = document.querySelectorAll('#sticky-btn-blue');
 let purpleButton = document.querySelectorAll('#sticky-btn-purple');
 let deleteButton = document.querySelectorAll('#sticky-btn-delete')
 
+/**
+ * reloads the variables of the notepads
+ */
 function reloadVariables() {
     mainNote = document.querySelectorAll('.note');
     redButton = document.querySelectorAll('#sticky-btn-red');
@@ -28,6 +31,11 @@ function reloadVariables() {
     deleteButton = document.querySelectorAll('#sticky-btn-delete');
 }
 
+/**
+ * will change the notepad color of given notepad id
+ * @param {int} num 
+ * @param {String} color 
+ */
 let onClickColorBtn = function (num, color) {
     mainNote[num].className = 'note note-' + color;
     let noteColors = localStorage.getItem('notepadColors');
@@ -42,6 +50,10 @@ let onClickColorBtn = function (num, color) {
 
 let handlers = new Map();
 
+/**
+ * will add event listeners for the color icons of a notepad of specified id
+ * @param {int} i 
+ */
 function addEventListenerColorBtn(i) {
 
     let wrapAddRedBtn = onClickColorBtn.bind(null, i, 'red');
@@ -61,6 +73,10 @@ function addEventListenerColorBtn(i) {
     purpleButton[i].addEventListener('click', wrapAddPurpleBtn, false);
 }
 
+/**
+ * will remove the color event listeners of a given notepad id
+ * @param {int} i 
+ */
 function removeEventListenerColorBtn(i) {
     redButton[i].removeEventListener('click', handlers.get(i)[0], false);
     orangeButton[i].removeEventListener('click', handlers.get(i)[1], false);
@@ -71,6 +87,10 @@ function removeEventListenerColorBtn(i) {
     handlers.delete(i);
 }
 
+/**
+ * will add event listeners for the delete buttons on a notepad of specified id
+ * @param {int} i 
+ */
 function addEventListenerDeleteBtn(i) {
     
     deleteButton[i].addEventListener('click', function() {
@@ -142,6 +162,9 @@ function addEventListenerDeleteBtn(i) {
     });
 }
 
+/**
+ * adds a notepad when user clicks add note
+ */
 addNote.addEventListener('click', function() {
     let cloneMainNote = mainNote[numberOfStickies].cloneNode(true);
     let randomColor = colorList[Math.floor(Math.random() * colorList.length)];
@@ -165,6 +188,9 @@ addNote.addEventListener('click', function() {
 addEventListenerColorBtn(0);
 addEventListenerDeleteBtn(0);
 
+/**
+ * saves the header data upon key down of user in notepad header
+ */
 function saveHeader() {
     let noteHeaders = [];
     for(let i = 0; i < mainNote.length; i += 1) {
@@ -173,6 +199,9 @@ function saveHeader() {
     localStorage.setItem('notepadHeaders', JSON.stringify(noteHeaders));
 };
 
+/**
+ * saves the body data upon key down of user in notepad body
+ */
 function saveBody() {
     let noteBody = [];
     for(let i = 0; i < mainNote.length; i += 1) {
@@ -181,6 +210,9 @@ function saveBody() {
     localStorage.setItem('notepadBodies', JSON.stringify(noteBody));
 };
 
+/**
+ * onloading of the page will render the notepads from the stored data in localstorage
+ */
 document.addEventListener('DOMContentLoaded', function(event) {
     let notepadHeaders = localStorage.getItem('notepadHeaders');
     let notepadBodies = localStorage.getItem('notepadBodies');
@@ -213,6 +245,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
             addEventListenerDeleteBtn(numberOfStickies);
         }
     }
+    //render notepad bodies from localstorage data
     if(notepadBodies !== null) {
         notepadBodies = JSON.parse(notepadBodies);
         for(let j = 0; j < notepadBodies.length; j+= 1) {
