@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: "off" */
+
 let addNote = document.getElementById('note-add-btn');
 let mainNote = document.querySelectorAll('.note');
 let noteContainer = document.getElementById('sticky-note-container');
@@ -25,7 +27,7 @@ function reloadVariables() {
 
 let onClickColorBtn = function (num, color) {
     mainNote[num].className = 'note note-' + color;
-    noteColors = localStorage.getItem('notepadColors');
+    let noteColors = localStorage.getItem('notepadColors');
     if(noteColors != null) {
         noteColors = JSON.parse(noteColors);
         if(noteColors[num]) {
@@ -162,7 +164,7 @@ addEventListenerDeleteBtn(0);
 
 function saveHeader() {
     let noteHeaders = [];
-    for(let i = 0; i < mainNote.length; i++) {
+    for(let i = 0; i < mainNote.length; i += 1) {
         noteHeaders.push(mainNote[i].querySelector('input').value);
     }
     localStorage.setItem('notepadHeaders', JSON.stringify(noteHeaders));
@@ -170,7 +172,7 @@ function saveHeader() {
 
 function saveBody() {
     let noteBody = [];
-    for(let i = 0; i < mainNote.length; i++) {
+    for(let i = 0; i < mainNote.length; i += 1) {
     noteBody.push(mainNote[i].querySelector('textarea').value);
     }
     localStorage.setItem('notepadBodies', JSON.stringify(noteBody));
@@ -191,14 +193,13 @@ document.addEventListener('DOMContentLoaded', function(event) {
             notepadColors.splice(notepadHeaders.length, notepadColors.length - notepadHeaders.length);
             localStorage.setItem('notepadColors', JSON.stringify(notepadColors));
         }
-        for(let i = 0; i < notepadHeaders.length; i++) {
+        for(let i = 0; i < notepadHeaders.length; i+= 1) {
             if(i === 0) {
                 mainNote[i].querySelector('input').value = notepadHeaders[i];
                 mainNote[i].className = 'note note-' + notepadColors[i];
                 continue;
             }
             let cloneMainNote = mainNote[numberOfStickies].cloneNode(true);
-            let randomColor = colorList[Math.floor(Math.random() * colorList.length)];
             cloneMainNote.querySelectorAll('input')[0].value = notepadHeaders[i];
             cloneMainNote.querySelectorAll('textarea')[0].value = '';
             cloneMainNote.className = 'note note-' + notepadColors[i]; 
@@ -211,10 +212,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
     }
     if(notepadBodies !== null) {
         notepadBodies = JSON.parse(notepadBodies);
-        let i = 0;
-        for(let j = 0; j < notepadBodies.length; j++) {
-            mainNote[i].querySelector('textarea').value = notepadBodies[j];
-            i++;
+        for(let j = 0; j < notepadBodies.length; j+= 1) {
+            mainNote[j].querySelector('textarea').value = notepadBodies[j];
         }
     }
 });
