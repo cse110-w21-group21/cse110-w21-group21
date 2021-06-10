@@ -44,7 +44,7 @@ window.onload = () => {
  */
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
-    document.getElementById("notelist").innerHTML = "Weekly Overview:";
+    // document.getElementById("notelist").innerHTML = "Weekly Overview:";
     for (let i = 1; i < 8; i++) {
       // thisDay is one day before the start of the week, thus the loop starts at 1
       let thisDay = new Date(
