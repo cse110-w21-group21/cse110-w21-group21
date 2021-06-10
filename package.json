@@ -38,6 +38,7 @@
   "dependencies": {
     "jest": "^27.0.4",
     "jest-puppeteer": "^5.0.4",
-    "puppeteer": "^10.0.0"
+    "puppeteer": "^10.0.0",
+    "serve-handler": "^6.1.3"
   }
 }

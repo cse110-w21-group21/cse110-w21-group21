@@ -28,6 +28,15 @@ jobs:
 
       - name: "ESlint"
         run: npm run lint
+      
+      - name: "E2E + Unit Tests Server"
+        run: npx serve source &
+
+      - name: "E2E + Unit Tests Execution"
+        run: npm run test allTest
+
+      - name: "E2E + Unit Tests Terminate Server"
+        run: killall -9 node
 
       - name: pull-request
         uses: repo-sync/pull-request@v2

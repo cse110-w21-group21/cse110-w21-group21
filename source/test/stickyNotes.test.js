@@ -13,7 +13,7 @@ describe('Test Sticky Notes Functionalities', () => {
           await page.waitForTimeout(500);
           await page.click('a[title="Daily Log"]');
           const url = await page.url();
-          expect(url).toBe('http://127.0.0.1:5500/source/dailyLog.html');
+          expect(url).toBe('http://localhost:5000/dailyLog');
         },
         timeout,
     );
@@ -78,7 +78,7 @@ describe('Test Sticky Notes Functionalities', () => {
           await page.waitForTimeout(500);
           await page.click('a[title="Settings"]');
           const url = await page.url();
-          expect(url).toBe('http://127.0.0.1:5500/source/settings.html');
+          expect(url).toBe('http://localhost:5000/settings');
         },
         timeout,
     );
