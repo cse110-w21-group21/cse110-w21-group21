@@ -42,7 +42,13 @@ if (currentThemeScript === "blueHumans") {
 } else if (currentThemeScript === "barcelona") {
   document.body.classList.toggle("barcelona");
   document.getElementById("sidebar").classList.toggle("barcelona");
+} else if (currentThemeScript === "light") {
+  document.body.classList.toggle("light");
+  document.getElementById("sidebar").classList.toggle("light");
+} else if (currentThemeScript === "dark") {
+  document.body.classList.toggle("dark");
+  document.getElementById("sidebar").classList.toggle("dark");
 } else {
-  document.body.classList.toggle("barcelona");
-  document.getElementById("sidebar").classList.toggle("barcelona");
+  document.body.classList.toggle("light");
+  document.getElementById("sidebar").classList.toggle("light");
 }

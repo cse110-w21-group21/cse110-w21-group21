@@ -25,6 +25,130 @@
     clear: both;
 }
 
+.flex-container.Light {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
+    height: 40px;
+    width: 200px;
+    border: 1px solid #000000;
+}
+
+.Light .flex-item:nth-child(1) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 40px;
+    height: 38px;
+    background: black;
+    color: black;
+}
+
+.Light .flex-item:nth-child(2) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 40px;
+    height: 38px;
+    background-color: #ebebeb;
+    color: #ebebeb;
+}
+
+.Light .flex-item:nth-child(3) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 40px;
+    height: 38px;
+    background-color: lightgrey;
+    color: lightgrey;
+}
+
+.Light .flex-item:nth-child(4) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 40px;
+    height: 38px;
+    background-color: #f3f3f3;
+    color: #f3f3f3;
+}
+
+.Light .flex-item:nth-child(5) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 40px;
+    height: 38px;
+    background-color: white;
+    color: white;
+}
+
+.flex-container.Dark {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
+    height: 40px;
+    width: 200px;
+    border: 1px solid #000000;
+}
+
+.Dark .flex-item:nth-child(1) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 40px;
+    height: 38px;
+    background: rgb(220, 220, 220);
+    color: rgb(220, 220, 220);
+}
+
+.Dark .flex-item:nth-child(2) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 40px;
+    height: 38px;
+    background-color: rgb(30, 30, 30);
+    color: rgb(30, 30, 30);
+}
+
+.Dark .flex-item:nth-child(3) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 40px;
+    height: 38px;
+    background-color: rgb(60, 60, 60);
+    color: rgb(60, 60, 60);
+}
+
+.Dark .flex-item:nth-child(4) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 40px;
+    height: 38px;
+    background-color: rgb(35, 35, 35);
+    color: rgb(35, 35, 35);
+}
+
+.Dark .flex-item:nth-child(5) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 40px;
+    height: 38px;
+    background-color: rgb(40, 40, 40);
+    color: rgb(40, 40, 40);
+}
+
 .flex-container.Barcelona {
     display: flex;
     flex-direction: row;

@@ -38,10 +38,14 @@
 .bdropdown {
     list-style: none;
     padding: 0px;
-    background-color:gray;
+    /* background-color:gray; */
     position: absolute;
     left: -2em;
+    top: 0.2em;
     display: none;
+    border: 1px solid;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 .bdropdown[data-show="true"] {
@@ -55,7 +59,8 @@
 }
 
 .bdropdown-option:hover {
-    outline: solid 1px;
+    /* outline: solid 1px; */
+    background-color: rgba(var(--text-color),0.15);
 }
 
 .delete-note {

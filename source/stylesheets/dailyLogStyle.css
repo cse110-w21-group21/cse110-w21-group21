@@ -13,11 +13,11 @@
 
 #calendar {
     padding-bottom: 1em;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(var(--text-color), 0.1);
     resize: vertical;
     overflow: auto;
     height: 50%;
-    min-height: 10vh;
+    min-height: 15vh;
 }
 
 .formatbtn {
@@ -41,7 +41,7 @@
     margin-top: 0.5em;
     /* margin-bottom: 1em; */
     flex: 1;
-    min-height: 10vh;
+    min-height: 15vh;
     /* overflow: auto; */
 }
 

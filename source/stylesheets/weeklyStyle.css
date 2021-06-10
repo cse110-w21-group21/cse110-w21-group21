@@ -24,3 +24,10 @@
   right: 0;
 }
 
+.bicon:hover {
+  cursor: auto;
+}
+
+.delete-note {
+  display: none !important;
+}
