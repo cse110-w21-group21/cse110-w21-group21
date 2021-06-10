@@ -5,6 +5,7 @@ beforeAll(async () => {
 });
 
 describe('Calendar', () => {
+  //good
     test(
       'Go to Calendar',
       async () => {
@@ -17,30 +18,32 @@ describe('Calendar', () => {
       timeout,
     );
 
-    
+    //need to find out how to click a day
     test(
         'Clicking on a day brings us to the daily log page',
         async () => {
-            //select a day
-            await page.waitForSelector('a[title="Calendar View"]');
+            //selects day and will pull up the daily log page
+            await page.waitForSelector('.fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other');
             await page.waitForTimeout(500);
-            //click on the day
+            await page.click('.fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other');
+            expect(url).toBe('http://127.0.0.1:5500/source/dailyLog.html');
+
+        },
+        timeout,
+      );
+      //click button
+      test(
+        'Clicking the today button brings us to today\'s event page',
+        async () => {
+            //show expected date variable is the date displayed
             await page.click('a[title="Calendar View"]');
             const url = await page.url();
             expect(url).toBe('http://127.0.0.1:5500/source/dailyLog.html');
+            
         },
         timeout,
       );
-
-      test(
-        'Make sure that we are on the correct day',
-        async () => {
-            //show expected date variable is the date displayed
-            const url = await page.url();
-            expect(url).toBe('http://127.0.0.1:5500/source/dailyLog.html');
-        },
-        timeout,
-      );
+      //all good
       test(
         'Clicking on Calendar View still brings us back to calendar page',
         async () => {
@@ -54,7 +57,7 @@ describe('Calendar', () => {
         },
         timeout,
       );
-
+      //click button, enter data
       test(
         'Creating event makes an event',
         async () => {
@@ -63,7 +66,7 @@ describe('Calendar', () => {
         },
         timeout,
       );
-
+      //click on event and it should pull up a form
       test(
         'Clicking an event opens up the event description',
         async () => {
@@ -72,7 +75,7 @@ describe('Calendar', () => {
         },
         timeout,
       )
-
+      //click delete button, check if event exists
       test(
           'Clicking delete deletes the event',
           async () => {
@@ -81,7 +84,7 @@ describe('Calendar', () => {
         },
         timeout,
       )
-
+      //click button, enter data and checkmark box
       test(
           'Check for single day event creation',
           async () => {
@@ -90,15 +93,16 @@ describe('Calendar', () => {
         },
         timeout,
       )
-
+      //click event, delete it
       test(
-        'Check for single day edit event creation',
+        'Check for single day edit event deletion',
         async () => {
-          //edit a single day event creation
+          //edit a single day event deletion
           expect(true).toBe(true);
       },
       timeout,
     )
+      //click event creation, put in bad data, should return an alert
       test(
           'Check for creating a bad event',
           async () => {
@@ -107,6 +111,4 @@ describe('Calendar', () => {
         },
         timeout,
       )
-
-
 });
