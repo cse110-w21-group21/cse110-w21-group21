@@ -1,3 +1,8 @@
+/* eslint no-unused-vars: "off" */
+/* eslint no-continue: "off" */
+/* eslint no-alert: "off" */
+/* eslint func-names: "off" */
+
 let addNote = document.getElementById('note-add-btn');
 let mainNote = document.querySelectorAll('.note');
 let noteContainer = document.getElementById('sticky-note-container');
@@ -25,6 +30,14 @@ function reloadVariables() {
 
 let onClickColorBtn = function (num, color) {
     mainNote[num].className = 'note note-' + color;
+    let noteColors = localStorage.getItem('notepadColors');
+    if(noteColors != null) {
+        noteColors = JSON.parse(noteColors);
+        if(noteColors[num]) {
+            noteColors[num] = color;
+            localStorage.setItem('notepadColors', JSON.stringify(noteColors));
+        }
+    }
 }
 
 let handlers = new Map();
@@ -70,10 +83,57 @@ function addEventListenerDeleteBtn(i) {
                 removeEventListenerColorBtn(j);
             }
             // remove sticky
-            mainNote[i].remove();
-            numberOfStickies = numberOfStickies - 1;
-            // reload variables
-            reloadVariables();
+            if(mainNote[i] === undefined) {
+                mainNote[i-1].remove();
+                numberOfStickies = numberOfStickies - 1;
+                // reload variables
+                reloadVariables();
+                let notepadHeaders = localStorage.getItem('notepadHeaders');
+                let notepadBodies = localStorage.getItem('notepadBodies');
+                let notepadColors = localStorage.getItem('notepadColors');
+                if(notepadHeaders != null) {
+                    notepadHeaders = JSON.parse(notepadHeaders);
+                    if(notepadHeaders[i-1] != null) {
+                        notepadHeaders.splice(i-1,1);
+                        localStorage.setItem('notepadHeaders', JSON.stringify(notepadHeaders));
+                    }
+                    notepadBodies = JSON.parse(notepadBodies);
+                    if(notepadBodies[i-1] != null) {
+                        notepadBodies.splice(i-1,1);
+                        localStorage.setItem('notepadBodies', JSON.stringify(notepadBodies));
+                    }
+                    notepadColors = JSON.parse(notepadColors);
+                    if(notepadColors[i-1]) {
+                        notepadColors.splice(i-1,1);
+                        localStorage.setItem('notepadColors', JSON.stringify(notepadColors));
+                    }
+                }
+            } else {
+                mainNote[i].remove();
+                numberOfStickies = numberOfStickies - 1;
+                // reload variables
+                reloadVariables();
+                let notepadHeaders = localStorage.getItem('notepadHeaders');
+                let notepadBodies = localStorage.getItem('notepadBodies');
+                let notepadColors = localStorage.getItem('notepadColors');
+                if(notepadHeaders != null) {
+                    notepadHeaders = JSON.parse(notepadHeaders);
+                    if(notepadHeaders[i] != null) {
+                        notepadHeaders.splice(i,1);
+                        localStorage.setItem('notepadHeaders', JSON.stringify(notepadHeaders));
+                    }
+                    notepadBodies = JSON.parse(notepadBodies);
+                    if(notepadBodies[i] != null) {
+                        notepadBodies.splice(i,1);
+                        localStorage.setItem('notepadBodies', JSON.stringify(notepadBodies));
+                    }
+                    notepadColors = JSON.parse(notepadColors);
+                    if(notepadColors[i]) {
+                        notepadColors.splice(i,1);
+                        localStorage.setItem('notepadColors', JSON.stringify(notepadColors));
+                    }
+                }
+            }
             // add color button listeners for the rest of page
             for (j = 0; j <= numberOfStickies; j = j + 1) {
                 addEventListenerColorBtn(j);
@@ -88,6 +148,12 @@ addNote.addEventListener('click', function() {
     cloneMainNote.querySelectorAll('input')[0].value = '';
     cloneMainNote.querySelectorAll('textarea')[0].value = '';
     cloneMainNote.className = 'note note-' + randomColor; 
+
+    let noteColors = localStorage.getItem('notepadColors');
+    noteColors = JSON.parse(noteColors);
+    noteColors.push(randomColor);
+    localStorage.setItem('notepadColors', JSON.stringify(noteColors));
+
     noteContainer.appendChild(cloneMainNote);
     reloadVariables();
     numberOfStickies = numberOfStickies + 1;
@@ -98,3 +164,59 @@ addNote.addEventListener('click', function() {
 // setting up the first note on the page
 addEventListenerColorBtn(0);
 addEventListenerDeleteBtn(0);
+
+function saveHeader() {
+    let noteHeaders = [];
+    for(let i = 0; i < mainNote.length; i += 1) {
+        noteHeaders.push(mainNote[i].querySelector('input').value);
+    }
+    localStorage.setItem('notepadHeaders', JSON.stringify(noteHeaders));
+};
+
+function saveBody() {
+    let noteBody = [];
+    for(let i = 0; i < mainNote.length; i += 1) {
+    noteBody.push(mainNote[i].querySelector('textarea').value);
+    }
+    localStorage.setItem('notepadBodies', JSON.stringify(noteBody));
+};
+
+document.addEventListener('DOMContentLoaded', function(event) {
+    let notepadHeaders = localStorage.getItem('notepadHeaders');
+    let notepadBodies = localStorage.getItem('notepadBodies');
+    let notepadColors = localStorage.getItem('notepadColors');
+    if(notepadColors === null) {
+        localStorage.setItem('notepadColors', JSON.stringify(['red']));
+    }
+    notepadColors = JSON.parse(notepadColors);
+
+    if(notepadHeaders !== null) {
+        notepadHeaders = JSON.parse(notepadHeaders);
+        if(notepadColors.length > notepadHeaders.length) {
+            notepadColors.splice(notepadHeaders.length, notepadColors.length - notepadHeaders.length);
+            localStorage.setItem('notepadColors', JSON.stringify(notepadColors));
+        }
+        for(let i = 0; i < notepadHeaders.length; i+= 1) {
+            if(i === 0) {
+                mainNote[i].querySelector('input').value = notepadHeaders[i];
+                mainNote[i].className = 'note note-' + notepadColors[i];
+                continue;
+            }
+            let cloneMainNote = mainNote[numberOfStickies].cloneNode(true);
+            cloneMainNote.querySelectorAll('input')[0].value = notepadHeaders[i];
+            cloneMainNote.querySelectorAll('textarea')[0].value = '';
+            cloneMainNote.className = 'note note-' + notepadColors[i]; 
+            noteContainer.appendChild(cloneMainNote);
+            reloadVariables();
+            numberOfStickies = numberOfStickies + 1;
+            addEventListenerColorBtn(numberOfStickies);
+            addEventListenerDeleteBtn(numberOfStickies);
+        }
+    }
+    if(notepadBodies !== null) {
+        notepadBodies = JSON.parse(notepadBodies);
+        for(let j = 0; j < notepadBodies.length; j+= 1) {
+            mainNote[j].querySelector('textarea').value = notepadBodies[j];
+        }
+    }
+});
