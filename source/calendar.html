@@ -1,68 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NinePlusTen</title>
-    <link rel="stylesheet" href="stylesheets/style.css" />
-    <link rel="stylesheet" href="stylesheets/calendarView.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.css" />
-    <script src="scripts/script.js" defer></script>
-    <script src="scripts/calendar.js" defer></script>
-    <script src="scripts/calendarView.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.js"></script>
-    <!-- Icons sourced from https://fontawesome.com/ -->
-    <script
-      src="https://kit.fontawesome.com/71f9f41756.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
 
-  <body>
-    <!--
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NinePlusTen</title>
+  <link rel="stylesheet" href="stylesheets/style.css" />
+  <link rel="stylesheet" href="stylesheets/calendarView.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.css" />
+  <script src="scripts/script.js" defer></script>
+  <script src="scripts/calendar.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.js"></script>
+  <!-- Icons sourced from https://fontawesome.com/ -->
+  <script src="https://kit.fontawesome.com/71f9f41756.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!--
         This nav block defines the sidebar and should be included on every page.
         Dependencies are style.css, script.js, and the fontawesome script.
         Add <class="curr"> to the <a> element corresponding to the current page.
     -->
-    <nav>
-      <div class="sidebar" id="sidebar">
-        <a href="javascript:void(0)" id="menubutton" class="menubutton">
-          <span></span>
-          <i class="fas fa-bars fa-fw fa-2x"></i>
-        </a>
-        <a href="./calendar.html" title="Calendar View" class="curr">
-          <span>Calendar View</span>
-          <i class="far fa-calendar-alt fa-fw fa-lg"></i>
-        </a>
-        <a href="./weeklyLog.html" title="Weekly Log">
-          <span>Weekly Log</span>
-          <i class="fas fa-edit fa-fw fa-lg"></i>
-        </a>
-        <a href="./dailyLog.html" title="Daily Log">
-          <span>Daily Log</span>
-          <i class="fas fa-thumbtack fa-fw fa-lg"></i>
-        </a>
-        <a href="./settings.html" title="Settings" class="settingsbutton">
-          <span>Settings</span>
-          <i class="fas fa-tools fa-fw fa-lg"></i>
-        </a>
-      </div>
-    </nav>
+  <nav>
+    <div class="sidebar" id="sidebar">
+      <a href="javascript:void(0)" id="menubutton" class="menubutton">
+        <span></span>
+        <i class="fas fa-bars fa-fw fa-2x"></i>
+      </a>
+      <a href="./calendar.html" title="Calendar View" class="curr">
+        <span>Calendar View</span>
+        <i class="far fa-calendar-alt fa-fw fa-lg"></i>
+      </a>
+      <a href="./weeklyLog.html" title="Weekly Log">
+        <span>Weekly Log</span>
+        <i class="fas fa-edit fa-fw fa-lg"></i>
+      </a>
+      <a href="./dailyLog.html" title="Daily Log">
+        <span>Daily Log</span>
+        <i class="fas fa-thumbtack fa-fw fa-lg"></i>
+      </a>
+      <a href="./settings.html" title="Settings" class="settingsbutton">
+        <span>Settings</span>
+        <i class="fas fa-tools fa-fw fa-lg"></i>
+      </a>
+    </div>
+  </nav>
 
-    <main>
-        <div class="calendar" id='calendar'></div>
+  <main>
+    <div class="calendar" id='calendar'></div>
+
+    <div id="popupCreateEventForm">
+      <div id="popboxCreateEventForm">
         <form id="createEventForm">
-            <label for="title">Title of Event</label>
-            <input id="title" name="title" type="text">
-            <label for="start">Start Date</label>
-            <input id="start" name="start" type="date">
-            <label for="end">End Date</label>
-            <input type="date" name="end" id="end">
-            <label for="colorSelect">Color Selection</label>
-            <input type="color" id="colorSelect" name="colorSelect">
-            <button type="submit">Create Event</button>
+          <span id="createFormHeader" class="formHeader"><b>Create an Entry</b></span><br>
+          <span id="createFormSubheader" class="formSubheader">Fill out the form below to create a new entry</span><br>
+          <label for="title">Title</label>
+          <input id="title" name="title" type="text" placeholder="Title">
+          <label for="colorSelect">Color Selection</label>
+          <input type="color" id="colorSelect" name="colorSelect"><br>
+          <label for="start">Start Date</label>
+          <input id="start" name="start" type="date"><br>
+          <label for="end">End Date</label>
+          <input type="date" name="end" id="end"><br>
+          <label for="isDayEvent">Single Day Event</label>
+          <input type="checkbox" name="isDayEvent" id="isDayEvent"><br>
+          <div id="timeDIV" style="display: none;">
+            <label for="startTime">Start Time</label>
+            <input type="time" name="startTime" id="startTime"><br>
+            <label for="endTime">End Time</label>
+            <input type="time" name="endTime" id="endTime">
+          </div>
+          <label for="description">Details</label><br>
+          <textarea name="description" id="description" cols="40" rows="10" placeholder="Event Description"></textarea><br>
+          <button type="submit">Submit</button>
         </form>
-    </main>
-  </body>
+        <div id="popCloseCreateForm">&#9746;</div>
+      </div>
+    </div>
+
+    <div id="popupEditEventForm">
+      <div id="popboxEditEventForm">
+        <form id="editEventForm">
+          <span id="editFormHeader" class="formHeader">Edit an Entry</span><br>
+          <span id="editFormSubheader" class="formSubheader">Edit the form to modify your entry</span><br>
+          <label for="editTitle">Title</label>
+          <label for="editColorSelect">Color Selection</label><br>
+          <input id="editTitle" name="title" type="text" placeholder="Title">
+          <input type="color" id="editColorSelect" name="colorSelect"><br>
+          <label for="editStart">Start Date</label>
+          <input id="editStart" name="start" type="date"><br>
+          <label for="editEnd">End Date</label>
+          <input type="date" name="end" id="editEnd"><br>
+          <div id="editTimeDIV" style="display: none;">
+            <label for="editStartTime">Start Time</label>
+            <input type="time" name="editStartTime" id="editStartTime"><br>
+            <label for="editEndTime">End Time</label>
+            <input type="time" name="editEndTime" id="editEndTime">
+          </div>
+          <label for="editDescription">Details</label><br>
+          <textarea name="description" id="editDescription" cols="40" rows="10" placeholder="Event Description"></textarea><br>
+          <button type="submit">Submit</button>
+          <button id="deleteEvent">Delete</button>
+        </form>
+        <div id="popCloseEditForm">&#9746;</div>
+      </div>
+    </div>
+    
+  </main>
+</body>
+
 </html>
