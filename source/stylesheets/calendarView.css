@@ -54,7 +54,6 @@
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.2s;
-  
 }
 
 #popupEditEventForm.open {
@@ -85,10 +84,10 @@
   padding: 5px;
 }
 
-#formHeader{
+.formHeader{
   font-size: 30px;
 }
-#formSubheader{
+.formSubheader{
   font-size: 12px;
 }
 button:hover{

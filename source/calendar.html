@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.css" />
   <script src="scripts/script.js" defer></script>
   <script src="scripts/calendar.js" defer></script>
-  <script src="scripts/calendarView.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.js"></script>
   <!-- Icons sourced from https://fontawesome.com/ -->
   <script src="https://kit.fontawesome.com/71f9f41756.js" crossorigin="anonymous"></script>
@@ -54,16 +53,24 @@
     <div id="popupCreateEventForm">
       <div id="popboxCreateEventForm">
         <form id="createEventForm">
-          <span id="formHeader"><b>Create an Entry</b></span><br>
-          <span id="formSubheader">Fill out the form below to create a new entry</span><br>
+          <span id="createFormHeader" class="formHeader"><b>Create an Entry</b></span><br>
+          <span id="createFormSubheader" class="formSubheader">Fill out the form below to create a new entry</span><br>
           <label for="title">Title</label>
           <input id="title" name="title" type="text" placeholder="Title">
           <label for="colorSelect">Color Selection</label>
           <input type="color" id="colorSelect" name="colorSelect"><br>
           <label for="start">Start Date</label>
-          <input id="start" name="start" type="date">
+          <input id="start" name="start" type="date"><br>
           <label for="end">End Date</label>
           <input type="date" name="end" id="end"><br>
+          <label for="isDayEvent">Single Day Event</label>
+          <input type="checkbox" name="isDayEvent" id="isDayEvent"><br>
+          <div id="timeDIV" style="display: none;">
+            <label for="startTime">Start Time</label>
+            <input type="time" name="startTime" id="startTime"><br>
+            <label for="endTime">End Time</label>
+            <input type="time" name="endTime" id="endTime">
+          </div>
           <label for="description">Details</label><br>
           <textarea name="description" id="description" cols="60" rows="10" placeholder="Event Description"></textarea><br>
           <button type="submit">Submit</button>
@@ -85,8 +92,14 @@
           <input id="editStart" name="start" type="date">
           <label for="editEnd">End Date</label>
           <input type="date" name="end" id="editEnd"><br>
+          <div id="editTimeDIV" style="display: none;">
+            <label for="editStartTime">Start Time</label>
+            <input type="time" name="editStartTime" id="editStartTime"><br>
+            <label for="editEndTime">End Time</label>
+            <input type="time" name="editEndTime" id="editEndTime">
+          </div>
           <label for="editDescription">Details</label><br>
-          <textarea name="description" id="editDescription" cols="60" rows="10" placeholder="Event Description"></textarea><br>
+          <textarea name="description" id="editDescription" cols="40" rows="10" placeholder="Event Description"></textarea><br>
           <button type="submit">Submit</button>
           <button id="deleteEvent">Delete</button>
         </form>
@@ -94,127 +107,6 @@
       </div>
     </div>
     
-
-    <svg xmlns="http://www.w3.org/2000/svg" width="1132" height="548" viewBox="0 0 1132 548">
-      <g id="Group_602" data-name="Group 602" transform="translate(-295 -870)">
-        <g id="Rectangle_256" data-name="Rectangle 256" transform="translate(295 870)" fill="#f8f8f9" stroke="#d9d9da"
-          stroke-width="1">
-          <path d="M4,0H1132a0,0,0,0,1,0,0V75a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V4A4,4,0,0,1,4,0Z" stroke="none" />
-          <path d="M4,.5H1131a.5.5,0,0,1,.5.5V74a.5.5,0,0,1-.5.5H1A.5.5,0,0,1,.5,74V4A3.5,3.5,0,0,1,4,.5Z"
-            fill="none" />
-        </g>
-        <text id="Create_Edit_an_Entry" data-name="Create/Edit an Entry" transform="translate(317 901)" font-size="18"
-          font-family="Helvetica-Bold, Helvetica" font-weight="700">
-          <tspan x="0" y="0">Create/Edit an Entry</tspan>
-        </text>
-        <text id="Fill_out_the_form_below_to_create_a_new_entry"
-          data-name="Fill out the form below to create a new entry" transform="translate(317 923)" font-size="14"
-          font-family="Helvetica">
-          <tspan x="0" y="0">Fill out the form below to create a new entry</tspan>
-        </text>
-        <g id="Rectangle_257" data-name="Rectangle 257" transform="translate(295 944)" fill="#fff" stroke="#d9d9da"
-          stroke-width="1">
-          <rect width="1132" height="474" stroke="none" />
-          <rect x="0.5" y="0.5" width="1131" height="473" fill="none" />
-        </g>
-        <g id="button.primary" transform="translate(318.5 1332.685)">
-          <rect id="Rectangle_451" data-name="Rectangle 451" width="92" height="38" rx="4" fill="#2185d0" />
-          <text id="Submit" transform="translate(46 23)" fill="#fff" font-size="14"
-            font-family="Helvetica-Bold, Helvetica" font-weight="700">
-            <tspan x="-23.721" y="0">Submit</tspan>
-          </text>
-        </g>
-        <g id="form.input" transform="translate(311 957)">
-          <text id="Title" transform="translate(2 10)" fill="rgba(51,51,51,0.87)" font-size="13"
-            font-family="Helvetica-Bold, Helvetica" font-weight="700">
-            <tspan x="0" y="0">Title</tspan>
-          </text>
-          <g id="Rectangle_315" data-name="Rectangle 315" transform="translate(0 19)" fill="#fff" stroke="#dededf"
-            stroke-width="1">
-            <rect width="393" height="38" rx="4" stroke="none" />
-            <rect x="0.5" y="0.5" width="392" height="37" rx="3.5" fill="none" />
-          </g>
-          <text id="Title-2" data-name="Title" transform="translate(17 43)" fill="#b5b5b5" font-size="14"
-            font-family="Helvetica">
-            <tspan x="0" y="0">Title</tspan>
-          </text>
-        </g>
-        <g id="form.input-2" data-name="form.input" transform="translate(719 957)">
-          <text id="Description" transform="translate(2 10)" fill="rgba(51,51,51,0.87)" font-size="13"
-            font-family="Helvetica-Bold, Helvetica" font-weight="700">
-            <tspan x="0" y="0">Description</tspan>
-          </text>
-          <g id="Rectangle_315-2" data-name="Rectangle 315" transform="translate(0 19)" fill="#fff" stroke="#dededf"
-            stroke-width="1">
-            <rect width="393" height="38" rx="4" stroke="none" />
-            <rect x="0.5" y="0.5" width="392" height="37" rx="3.5" fill="none" />
-          </g>
-          <text id="Description-2" data-name="Description" transform="translate(17 43)" fill="#b5b5b5" font-size="14"
-            font-family="Helvetica">
-            <tspan x="0" y="0">Description</tspan>
-          </text>
-        </g>
-        <g id="form.input-3" data-name="form.input" transform="translate(311 1113)">
-          <text id="Details" transform="translate(2 10)" fill="rgba(51,51,51,0.87)" font-size="13"
-            font-family="Helvetica-Bold, Helvetica" font-weight="700">
-            <tspan x="0" y="0">Details</tspan>
-          </text>
-          <g id="Rectangle_315-3" data-name="Rectangle 315" transform="translate(0 19)" fill="#fff" stroke="#dededf"
-            stroke-width="1">
-            <rect width="1090" height="139" rx="4" stroke="none" />
-            <rect x="0.5" y="0.5" width="1089" height="138" rx="3.5" fill="none" />
-          </g>
-          <text id="Event_Information" data-name="Event Information" transform="translate(17 43)" fill="#b5b5b5"
-            font-size="14" font-family="Helvetica">
-            <tspan x="0" y="0">Event Information</tspan>
-          </text>
-        </g>
-        <g id="form.checkbox.unchecked" transform="translate(319 1283)">
-          <text id="Set_Bullet_or_Tag_or_something" data-name="Set Bullet or Tag or something"
-            transform="translate(27 14)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Helvetica">
-            <tspan x="0" y="0">Set Bullet or Tag or something</tspan>
-          </text>
-          <g id="Group_510" data-name="Group 510" transform="translate(0 -0.093)">
-            <g id="Rectangle_133" data-name="Rectangle 133" transform="translate(0 0.093)" fill="#fff" stroke="#d4d4d5"
-              stroke-width="1">
-              <rect width="17" height="17" rx="4" stroke="none" />
-              <rect x="0.5" y="0.5" width="16" height="16" rx="3.5" fill="none" />
-            </g>
-          </g>
-        </g>
-        <g id="form.input-4" data-name="form.input" transform="translate(311 1033)">
-          <text id="Date_Start" data-name="Date Start" transform="translate(2 10)" fill="rgba(51,51,51,0.87)"
-            font-size="13" font-family="Helvetica-Bold, Helvetica" font-weight="700">
-            <tspan x="0" y="0">Date Start</tspan>
-          </text>
-          <g id="Rectangle_315-4" data-name="Rectangle 315" transform="translate(0 19)" fill="#fff" stroke="#dededf"
-            stroke-width="1">
-            <rect width="393" height="38" rx="4" stroke="none" />
-            <rect x="0.5" y="0.5" width="392" height="37" rx="3.5" fill="none" />
-          </g>
-          <text id="Select_Date" data-name="Select Date" transform="translate(17 43)" fill="#b5b5b5" font-size="14"
-            font-family="Helvetica">
-            <tspan x="0" y="0">Select Date</tspan>
-          </text>
-        </g>
-        <g id="form.input-5" data-name="form.input" transform="translate(714 1034)">
-          <text id="Date_End" data-name="Date End" transform="translate(2 10)" fill="rgba(51,51,51,0.87)" font-size="13"
-            font-family="Helvetica-Bold, Helvetica" font-weight="700">
-            <tspan x="0" y="0">Date End</tspan>
-          </text>
-          <g id="Rectangle_315-5" data-name="Rectangle 315" transform="translate(0 19)" fill="#fff" stroke="#dededf"
-            stroke-width="1">
-            <rect width="393" height="38" rx="4" stroke="none" />
-            <rect x="0.5" y="0.5" width="392" height="37" rx="3.5" fill="none" />
-          </g>
-          <text id="Select_Date-2" data-name="Select Date" transform="translate(17 43)" fill="#b5b5b5" font-size="14"
-            font-family="Helvetica">
-            <tspan x="0" y="0">Select Date</tspan>
-          </text>
-        </g>
-      </g>
-    </svg>
-
   </main>
 </body>
 

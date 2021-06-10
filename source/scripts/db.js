@@ -2,32 +2,65 @@
 let db;
 
 /**
- * Views a note for the current day, if it's from the weekly page
- * load only important notes.
- *
- * @param {fromWeekly} - Boolean - If it's from the weekly page
- * @param {event} - event default click event
+ * Views a note for the current day
+ * @param {Function} myCallback - function to be called after notes are loaded
  */
-function viewNote(fromWeekly) {
+function viewNote(myCallback) {
   const tx = db.transaction("personal_notes", "readonly");
   const pNotes = tx.objectStore("personal_notes");
 
-  const today = new Date();
-  const date = `${today.getFullYear()}-${
-    today.getMonth() + 1
-  }-${today.getDate()}`;
-  console.log(date);
+  const thisDay = new Date(calendar.currentData.viewTitle);
+  const date = `${thisDay.getFullYear()}-${
+    thisDay.getMonth() + 1
+  }-${thisDay.getDate()}`;
   const request = pNotes.get(date);
 
   request.onerror = function err(error) {
     // Handle errors!
     console.error(error);
   };
+
   // load the note from the specified date
   request.onsuccess = function success() {
-    document.getElementById("notelist").innerHTML = request.result.text;
-    // remove unimportant notes
-    if (fromWeekly) {
+    if (
+      !(
+        request.result === undefined ||
+        request.result.text === "" ||
+        request.result.text === "<br>"
+      )
+    ) {
+      document.getElementById("notelist").innerHTML = request.result.text;
+      typeof myCallback === 'function' && myCallback();
+    }
+  };
+} /* viewNote */
+
+/**
+ * Views all saved notes for the current week
+ * @param {*} date - the day within the week
+ */
+function viewNoteWeekly(date) {
+  const tx = db.transaction("personal_notes", "readonly");
+  const pNotes = tx.objectStore("personal_notes");
+  const request = pNotes.get(date);
+
+  request.onerror = function err(error) {
+    // Handle errors!
+    console.error(error);
+  }; /* viewNoteWeekly */
+
+  // load the note from the specified date
+  request.onsuccess = function success() {
+    if (
+      !(
+        request.result === undefined ||
+        request.result.text === "" ||
+        request.result.text === "<br>"
+      )
+    ) {
+      document.getElementById("notelist").innerHTML += request.result.text;
+
+      // remove unimportant notes
       let unimportantNotes = document.querySelectorAll(
         'bullet-note[data-important="false"]'
       );
@@ -41,17 +74,19 @@ function viewNote(fromWeekly) {
       });
     }
   };
-} /* viewNote */
+}
 
 /**
  * Adds a note to the DB. Will be called from createDB to add a note.
- * @param {fromWeekly} - Boolean - If it's from the weekly page
+ * @param {Boolean} fromWeekly - If it's from the weekly page
+ * @param {Function} myCallback - function to be called after notes are loaded
  */
-function addNoteDB(fromWeekly) {
-  const today = new Date();
-  const date = `${today.getFullYear()}-${
-    today.getMonth() + 1
-  }-${today.getDate()}`;
+function addNoteDB(fromWeekly,myCallback) {
+  const thisDay = new Date(calendar.currentData.viewTitle);
+  const date = `${thisDay.getFullYear()}-${
+    thisDay.getMonth() + 1
+  }-${thisDay.getDate()}`;
+
   const noteString = document.getElementById("notelist").innerHTML;
   const note = {
     time: Math.floor(Date.now() / 1000),
@@ -70,7 +105,7 @@ function addNoteDB(fromWeekly) {
     // if note exists view it, otherwise add note
     const data = e.target.result;
     if (data) {
-      viewNote(fromWeekly);
+      viewNote(myCallback);
     } else {
       pNotes.add(note);
     }
@@ -79,8 +114,10 @@ function addNoteDB(fromWeekly) {
 
 /**
  * Creates a database and/or upgrades the database
+ * @param {Boolean} fromWeekly - If it's from the weekly page
+ * @param {Function} myCallback - function to be called after notes are loaded
  */
-function createDB(fromWeekly) {
+function createDB(fromWeekly,myCallback) {
   const request = indexedDB.open("noteDB", 1);
 
   // on upgrade needed --> if database doesn't exist
@@ -95,7 +132,9 @@ function createDB(fromWeekly) {
     // wait until notes are ready to be populated
     const transaction = e.target.transaction;
     transaction.oncomplete = function () {
-      addNoteDB(fromWeekly);
+      if(!fromWeekly){
+        addNoteDB(fromWeekly,myCallback);
+      }
     };
 
     console.log(
@@ -105,7 +144,9 @@ function createDB(fromWeekly) {
   // on success
   request.onsuccess = (e) => {
     db = e.target.result;
-    addNoteDB(fromWeekly);
+    if(!fromWeekly){
+      addNoteDB(fromWeekly,myCallback);
+    }
     console.log(
       `success is called database name: ${db.name} version : ${db.version}`
     );
@@ -147,4 +188,4 @@ function updateNote() {
   };
 } /* updateNote */
 
-export { createDB, addNoteDB, updateNote, viewNote };
+export { createDB, updateNote, viewNote, db, addNoteDB, viewNoteWeekly };

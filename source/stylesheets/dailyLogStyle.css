@@ -1,0 +1,52 @@
+#leftside {
+    width: calc(100% - 350px);
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 16px);
+}
+
+@media screen and (max-width: 1100px){
+    #leftside {
+        width: 100%;
+    }
+}
+
+#calendar {
+    padding-bottom: 1em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    resize: vertical;
+    overflow: auto;
+    height: 50%;
+    min-height: 10vh;
+}
+
+.formatbtn {
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.formatbtni {
+    width: auto !important;
+}
+
+#formatbtnblock {
+    opacity: 10%;
+}
+
+#notelistouter:focus-within #formatbtnblock {
+    opacity: 75%
+}
+
+#notelistouter {
+    margin-top: 0.5em;
+    /* margin-bottom: 1em; */
+    flex: 1;
+    min-height: 10vh;
+    /* overflow: auto; */
+}
+
+#notelist {
+    overflow: auto;
+    height: calc(100% - 2.5em);
+    margin-top: 0.5em;
+}
