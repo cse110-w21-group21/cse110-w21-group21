@@ -20,8 +20,6 @@ function createCalendar(data) {
         }
       }
     },
-    eventClick: function (info) {
-    },
     
     events: data
     
