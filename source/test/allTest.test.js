@@ -567,12 +567,7 @@ describe('Test Sticky Notes Functionalities', () => {
             await page.setViewport({ 'width': 1200, 'height': 800 });
             await page.waitForSelector('#sticky-btn-yellow');
             await page.click('#sticky-btn-yellow');
-            try {
-                await page.$eval('.note.note-yellow', (e) => e.innerHTML);
-                console.log('Click on yellow button success.');
-            } catch (e) {
-                console.error('Click on yellow button failed.');
-            }
+            await expect(page).toMatchElement('.note.note-yellow');
         },
         timeout,
     );
@@ -580,10 +575,9 @@ describe('Test Sticky Notes Functionalities', () => {
         'Click on delete note button alert message',
         async () => {
             await page.waitForSelector('#sticky-btn-delete');
-            await page.click('#sticky-btn-delete');
-            page.on('dialog', async (dialog) => {
+            page.click('#sticky-btn-delete');
+            await page.on('dialog', async (dialog) => {
                 expect(dialog.message()).toBe('cannot remove the last note!');
-                console.log(dialog.message());
                 await dialog.dismiss();
                 await browser.close();
             });
@@ -594,12 +588,7 @@ describe('Test Sticky Notes Functionalities', () => {
         'Click on orange button',
         async () => {
             await page.click('#sticky-btn-orange');
-            try {
-                await page.$eval('.note.note-orange', (e) => e.innerHTML);
-                console.log('Click on orange button success.');
-            } catch (e) {
-                console.error('Click on orange button failed.');
-            }
+            await expect(page).toMatchElement('.note.note-orange')
         },
         timeout,
     );
