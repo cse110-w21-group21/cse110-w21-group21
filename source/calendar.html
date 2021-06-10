@@ -72,7 +72,7 @@
             <input type="time" name="endTime" id="endTime">
           </div>
           <label for="description">Details</label><br>
-          <textarea name="description" id="description" cols="40" rows="10" placeholder="Event Description"></textarea><br>
+          <textarea name="description" id="description" cols="60" rows="10" placeholder="Event Description"></textarea><br>
           <button type="submit">Submit</button>
         </form>
         <div id="popCloseCreateForm">&#9746;</div>
@@ -82,14 +82,14 @@
     <div id="popupEditEventForm">
       <div id="popboxEditEventForm">
         <form id="editEventForm">
-          <span id="editFormHeader" class="formHeader">Edit an Entry</span><br>
-          <span id="editFormSubheader" class="formSubheader">Edit the form to modify your entry</span><br>
+          <span id="formHeader"><b>Edit an Entry</b></span><br>
+          <span id="formSubheader">Edit the form to modify your entry</span><br>
           <label for="editTitle">Title</label>
-          <label for="editColorSelect">Color Selection</label><br>
           <input id="editTitle" name="title" type="text" placeholder="Title">
+          <label for="editColorSelect">Color Selection</label>
           <input type="color" id="editColorSelect" name="colorSelect"><br>
           <label for="editStart">Start Date</label>
-          <input id="editStart" name="start" type="date"><br>
+          <input id="editStart" name="start" type="date">
           <label for="editEnd">End Date</label>
           <input type="date" name="end" id="editEnd"><br>
           <div id="editTimeDIV" style="display: none;">
