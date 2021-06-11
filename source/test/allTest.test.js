@@ -5,7 +5,7 @@ beforeAll(async () => {
     await page.goto(URL, { waitUntil: 'domcontentloaded' });
 });
 
-/*
+
 describe('Test header and title of the page', () => {
 
     test('Title of the page', async () => {
@@ -553,7 +553,7 @@ describe('Daily Log', () => {
     // done
 
 });
-*/
+
 describe('Test Sticky Notes Functionalities', () => {
     test(
         'Go to Daily Log',
