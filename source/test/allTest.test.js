@@ -593,6 +593,7 @@ describe('Test Sticky Notes Functionalities', () => {
     test(
         'Click on orange button',
         async () => {
+            await page.waitForSelector('#sticky-btn-orange');
             await page.click('#sticky-btn-orange');
             await expect(page).toMatchElement('.note.note-orange')
         },
