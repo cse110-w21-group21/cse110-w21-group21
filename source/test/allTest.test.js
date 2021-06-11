@@ -158,7 +158,9 @@ describe('Bullet Notes', () => {
         async () => {
             await page.waitForSelector('.textbox');
             await page.waitForTimeout(500);
-            await page.evaluate(() => { document.getElementsByClassName('textbox')[0].innerHTML = ""; });
+            await page.evaluate(() => {
+                document.getElementsByClassName('textbox')[0].innerHTML = "";
+            });
             await page.click('.textbox');
             await page.keyboard.press('Backspace');
             // await page.waitForTimeout(1500);
@@ -171,7 +173,9 @@ describe('Bullet Notes', () => {
     test(
         'Delete the other note, check that new note is created in its place',
         async () => {
-            await page.evaluate(() => { document.getElementsByClassName('textbox')[0].innerHTML = ""; });
+            await page.evaluate(() => {
+                document.getElementsByClassName('textbox')[0].innerHTML = "";
+            });
             await page.click('.textbox');
             await page.keyboard.press('Backspace');
             // check to see if there is only one note
