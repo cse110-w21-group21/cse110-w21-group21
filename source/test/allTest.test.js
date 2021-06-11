@@ -579,9 +579,7 @@ describe('Test Sticky Notes Functionalities', () => {
             await page.on('dialog', async (dialog) => {
                 expect(dialog.message()).toBe('cannot remove the last note!');
                 await dialog.dismiss();
-                console.log("before browser.close");
                 await browser.close();
-                console.log("after browser.close");
             });
         },
         timeout,
@@ -614,10 +612,7 @@ describe('Test Sticky Notes Functionalities', () => {
             await page.click('a[title="Settings"]');
             const url = await page.url();
             expect(url).toBe('http://localhost:5000/settings');
-            console.log("end of last test");
         },
         timeout,
     );
 });
-
-// testing
