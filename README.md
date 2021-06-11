@@ -8,8 +8,8 @@ Here is the link to [NinePlusTen Bullet Journal](https://cse110-w21-group21.gith
 ## Videos
 - [Status Check 1](https://youtu.be/oNg_tGI5dPE)
 - [CI/CD Pipeline demo](https://youtu.be/IRaP0pxyPBc)
-- [final video public version]()
-- [final video private version]()
+- [final video public version](https://youtu.be/jimtNd14Gvc)
+- [final video private version](https://youtu.be/e5FtLgOboHE)
 
 ## Documentations
 - [Onboarding Doc](./docs/admin/onboarding.md), click on it to learn how to contribute to the BuJo App
