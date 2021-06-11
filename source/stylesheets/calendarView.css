@@ -95,7 +95,7 @@ button:hover{
   background-color: rgb(10, 161, 207);
 }
 
-#description, #editDescription{
+#description, #editDescription, #start, #end, #editStart, #editEnd{
   width: 100%;
 }
 
