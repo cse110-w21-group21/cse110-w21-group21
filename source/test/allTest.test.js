@@ -579,7 +579,7 @@ describe('Test Sticky Notes Functionalities', () => {
             await page.on('dialog', async (dialog) => {
                 expect(dialog.message()).toBe('cannot remove the last note!');
                 await dialog.dismiss();
-                await browser.close();
+                //await browser.close();
             });
         },
         timeout,
@@ -774,7 +774,7 @@ describe('Calendar', () => {
             page.on('dialog', async (dialog) => {
                 expect(dialog.message()).toBe('Your event has no title or start date!');
                 await dialog.dismiss();
-                await browser.close();
+                //await browser.close();
             });
         },
         timeout
