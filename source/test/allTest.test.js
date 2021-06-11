@@ -581,11 +581,13 @@ describe('Test Sticky Notes Functionalities', () => {
         async () => {
             await page.waitForSelector('#sticky-btn-delete');
             page.click('#sticky-btn-delete');
+            let dialogMessage;
             await page.on('dialog', async (dialog) => {
-                expect(dialog.message()).toBe('cannot remove the last note!');
+                dialogMessage = dialog.message();
                 await dialog.dismiss();
                 //await browser.close();
             });
+            expect(dialogMessage).toBe('cannot remove the last note!');
         },
         timeout,
     );
