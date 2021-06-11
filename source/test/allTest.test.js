@@ -586,7 +586,7 @@ describe('Test Sticky Notes Functionalities', () => {
                 await dialog.dismiss();
                 //await browser.close();
             });
-            
+
         },
         timeout,
     );
