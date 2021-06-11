@@ -582,7 +582,7 @@ describe('Test Sticky Notes Functionalities', () => {
                 await dialog.dismiss();
                 //await browser.close();
             });
-            expect().toBe('cannot remove the last note!');
+            expect(dialogMessage).toBe('cannot remove the last note!');
         },
         timeout,
     );
