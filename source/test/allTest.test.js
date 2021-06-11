@@ -581,13 +581,11 @@ describe('Test Sticky Notes Functionalities', () => {
         async () => {
             await page.waitForSelector('#sticky-btn-delete');
             page.click('#sticky-btn-delete');
-            let dialogMessage;
             await page.on('dialog', async (dialog) => {
-                dialogMessage = await dialog.message();
-                await dialog.accept();
+                expect(dialog.message()).toBe('cannot remove the last note!');
+                await dialog.dismiss();
                 //await browser.close();
             });
-            expect(dialogMessage).toBe('cannot remove the last note!');
         },
         timeout,
     );
@@ -778,13 +776,11 @@ describe('Calendar', () => {
             await page.click('.fc-create-button.fc-button.fc-button-primary');
             await page.waitForSelector('button[type="submit"]');
             await page.click('button[type="submit"]');
-            let dialogMessage;
-            page.on('dialog', async (dialog) => {
-                dialogMessage = await dialog.message();
-                await dialog.accept();
+            await page.on('dialog', async (dialog) => {
+                expect(dialog.message()).toBe('Your event has no title or start date!');
+                await dialog.dismiss();
                 //await browser.close();
             });
-            expect(dialogMessage).toBe('Your event has no title or start date!');
         },
         timeout
     );
